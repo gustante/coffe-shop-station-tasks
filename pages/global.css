@@ -1,0 +1,44 @@
+.container {
+    padding: 1em;
+}
+
+.accordion {
+    --bs-accordion-btn-icon: none;
+    --bs-accordion-btn-active-icon: none;
+    --bs-accordion-btn-focus-box-shadow: none;
+}
+
+.accordion-button:focus {
+    border-color: white
+}
+.nav-pills {
+    --bs-nav-pills-link-active-bg: #1d7b2c !important;
+  }
+
+  .nav-link {
+    color: black;
+  }
+
+  .nav-link:focus, .nav-link:hover {
+    color: #00633a;
+
+}
+
+.accordion-item {
+    margin: 5px 0 5px 0;
+}
+
+.navbar {
+    background-color: #00633a;
+}
+
+.positions {
+    background-color: #00633a !important;
+    color: white;
+    width: 100%;
+    margin: 5px;
+}
+
+.positions:hover {
+    color: white;
+}
