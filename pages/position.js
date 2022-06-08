@@ -2,7 +2,6 @@
 import Head from 'next/head'
 import Script from 'next/script';
 import Link from 'next/link';
-import Navbar from './navbar.js';
 
 // Components
 import sbuxlogo from './sbux_logo.webp'
@@ -23,9 +22,10 @@ export default function Position() {
       </Head>
       <Script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous" strategy="lazyOnload"/>
 
-    <div className="container text-center">
+    <div className="container">
+        <main className="text-center">
 
-        <h1 className="title my-5">
+            <h1 className="my-5">
                 What is your position?
             </h1>
 
@@ -56,6 +56,8 @@ export default function Position() {
               
                 </li>
              </ul>
+        </main>
+
 
 
 

@@ -1,7 +1,7 @@
 // Imports
 import Head from 'next/head'
 import Script from 'next/script';
-
+import Link from 'next/link';
 
 // Components
 import Warming from './warming.js';
@@ -29,7 +29,6 @@ import {
   faSoap,
   faTemperatureHalf,
   faFireFlameCurved,
-  faGlassWater,
   faWhiskeyGlass,
   faCookie,
   faDoorClosed,
@@ -44,6 +43,7 @@ import {
   faClipboard,
   faClock,
   faGlassWaterDroplet,
+  faArrowLeft,
 
 } from "@fortawesome/free-solid-svg-icons";
 
@@ -57,7 +57,7 @@ export default function Home() {
     <>
     <Navbar />
 
-    <div className="container text-center">
+    <div className="container">
 
       <Head>
         <title>Virtual Operations Stations</title>
@@ -69,17 +69,16 @@ export default function Home() {
 
 
 
+      <Link href="/">
+        <a type="button" className="nav-link" ><FontAwesomeIcon className='mx-2' icon={faArrowLeft} style={{ fontSize: "1.5em", color: "black" }}/>Switch position</a>
+        </Link>
 
+      <main className="my-5 text-center">
+          
 
-      <main className="my-5">
-
-        <h1 className="title my-5">
-            Let's get going!!
-        </h1>
-
-        <h3 className="title my-5">
+        <h1 className="my-5">
             What time is it?
-        </h3>
+        </h1>
 
             <ul className="nav nav-pills my-5 d-flex justify-content-center" id="pills-tab" role="tablist">
                 <li class="nav-item" role="presentation">
@@ -419,7 +418,7 @@ export default function Home() {
         <div className="d-flex p-5 flex-column ">
         
           <small className="my-4 ">Copyright Gustavo Faria 2022. All rights reserved. </small> 
-          <small className="">This app is Confidential and for internal use only. Developed for Starbucks business purposes only. Do not distribute.</small>
+          <small className="">This app is confidential and for internal use only. Developed for Starbucks business purposes only. Do not distribute.</small>
         </div>
           
         
