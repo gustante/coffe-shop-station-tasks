@@ -6,6 +6,7 @@ import Link from 'next/link';
 // Components
 import sbuxlogo from './sbux_logo.webp'
 import Navbar from './navbar.js';
+import Footer from './footer.js';
 //
 
 
@@ -63,8 +64,8 @@ export default function Position() {
 
 
 
-
     </div>
+        <Footer />
     </>
   )
 }

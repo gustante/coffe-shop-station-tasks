@@ -22,6 +22,7 @@ import ReadySetGo from './ready-set-go.js';
 import StoreWalk from './store-walk.js';
 import Temps from './temps.js';
 import Navbar from '../navbar.js';
+import Footer from '../footer.js';
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
@@ -412,20 +413,10 @@ export default function Home() {
 
 
       </main>
-      <hr></hr>
       
-
-
-
     </div>  
-    <footer className="d-flex ">
-        <div className="d-flex p-5 flex-column ">
-        
-          <small className="my-4 ">Copyright Gustavo Faria 2022. All rights reserved. </small> 
-          <small className="">This app is confidential and for internal use only. Developed for Starbucks business purposes only. Do not distribute.</small>
-        </div>
-
-      </footer>
+      <Footer />
+    
     </>
   )
 }

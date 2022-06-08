@@ -1,5 +1,5 @@
 .container {
-    padding: 1em;
+    padding: 1em
 }
 
 .title {
@@ -61,4 +61,11 @@
 
 .positions:hover {
     color: white;
+}
+
+footer {
+    background-color: whitesmoke;
+    font-size: 0.9em;
+    margin-top: 5em;
+    text-align: end;
 }

@@ -9,7 +9,7 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 
 // Components
-
+import Footer from './footer.js';
 
 
 //
@@ -52,9 +52,6 @@ export default function Login() {
             
             
         </main>
-
-
-
 
     </div>
     </>
