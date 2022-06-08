@@ -12,7 +12,7 @@
     border-color: white
 }
 .nav-pills {
-    --bs-nav-pills-link-active-bg: #1d7b2c !important;
+    --bs-nav-pills-link-active-bg: #00633a !important;
   }
 
   .nav-link {
@@ -22,6 +22,10 @@
   .nav-link:focus, .nav-link:hover {
     color: #00633a;
 
+}
+
+.station-name{
+    width: 100%;
 }
 
 .accordion-item {

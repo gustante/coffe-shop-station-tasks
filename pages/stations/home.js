@@ -23,6 +23,30 @@ import StoreWalk from './store-walk.js';
 import Temps from './temps.js';
 import Navbar from '../navbar.js';
 
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {
+  faMugHot,
+  faSoap,
+  faTemperatureHalf,
+  faFireFlameCurved,
+  faGlassWater,
+  faWhiskeyGlass,
+  faCookie,
+  faDoorClosed,
+  faBlender,
+  faPeopleGroup,
+  faMobile,
+  faMobileScreen,
+  faSprayCanSparkles,
+  faShoePrints,
+  faComments,
+  faListCheck,
+  faClipboard,
+  faClock,
+  faGlassWaterDroplet,
+
+} from "@fortawesome/free-solid-svg-icons";
+
 
 //
 
@@ -79,7 +103,13 @@ export default function Home() {
             <div className="accordion-item">
                 <h2 className="accordion-header" id="PlayCaller">
                 <button className="accordion-button collapsed" style={{backgroundColor: "#13a37b"}} type="button" data-bs-toggle="collapse" data-bs-target="#collapsePlayCaller" aria-expanded="false" aria-controls="collapsePlayCaller">
-                    <h2 className="text-light" >Play Caller &rarr;</h2>
+                    <div className="station-name d-flex justify-content-between ">
+                        <h2 className="text-light " >Play Caller</h2>
+                        <p className="px-2">
+                            <FontAwesomeIcon icon={faClipboard} style={{ fontSize: "2em", color: "white" }}/>
+                        </p>
+                    </div>
+                    
                 </button>
                 </h2>
                 <div id="collapsePlayCaller" className="accordion-collapse collapse" aria-labelledby="PlayCaller" data-bs-parent="#accordionExample">
@@ -92,7 +122,12 @@ export default function Home() {
             <div className="accordion-item">
                 <h2 className="accordion-header" id="QuickConnect">
                 <button className="accordion-button collapsed" style={{backgroundColor: "#041014"}} type="button" data-bs-toggle="collapse" data-bs-target="#collapseQuickConnect" aria-expanded="false" aria-controls="collapseQuickConnect">
-                    <h2 className="text-light">Quick Connect &rarr;</h2>
+                    <div className="station-name d-flex justify-content-between ">
+                        <h2 className="text-light">Quick Connect</h2>
+                        <p className="px-2">
+                            <FontAwesomeIcon icon={faComments} style={{ fontSize: "2em", color: "white" }}/>
+                        </p>
+                    </div>
                 </button>
                 </h2>
                 <div id="collapseQuickConnect" className="accordion-collapse collapse" aria-labelledby="QuickConnect" data-bs-parent="#accordionExample">
@@ -105,7 +140,12 @@ export default function Home() {
             <div className="accordion-item">
                 <h2 className="accordion-header" id="StoreWalk">
                 <button className="accordion-button collapsed" style={{backgroundColor: "#041014"}} type="button" data-bs-toggle="collapse" data-bs-target="#collapseStoreWalk" aria-expanded="false" aria-controls="collapseStoreWalk">
-                    <h2 className="text-light">Store Walk &rarr;</h2>
+                    <div className="station-name d-flex justify-content-between ">
+                        <h2 className="text-light">Store Walk</h2>
+                        <p className="px-2">
+                            <FontAwesomeIcon icon={faShoePrints} style={{ fontSize: "2em", color: "white" }}/>
+                        </p>
+                    </div>
                 </button>
                 </h2>
                 <div id="collapseStoreWalk" className="accordion-collapse collapse" aria-labelledby="StoreWalk" data-bs-parent="#accordionExample">
@@ -118,7 +158,12 @@ export default function Home() {
             <div className="accordion-item">
                 <h2 className="accordion-header" id="Temps">
                 <button className="accordion-button collapsed" style={{backgroundColor: "#c4443e"}} type="button" data-bs-toggle="collapse" data-bs-target="#collapseTemps" aria-expanded="false" aria-controls="collapseTemps">
-                    <h2 className="text-light">Temps &rarr;</h2>
+                    <div className="station-name d-flex justify-content-between ">
+                        <h2 className="text-light">Temps</h2>
+                        <p className="px-2">
+                            <FontAwesomeIcon icon={faTemperatureHalf} style={{ fontSize: "2em", color: "white" }}/>
+                        </p>
+                    </div>
                 </button>
                 </h2>
                 <div id="collapseTemps" className="accordion-collapse collapse" aria-labelledby="Temps" data-bs-parent="#accordionExample">
@@ -131,7 +176,12 @@ export default function Home() {
             <div className="accordion-item">
                 <h2 className="accordion-header" id="Expresso">
                 <button className="accordion-button collapsed" style={{backgroundColor: "#833a30"}} type="button" data-bs-toggle="collapse" data-bs-target="#collapseExpresso" aria-expanded="false" aria-controls="collapseExpresso">
-                    <h2 className="text-light">Expresso &rarr;</h2>
+                    <div className="station-name d-flex justify-content-between ">
+                        <h2 className="text-light">Expresso</h2>
+                        <p className="px-2">
+                            <FontAwesomeIcon icon={faMugHot} style={{ fontSize: "2em", color: "white" }}/>
+                        </p>
+                    </div>
                 </button>
                 </h2>
                 <div id="collapseExpresso" className="accordion-collapse collapse" aria-labelledby="Expresso" data-bs-parent="#accordionExample">
@@ -144,7 +194,12 @@ export default function Home() {
             <div className="accordion-item">
                 <h2 className="accordion-header" id="ColdBeverage">
                 <button className="accordion-button collapsed" style={{backgroundColor: "#9ba49c"}} type="button" data-bs-toggle="collapse" data-bs-target="#collapseColdBeverage" aria-expanded="false" aria-controls="collapseColdBeverage">
-                    <h2 className="text-light">Cold Beverage &rarr;</h2>
+                    <div className="station-name d-flex justify-content-between ">
+                        <h2 className="text-light">Cold Beverage</h2>
+                        <p className="px-2">
+                            <FontAwesomeIcon icon={faBlender} style={{ fontSize: "2em", color: "white" }}/>
+                        </p>
+                    </div>
                 </button>
                 </h2>
                 <div id="collapseColdBeverage" className="accordion-collapse collapse" aria-labelledby="ColdBeverage" data-bs-parent="#accordionExample">
@@ -157,7 +212,12 @@ export default function Home() {
             <div className="accordion-item">
                 <h2 className="accordion-header" id="Draft">
                 <button className="accordion-button collapsed" style={{backgroundColor: "#c37228"}} type="button" data-bs-toggle="collapse" data-bs-target="#collapseDraft" aria-expanded="false" aria-controls="collapseDraft">
-                    <h2 className="text-light">Draft (Nitro) &rarr;</h2>
+                    <div className="station-name d-flex justify-content-between ">
+                        <h2 className="text-light">Draft (Nitro)</h2>
+                        <p className="px-2">
+                            <FontAwesomeIcon icon={faWhiskeyGlass} style={{ fontSize: "2em", color: "white" }}/>
+                        </p>
+                    </div>
                 </button>
                 </h2>
                 <div id="collapseDraft" className="accordion-collapse collapse" aria-labelledby="Draft" data-bs-parent="#accordionExample">
@@ -170,7 +230,12 @@ export default function Home() {
             <div className="accordion-item">
                 <h2 className="accordion-header" id="MOP">
                 <button className="accordion-button collapsed" style={{backgroundColor: "#4c6977"}} type="button" data-bs-toggle="collapse" data-bs-target="#collapseMOP" aria-expanded="false" aria-controls="collapseMOP">
-                    <h2 className="text-light">Mobile Order & Pay &rarr;</h2>
+                    <div className="station-name d-flex justify-content-between ">
+                        <h2 className="text-light">Mobile Order & Pay</h2>
+                        <p className="px-2">
+                            <FontAwesomeIcon icon={faMobileScreen} style={{ fontSize: "2em", color: "white" }}/>
+                        </p>
+                    </div>  
                 </button>
                 </h2>
                 <div id="collapseMOP" className="accordion-collapse collapse" aria-labelledby="MOP" data-bs-parent="#accordionExample">
@@ -183,7 +248,12 @@ export default function Home() {
             <div className="accordion-item">
                 <h2 className="accordion-header" id="Brewing">
                 <button className="accordion-button collapsed" style={{backgroundColor: "#784e4e"}} type="button" data-bs-toggle="collapse" data-bs-target="#collapseBrewing" aria-expanded="false" aria-controls="collapseBrewing">
-                    <h2 className="text-light">Brewing &rarr;</h2>
+                    <div className="station-name d-flex justify-content-between ">
+                        <h2 className="text-light">Brewing </h2>
+                        <p className="px-2">
+                            <FontAwesomeIcon icon={faGlassWaterDroplet} style={{ fontSize: "2em", color: "white" }}/>
+                        </p>
+                        </div>
                 </button>
                 </h2>
                 <div id="collapseBrewing" className="accordion-collapse collapse" aria-labelledby="Brewing" data-bs-parent="#accordionExample">
@@ -196,7 +266,12 @@ export default function Home() {
             <div className="accordion-item">
                 <h2 className="accordion-header" id="Warming">
                 <button className="accordion-button collapsed" style={{backgroundColor: "#ac5b33"}} type="button" data-bs-toggle="collapse" data-bs-target="#collapseWarming" aria-expanded="false" aria-controls="collapseWarming">
-                    <h2 className="text-light">Warming &rarr;</h2>
+                    <div className="station-name d-flex justify-content-between ">
+                        <h2 className="text-light">Warming</h2>
+                        <p className="px-2">
+                            <FontAwesomeIcon icon={faFireFlameCurved} style={{ fontSize: "2em", color: "white" }}/>
+                        </p>
+                    </div>
                 </button>
                 </h2>
                 <div id="collapseWarming" className="accordion-collapse collapse" aria-labelledby="Warming" data-bs-parent="#accordionExample">
@@ -209,7 +284,12 @@ export default function Home() {
             <div className="accordion-item">
                 <h2 className="accordion-header" id="FoodCase">
                 <button className="accordion-button collapsed" style={{backgroundColor: "#b77046"}} type="button" data-bs-toggle="collapse" data-bs-target="#collapseFoodCase" aria-expanded="false" aria-controls="collapseFoodCase">
-                    <h2 className="text-light">Food Case &rarr;</h2>
+                    <div className="station-name d-flex justify-content-between ">
+                        <h2 className="text-light">Food Case</h2>
+                        <p className="px-2">
+                            <FontAwesomeIcon icon={faCookie} style={{ fontSize: "2em", color: "white" }}/>
+                        </p>
+                    </div>
                 </button>
                 </h2>
                 <div id="collapseFoodCase" className="accordion-collapse collapse" aria-labelledby="FoodCase" data-bs-parent="#accordionExample">
@@ -222,7 +302,12 @@ export default function Home() {
             <div className="accordion-item">
                 <h2 className="accordion-header" id="MultiStationTasks">
                 <button className="accordion-button collapsed" style={{backgroundColor: "#62555e"}} type="button" data-bs-toggle="collapse" data-bs-target="#collapseMultiStationTasks" aria-expanded="false" aria-controls="collapseMultiStationTasks">
-                    <h2 className="text-light">Multi-Station tasks &rarr;</h2>
+                    <div className="station-name d-flex justify-content-between ">
+                        <h2 className="text-light">Multi-Station tasks</h2>
+                        <p className="px-2">
+                            <FontAwesomeIcon icon={faSprayCanSparkles} style={{ fontSize: "2em", color: "white" }}/>
+                        </p>
+                    </div>
                 </button>
                 </h2>
                 <div id="collapseMultiStationTasks" className="accordion-collapse collapse" aria-labelledby="MultiStationTasks" data-bs-parent="#accordionExample">
@@ -235,7 +320,12 @@ export default function Home() {
             <div className="accordion-item">
                 <h2 className="accordion-header" id="CycleTaskList">
                 <button className="accordion-button collapsed" style={{backgroundColor: "#041014"}} type="button" data-bs-toggle="collapse" data-bs-target="#collapseCycleTaskList" aria-expanded="false" aria-controls="collapseCycleTaskList">
-                    <h2 className="text-light">Cycle Task List &rarr;</h2>
+                    <div className="station-name d-flex justify-content-between ">
+                        <h2 className="text-light">Cycle Task List</h2>
+                        <p className="px-2">
+                            <FontAwesomeIcon icon={faClock} style={{ fontSize: "2em", color: "white" }}/>
+                        </p>
+                    </div>
                 </button>
                 </h2>
                 <div id="collapseCycleTaskList" className="accordion-collapse collapse" aria-labelledby="CycleTaskList" data-bs-parent="#accordionExample">
@@ -248,7 +338,12 @@ export default function Home() {
             <div className="accordion-item">
                 <h2 className="accordion-header" id="CustomerArea">
                 <button className="accordion-button collapsed" style={{backgroundColor: "#748e8c"}} type="button" data-bs-toggle="collapse" data-bs-target="#collapseCustomerArea" aria-expanded="false" aria-controls="collapseCustomerArea">
-                    <h2 className="text-light">Customer Area &rarr;</h2>
+                    <div className="station-name d-flex justify-content-between ">
+                        <h2 className="text-light">Customer Area</h2>
+                        <p className="px-2">
+                            <FontAwesomeIcon icon={faPeopleGroup} style={{ fontSize: "2em", color: "white" }}/>
+                        </p>
+                    </div>
                 </button>
                 </h2>
                 <div id="collapseCustomerArea" className="accordion-collapse collapse" aria-labelledby="CustomerArea" data-bs-parent="#accordionExample">
@@ -261,7 +356,12 @@ export default function Home() {
             <div className="accordion-item">
                 <h2 className="accordion-header" id="BackOfHouse">
                 <button className="accordion-button collapsed" style={{backgroundColor: "#b3a8a2"}} type="button" data-bs-toggle="collapse" data-bs-target="#collapseBackOfHouse" aria-expanded="false" aria-controls="collapseBackOfHouse">
-                    <h2 className="text-light">Back Of House &rarr;</h2>
+                    <div className="station-name d-flex justify-content-between ">
+                        <h2 className="text-light">Back Of House</h2>
+                        <p className="px-2">
+                            <FontAwesomeIcon icon={faDoorClosed} style={{ fontSize: "2em", color: "white" }}/>
+                        </p>
+                    </div>
                 </button>
                 </h2>
                 <div id="collapseBackOfHouse" className="accordion-collapse collapse" aria-labelledby="BackOfHouse" data-bs-parent="#accordionExample">
@@ -274,7 +374,12 @@ export default function Home() {
             <div className="accordion-item">
                 <h2 className="accordion-header" id="DishWashing">
                 <button className="accordion-button collapsed" style={{backgroundColor: "#d43436"}} type="button" data-bs-toggle="collapse" data-bs-target="#collapseDishWashing" aria-expanded="false" aria-controls="collapseDishWashing">
-                    <h2 className="text-light">Dish Washing &rarr;</h2>
+                    <div className="station-name d-flex justify-content-between ">
+                        <h2 className="text-light">Dish Washing</h2>
+                        <p className="px-2">
+                            <FontAwesomeIcon icon={faSoap} style={{ fontSize: "2em", color: "white" }}/>
+                        </p>
+                    </div>
                 </button>
                 </h2>
                 <div id="collapseDishWashing" className="accordion-collapse collapse" aria-labelledby="DishWashing" data-bs-parent="#accordionExample">
@@ -287,7 +392,12 @@ export default function Home() {
             <div className="accordion-item">
                 <h2 className="accordion-header" id="ReadySetGo">
                 <button className="accordion-button collapsed" style={{backgroundColor: "#041014"}} type="button" data-bs-toggle="collapse" data-bs-target="#collapseReadySetGo" aria-expanded="false" aria-controls="collapseReadySetGo">
-                    <h2 className="text-light">Ready-Set-Go! &rarr;</h2>
+                    <div className="station-name d-flex justify-content-between ">
+                        <h2 className="text-light">Ready-Set-Go!</h2>
+                        <p className="px-2">
+                            <FontAwesomeIcon icon={faListCheck} style={{ fontSize: "2em", color: "white" }}/>
+                        </p>
+                    </div>
                 </button>
                 </h2>
                 <div id="collapseReadySetGo" className="accordion-collapse collapse" aria-labelledby="ReadySetGo" data-bs-parent="#accordionExample">
@@ -303,6 +413,17 @@ export default function Home() {
 
 
       </main>
+      <hr></hr>
+      <footer className="d-flex ">
+      
+        <div className="d-flex p-5 flex-column ">
+        
+          <small className="my-4 ">Copyright Gustavo Faria 2022. All rights reserved. </small> 
+          <small className="">This app is Confidential and for internal use only. Developed for Starbucks business purposes only. Do not distribute.</small>
+        </div>
+          
+        
+      </footer>
 
 
 

@@ -1,7 +1,17 @@
 import Head from 'next/head'
 import Link from 'next/link';
+import Script from 'next/script';
+
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {
+  faMugHot,
+  faAnchor,
+} from "@fortawesome/free-solid-svg-icons";
+
+//COMPONENTS
 import Navbar from './navbar.js';
 import Position from './position.js';
+
 
 export default function Home() {
   return (
@@ -23,21 +33,20 @@ export default function Home() {
         <h2 className="title">
           Welcome to the virtual Operations Stations Cards
         </h2>
+        
 
         <Position />
 
 
       </main>
 
-      <footer>
-        <a
-          href="https://vercel.com?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Powered by{' '}
-          <img src="/vercel.svg" alt="Vercel" className="logo" />
-        </a>
+      <footer className="d-flex ">
+        <div className="d-flex p-5 flex-column ">
+          <small className="my-4 mt-5">Copyright Gustavo Faria 2022. All rights reserved. </small> 
+          <small className="">This app is Confidential and for internal use only. Developed for Starbucks business purposes only. Do not distribute.</small>
+        </div>
+          
+        
       </footer>
 
       <style jsx>{`
