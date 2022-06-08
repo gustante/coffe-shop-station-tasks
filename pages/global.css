@@ -41,6 +41,17 @@
     background-color: #00633a;
 }
 
+.btn-login {
+    background-color: #00633a;
+    color: white;
+}
+
+.btn-login:hover {
+    background-color: #00633a;
+    color: white;
+}
+
+
 .positions {
     background-color: #00633a !important;
     color: white;

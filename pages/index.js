@@ -4,13 +4,13 @@ import Script from 'next/script';
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
-  faMugHot,
-  faAnchor,
+
 } from "@fortawesome/free-solid-svg-icons";
 
 //COMPONENTS
 import Navbar from './navbar.js';
 import Position from './position.js';
+import Login from './login.js';
 
 
 export default function Home() {
@@ -36,7 +36,7 @@ export default function Home() {
         </h1>
         
 
-        <Position />
+        <Login />
 
 
       </main>

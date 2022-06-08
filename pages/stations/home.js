@@ -56,20 +56,20 @@ export default function Home() {
     
     <>
     <Navbar />
-
-    <div className="container">
-
-      <Head>
+    <Head>
         <title>Virtual Operations Stations</title>
         <link rel="icon" href="/favicon.ico" />
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous"/>
-      </Head>
+    </Head>
+
+    <div className="container">
+
 
       <Script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous" strategy="lazyOnload"/>
 
 
 
-      <Link href="/">
+      <Link href="/position">
         <a type="button" className="nav-link" ><FontAwesomeIcon className='mx-2' icon={faArrowLeft} style={{ fontSize: "1.5em", color: "black" }}/>Switch position</a>
         </Link>
 
@@ -413,20 +413,19 @@ export default function Home() {
 
       </main>
       <hr></hr>
-      <footer className="d-flex ">
       
+
+
+
+    </div>  
+    <footer className="d-flex ">
         <div className="d-flex p-5 flex-column ">
         
           <small className="my-4 ">Copyright Gustavo Faria 2022. All rights reserved. </small> 
           <small className="">This app is confidential and for internal use only. Developed for Starbucks business purposes only. Do not distribute.</small>
         </div>
-          
-        
+
       </footer>
-
-
-
-    </div>  
     </>
   )
 }
