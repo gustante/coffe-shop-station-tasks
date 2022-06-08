@@ -9,7 +9,7 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 
 // Components
-import Footer from './footer.js';
+
 
 
 //
@@ -22,7 +22,6 @@ export default function Login() {
 
       <Head>
         <title>Virtual Operations Stations</title>
-        <link rel="icon" href="/favicon.ico" />
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous"/>
       </Head>
 
@@ -44,7 +43,7 @@ export default function Login() {
                 <input type="password" name="password" className="form-control p-3" placeholder="password" aria-label="password" aria-describedby="basic-addon1"/>
             </div>
 
-            <div class="d-grid gap-2">
+            <div className="d-grid gap-2">
               <Link href="/position">
                 <a className="btn btn-lg btn-login py-3" >Log In</a>
               </Link>
