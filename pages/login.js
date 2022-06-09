@@ -42,8 +42,9 @@ class Login extends React.Component {
       <div className="container">
           <main className="text-center">
   
-              <h1 className="my-5">
-              </h1>
+              <h4 className="my-4">
+                Log in to proceed
+              </h4>
   
               <div className="input-group mb-4">
                   <span className="input-group-text" id="basic-addon1"><FontAwesomeIcon icon={faUserLarge} style={{ fontSize: "1.5em" }}/></span>
