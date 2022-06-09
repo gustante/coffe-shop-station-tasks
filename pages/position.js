@@ -37,17 +37,17 @@ export default function Position() {
             <ul className="nav nav-pills flex-column my-5 d-flex justify-content-center" id="pills-tab" role="tablist">
                 <li className="nav-item d-flex justify-content-center " role="presentation">
                     <Link href="/stations/home">
-                        <a className="nav-link positions">Till / Oven / Brewing</a>
+                        <a className="nav-link positions">Till</a>
                     </Link>
                 </li>
                 <li className="nav-item d-flex justify-content-center" role="presentation">
                     <Link href="/stations/home">
-                        <a className="nav-link positions">Bar / MOP </a>
+                        <a className="nav-link positions">Bar</a>
                     </Link>
                 </li>
                 <li className="nav-item d-flex justify-content-center" role="presentation">
                     <Link href="/stations/home">
-                        <a className="nav-link positions" >Order support</a>
+                        <a className="nav-link positions" >Support</a>
                     </Link>
                 </li>
                 <li className="nav-item d-flex justify-content-center" role="presentation">
@@ -55,9 +55,12 @@ export default function Position() {
                         <a className="nav-link positions" >Customer Support</a>
                     </Link>
                 </li>
-                <li>
-              
+                <li className="nav-item d-flex justify-content-center" role="presentation">
+                    <Link href="/stations/home">
+                        <a className="nav-link positions" >Play Caller</a>
+                    </Link>
                 </li>
+                
              </ul>
         </main>
 

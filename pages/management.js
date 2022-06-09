@@ -164,7 +164,7 @@ const Management = (props) => {
 
 
 export async function getStaticProps() {
-    const connection = require('../mongodb/connection.js');
+    const connection = await require('../mongodb/connection.js');
 
     const stations = await Station.find();
 
