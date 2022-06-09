@@ -1,5 +1,6 @@
 const mongoose = require('mongoose');
-const Schema = mongoose.Schema;
+const { Schema } = mongoose;
+mongoose.Promise = global.Promise;
 
 const TaskSchema = new Schema({
     description: {type:String, required: true},
@@ -9,6 +10,8 @@ const TaskSchema = new Schema({
     completedBy: {type: String, required: true},
 });
 
-const Task = mongoose.model("Task", TaskSchema);
+module.exports =
+    mongoose.models.Task || mongoose.model('Task', StationSchema);
 
-module.exports = Task;
+
+
