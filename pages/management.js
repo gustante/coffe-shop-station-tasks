@@ -8,11 +8,16 @@ import {
     faKey,
 } from "@fortawesome/free-solid-svg-icons";
 const Station = require('../models/Station.js');
+const Task = require('../models/Task.js');
+
 
 // Components
 import Navbar from './navbar.js';
 import Footer from './footer.js';
 //
+
+
+
 
 
 let data = {}
@@ -21,6 +26,8 @@ const Management = (props) => {
     const [stationName, setStationName] = useState("");
     const [stationsDropDown, setStationsDropdown] = useState(props.data);
     const [selectedStation, setSelectedStation] = useState("");
+    const [stationColor, setStationColor] = useState("");
+
     const [managerPassword, setManagerPassword] = useState("");
 
     const [taskTime, setTaskTime] = useState("");
@@ -51,7 +58,7 @@ const Management = (props) => {
             $('#authentication').addClass("d-none")
             $('#management').removeClass("d-none")
             $('#management').addClass("d-block")
-        } 
+        }
 
 
     }
@@ -66,7 +73,7 @@ const Management = (props) => {
             headers: {
                 'Content-Type': 'application/json',
             },
-            body: JSON.stringify({ stationName: stationName }),
+            body: JSON.stringify({ stationName: stationName, stationColor: stationColor }),
         })
 
         const data = await results.json()
@@ -102,7 +109,7 @@ const Management = (props) => {
         const data = await results.json()
         console.log(data.message)
     }
-    
+
     async function handleSelectStationToDeleteTask(e) {
         setSelectedStation(e.target.value);
         const results = await fetch(`/api/deleteTask?stationId=${e.target.value}`, {
@@ -110,7 +117,7 @@ const Management = (props) => {
             headers: {
                 'Content-Type': 'application/json',
             },
-            
+
         })
 
         const data = await results.json()
@@ -164,6 +171,10 @@ const Management = (props) => {
         console.log("executes handleChange")
         setSelectedTask(e.target.value)
     }
+    function handleChangeColor(e) {
+        console.log("executes handleChange")
+        setStationColor(e.target.value)
+    }
 
     return (
 
@@ -180,9 +191,9 @@ const Management = (props) => {
             <Script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossOrigin="anonymous" strategy="lazyOnload" />
 
             <Script
-			  src="https://code.jquery.com/jquery-3.6.0.slim.min.js"
-			  integrity="sha256-u7e5khyithlIdTpu22PHhENmPcRdFiHRjhAuHcs05RI="
-			  crossorigin="anonymous"/>
+                src="https://code.jquery.com/jquery-3.6.0.slim.min.js"
+                integrity="sha256-u7e5khyithlIdTpu22PHhENmPcRdFiHRjhAuHcs05RI="
+                crossorigin="anonymous" />
 
             <div className="container">
                 <main className="text-center">
@@ -209,7 +220,11 @@ const Management = (props) => {
 
                         <div className="input-group mb-4">
                             <input type="text" name="stationName" className="form-control p-3" placeholder="Station Name" aria-label="name" aria-describedby="basic-addon1" onChange={handleChangeName} />
+
                         </div>
+                        <label for="exampleColorInput" className="form-label d-flex mb-3">Pick a color
+                        <input type="color" className="form-control form-control-color mx-3" id="exampleColorInput" title="Choose your color" onChange={handleChangeColor}/>
+                        </label>
 
                         <div className="d-grid gap-2">
                             <button onClick={handleCreateStation} className="btn btn-lg btn-login py-3" >Create Station</button>
@@ -274,7 +289,7 @@ const Management = (props) => {
                             <option value={null}>Select Task</option>
                             {taskDropDown && taskDropDown.map((task, index) => <option key={index} value={task._id}>{task.description}</option>)}
                         </select>
-                        
+
                         <div className="d-grid gap-2">
                             <button onClick={handleDeleteTask} className="btn btn-lg btn-login py-3" >Delete task</button>
                         </div>
