@@ -133,6 +133,7 @@ const Management = (props) => {
                         <option value={"11am-2pm"}>11am-2pm</option>
                         <option value={"2pm-4pm"}>2pm-4pm</option>
                         <option value={"4pm-close"}>4pm-close</option>
+                        <option value={"Unset"}>Unset/Routine</option>
                     </select>
 
                     <select id="role" className="form-control p-3 m-2" name="role" onChange={handleChangeRole}>
