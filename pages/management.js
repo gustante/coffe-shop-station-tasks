@@ -14,6 +14,7 @@ const Station = require('../models/Station.js');
 
 // Components
 import Navbar from './navbar.js';
+import Footer from './footer.js';
 //
 
 
@@ -157,6 +158,7 @@ const Management = (props) => {
                 </main>
 
             </div>
+            <Footer/>
         </>
     )
 
