@@ -15,7 +15,7 @@ export default async function handler(req, res) {
     })
 
     await station.save()
-    connection.close();
+
     
     res.json(station);
    

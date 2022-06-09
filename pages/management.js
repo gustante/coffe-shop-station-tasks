@@ -26,6 +26,8 @@ const Management = (props) => {
     const [taskTime, setTaskTime] = useState("");
     const [taskDescription, setTaskDescription] = useState("");
     const [taskRole, setTaskRole] = useState("");
+    const [taskDropDown, setTaskDropDown] = useState([]);
+    const [selectedTask, setSelectedTask] = useState("");
 
 
 
@@ -88,6 +90,51 @@ const Management = (props) => {
 
     }
 
+    async function handleDeleteStation() {
+        const results = await fetch('/api/deleteStation', {
+            method: 'DELETE',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ stationId: selectedStation }),
+        })
+
+        const data = await results.json()
+        console.log(data.message)
+    }
+    
+    async function handleSelectStationToDeleteTask(e) {
+        setSelectedStation(e.target.value);
+        const results = await fetch(`/api/deleteTask?stationId=${e.target.value}`, {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            
+        })
+
+        const data = await results.json()
+        setTaskDropDown(data);
+        console.log(data)
+    }
+
+    async function handleDeleteTask() {
+        const results = await fetch('/api/deleteTask', {
+            method: 'DELETE',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ stationId: selectedStation, taskId: selectedTask }),
+        })
+
+        const data = await results.json()
+        console.log(data.message)
+
+        //delete task from dropdown
+        const newTaskDropDown = taskDropDown.filter(task => task._id != selectedTask);
+        setTaskDropDown(newTaskDropDown);
+    }
+
     function handleChangeName(e) {
         console.log("executes handleChange")
         setStationName(e.target.value)
@@ -107,10 +154,15 @@ const Management = (props) => {
     function handleChangeSelectedStation(e) {
         console.log("executes handleChange")
         setSelectedStation(e.target.value)
+        console.log(selectedStation)
     }
     function handleChangeManagerPassword(e) {
         console.log("executes handleChange")
         setManagerPassword(e.target.value)
+    }
+    function handleChangeSelectedTask(e) {
+        console.log("executes handleChange")
+        setSelectedTask(e.target.value)
     }
 
     return (
@@ -168,12 +220,12 @@ const Management = (props) => {
                         </h1>
 
 
-                        <select id="station" className="form-control p-3 m-2" name="station" onChange={handleChangeSelectedStation}>
-                            <option value={stationName}>Select station</option>
+                        <select id="station" className="form-control p-3 my-2" name="station" onChange={handleChangeSelectedStation}>
+                            <option value={null}>Select station</option>
                             {stationsDropDown.map((station, index) => <option key={index} value={station.name}>{station.name}</option>)}
                         </select>
 
-                        <select id="time" className="form-control p-3 m-2" name="time" onChange={handleChangeTime}>
+                        <select id="time" className="form-control p-3 my-2" name="time" onChange={handleChangeTime}>
                             <option value={null}>Select time</option>
                             <option value={"open-11am"}>open-11am</option>
                             <option value={"11am-2pm"}>11am-2pm</option>
@@ -182,7 +234,7 @@ const Management = (props) => {
                             <option value={"Unset"}>Unset/Routine</option>
                         </select>
 
-                        <select id="role" className="form-control p-3 m-2" name="role" onChange={handleChangeRole}>
+                        <select id="role" className="form-control p-3 my-2" name="role" onChange={handleChangeRole}>
                             <option value={null}>Select role</option>
                             <option value={"Customer Support"}>Customer Support</option>
                             <option value={"Planted"}>Planted</option>
@@ -191,17 +243,42 @@ const Management = (props) => {
                             <option value={"Play Caller"}>Play Caller</option>
                         </select>
 
-                        <input type="text" name="description" className="form-control p-3 m-2" placeholder="Description" aria-label="name" aria-describedby="basic-addon1" onChange={handleChangeDescription} />
-
-
+                        <input type="text" name="description" className="form-control p-3 my-2" placeholder="Description" aria-label="name" aria-describedby="basic-addon1" onChange={handleChangeDescription} />
 
                         <div className="d-grid gap-2">
-
                             <button onClick={handleCreateTask} className="btn btn-lg btn-login py-3" >Create task</button>
+                        </div>
 
+
+                        <h1 className="my-5">
+                            Delete station
+                        </h1>
+
+                        <select id="station" className="form-control p-3 my-2" name="station" onChange={handleChangeSelectedStation}>
+                            <option value={null}>Select station</option>
+                            {stationsDropDown.map((station, index) => <option key={index} value={station._id}>{station.name}</option>)}
+                        </select>
+                        <div className="d-grid gap-2">
+                            <button onClick={handleDeleteStation} className="btn btn-lg btn-login py-3" >Delete station</button>
+                        </div>
+
+                        <h1 className="my-5">
+                            Delete task
+                        </h1>
+
+                        <select id="station" className="form-control p-3 my-2" name="station" onChange={handleSelectStationToDeleteTask}>
+                            <option value={null}>Select station</option>
+                            {stationsDropDown.map((station, index) => <option key={index} value={station._id}>{station.name}</option>)}
+                        </select>
+                        <select id="station" className="form-control p-3 my-2" name="station" onChange={handleChangeSelectedTask}>
+                            <option value={null}>Select Task</option>
+                            {taskDropDown && taskDropDown.map((task, index) => <option key={index} value={task._id}>{task.description}</option>)}
+                        </select>
+                        
+                        <div className="d-grid gap-2">
+                            <button onClick={handleDeleteTask} className="btn btn-lg btn-login py-3" >Delete task</button>
                         </div>
                     </div>
-
 
                 </main>
 
@@ -216,7 +293,7 @@ const Management = (props) => {
 export async function getStaticProps() {
     const connection = await require('../mongodb/connection.js');
 
-    const stations = await Station.find();
+    const stations = await Station.find().populate('tasks');
 
     data = JSON.stringify(stations);
 

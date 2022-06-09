@@ -24,7 +24,7 @@ export default async function handler(req, res) {
     station.tasks.push(task);
     await station.save();
 
-    connection.close();
+  
     
     res.json({message: "success"})
    
