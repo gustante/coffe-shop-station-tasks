@@ -57,34 +57,49 @@ import {
 
 const Home = (props) => {
     const [stations, setStations] = useState(props.data);
-    let theProps = useState(props.data)
+    const [time, setTime] = useState(props.timeNow);
+
+    
+    
     const StoreWalk = stations.find(station => station.name == "Store Walk");
+    const PlayCaller = stations.find(station => station.name == "Play Caller");
+
+
+    let checkedTask = true;
+
+
+
+
+    const QuickConnect = stations.find(station => station.name == "Quick Connect");
+
+    
+
+
+
 
     function printProps() {
         console.log(StoreWalk);
-        //loop thorugh stations 
-        // for(let station in stations){
-        //     if(station.name == "Store Walk"){
-        //         for(let task in station.tasks){
-        //             console.log(task.name);
-        //         }
-        //     }
-        // }
+        console.log(PlayCaller);
+
+        // PlayCaller.tasks.map(task =>
+        //     task.role == "Play Caller" ? console.log(task.description) : null)
+
+        // // const PlayCallerPC = PlayCaller.tasks.find(task => task.role == "Play Caller");
+        // // console.log(PlayCallerPC);
+        // // const PlayCallerTW = PlayCaller.tasks.find(task => task.role == "Play Caller");
 
 
-        // let storew = stations.find(station => station.name == "Store Walk");
-        // console.log(storew);
+    }
 
+    function handleChangeTime(e) {
+        setTime(e.target.value)
+        console.log(e.target.value)
+        console.log(props.timeNow)
+    }
 
-        // stations.map((station, index) => {
-        //     if (station.name == "Store Walk") {
-        //         for (let task of station.tasks) {
-        //             console.log(task.description);
-        //         }
-        //     }
-        // }
-        // )
-
+    function checkTask(e) {
+        setTime(e.target.value)
+      
     }
 
 
@@ -103,6 +118,11 @@ const Home = (props) => {
 
                 <Script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossOrigin="anonymous" strategy="lazyOnload" />
 
+                <Script
+                src="https://code.jquery.com/jquery-3.6.0.slim.min.js"
+                integrity="sha256-u7e5khyithlIdTpu22PHhENmPcRdFiHRjhAuHcs05RI="
+                crossorigin="anonymous" />
+
 
 
                 <Link href="/position">
@@ -118,16 +138,16 @@ const Home = (props) => {
 
                     <ul className="nav nav-pills my-5 d-flex justify-content-center" id="pills-tab" role="tablist">
                         <li className="nav-item" role="presentation">
-                            <button className="nav-link active" id="pills-home-tab" data-bs-toggle="pill" data-bs-target="#pills-home" type="button" role="tab" aria-controls="pills-home" aria-selected="true" onClick={printProps}>Open-11am</button>
+                            <button className="nav-link" id="pills-open-11am" data-bs-toggle="pill" data-bs-target="#pills-home" type="button" role="tab" aria-controls="pills-home" aria-selected="true" value="open-11am" onClick={handleChangeTime}>Open-11am</button>
                         </li>
                         <li className="nav-item" role="presentation">
-                            <button className="nav-link" id="pills-profile-tab" data-bs-toggle="pill" data-bs-target="#pills-profile" type="button" role="tab" aria-controls="pills-profile" aria-selected="false">11am-2pm</button>
+                            <button className="nav-link" id="pills-11am-2pm" data-bs-toggle="pill" data-bs-target="#pills-profile" type="button" role="tab" aria-controls="pills-profile" aria-selected="false" value="11am-2pm" onClick={handleChangeTime}>11am-2pm</button>
                         </li>
                         <li className="nav-item" role="presentation">
-                            <button className="nav-link" id="pills-contact-tab" data-bs-toggle="pill" data-bs-target="#pills-contact" type="button" role="tab" aria-controls="pills-contact" aria-selected="false">2pm-4pm</button>
+                            <button className="nav-link" id="pills-2pm-4pm" data-bs-toggle="pill" data-bs-target="#pills-contact" type="button" role="tab" aria-controls="pills-contact" aria-selected="false" value="2pm-4pm" onClick={handleChangeTime}>2pm-4pm</button>
                         </li>
                         <li className="nav-item" role="presentation">
-                            <button className="nav-link" id="pills-contact-tab" data-bs-toggle="pill" data-bs-target="#pills-contact" type="button" role="tab" aria-controls="pills-contact" aria-selected="false">4pm-close</button>
+                            <button className="nav-link" id="pills-4pm-close" data-bs-toggle="pill" data-bs-target="#pills-contact" type="button" role="tab" aria-controls="pills-contact" aria-selected="false" value="4pm-close" onClick={handleChangeTime}>4pm-close</button>
                         </li>
                     </ul>
 
@@ -149,7 +169,43 @@ const Home = (props) => {
                             </h2>
                             <div id="collapsePlayCaller" className="accordion-collapse collapse" aria-labelledby="PlayCaller" data-bs-parent="#accordionExample">
                                 <div className="accordion-body">
-                                    <PlayCaller />
+                                    <h5 className="text-dark">Play Caller:</h5>
+                                    {
+                                        PlayCaller.tasks.map((task, index) =>
+                                            task.role == "Play Caller" && task.time == time ? (
+                                                <>
+
+                                                    <div className="form-check mx-4">
+                                                        <input className="form-check-input" type="checkbox" value="" id={task._id} />
+                                                        <label className="form-check-label" for={task._id}>
+                                                            {task.description}
+                                                        </label>
+                                                    </div>
+                                                </>
+
+                                            ) : (
+                                                null
+
+                                            )
+
+                                        )
+
+                                    }
+                                    <h5 className="text-dark">Team work:</h5>
+                                    {
+                                        PlayCaller.tasks.map((task, index) =>
+                                            task.role == "Teamwork" && task.time == time ? (
+                                                <div className="form-check mx-4">
+                                                    <input className="form-check-input" type="checkbox" value="" id={task._id} />
+                                                    <label className="form-check-label" for={task._id}>
+                                                        {task.description}
+                                                    </label>
+                                                </div>
+                                            ) : (
+                                                null
+                                            )
+                                        )
+                                    }
                                 </div>
                             </div>
                         </div>
@@ -167,7 +223,13 @@ const Home = (props) => {
                             </h2>
                             <div id="collapseQuickConnect" className="accordion-collapse collapse" aria-labelledby="QuickConnect" data-bs-parent="#accordionExample">
                                 <div className="accordion-body">
-                                    <QuickConnect />
+                                    <h5 className="text-dark">Quick Connect:</h5>
+                                    {QuickConnect.tasks.map((task, index) => <div className="form-check mx-4">
+                                        <input className="form-check-input" type="checkbox" value="" id={task._id} />
+                                        <label className="form-check-label" for={task._id}>
+                                            {task.description}
+                                        </label>
+                                    </div>)}
                                 </div>
                             </div>
                         </div>
@@ -184,12 +246,13 @@ const Home = (props) => {
                                 </button>
                             </h2>
                             <div id="collapseStoreWalk" className="accordion-collapse collapse" aria-labelledby="StoreWalk" data-bs-parent="#accordionExample">
-                                <div className="accordion-body">
-                                    {StoreWalk.tasks.map((task, index) => <div class="form-check">
-                                        <input className="form-check-input" type="checkbox" value="" id={task._id}/>
-                                            <label className="form-check-label" for={task._id}>
-                                                {task.description}
-                                            </label>
+                                <div className="accordion-body text-dark">
+                                    <h5 className="text-dark">Play Caller:</h5>
+                                    {StoreWalk.tasks.map((task, index) => <div className="form-check mx-4">
+                                        <input className="form-check-input" type="checkbox" value="" id={task._id} />
+                                        <label className="form-check-label" for={task._id}>
+                                            {task.description}
+                                        </label>
                                     </div>)}
                                 </div>
                             </div>
@@ -208,7 +271,7 @@ const Home = (props) => {
                             </h2>
                             <div id="collapseTemps" className="accordion-collapse collapse" aria-labelledby="Temps" data-bs-parent="#accordionExample">
                                 <div className="accordion-body">
-                                    <Temps />
+
                                 </div>
                             </div>
                         </div>
@@ -245,7 +308,7 @@ const Home = (props) => {
                             </h2>
                             <div id="collapseColdBeverage" className="accordion-collapse collapse" aria-labelledby="ColdBeverage" data-bs-parent="#accordionExample">
                                 <div className="accordion-body">
-                                    <ColdBeverage />
+
                                 </div>
                             </div>
                         </div>
@@ -263,7 +326,7 @@ const Home = (props) => {
                             </h2>
                             <div id="collapseDraft" className="accordion-collapse collapse" aria-labelledby="Draft" data-bs-parent="#accordionExample">
                                 <div className="accordion-body">
-                                    <Draft />
+
                                 </div>
                             </div>
                         </div>
@@ -281,7 +344,7 @@ const Home = (props) => {
                             </h2>
                             <div id="collapseMOP" className="accordion-collapse collapse" aria-labelledby="MOP" data-bs-parent="#accordionExample">
                                 <div className="accordion-body">
-                                    <MOP />
+
                                 </div>
                             </div>
                         </div>
@@ -299,7 +362,7 @@ const Home = (props) => {
                             </h2>
                             <div id="collapseBrewing" className="accordion-collapse collapse" aria-labelledby="Brewing" data-bs-parent="#accordionExample">
                                 <div className="accordion-body">
-                                    <Brewing />
+
                                 </div>
                             </div>
                         </div>
@@ -317,7 +380,7 @@ const Home = (props) => {
                             </h2>
                             <div id="collapseWarming" className="accordion-collapse collapse" aria-labelledby="Warming" data-bs-parent="#accordionExample">
                                 <div className="accordion-body">
-                                    <Warming />
+
                                 </div>
                             </div>
                         </div>
@@ -335,7 +398,7 @@ const Home = (props) => {
                             </h2>
                             <div id="collapseFoodCase" className="accordion-collapse collapse" aria-labelledby="FoodCase" data-bs-parent="#accordionExample">
                                 <div className="accordion-body">
-                                    <FoodCase />
+
                                 </div>
                             </div>
                         </div>
@@ -353,7 +416,7 @@ const Home = (props) => {
                             </h2>
                             <div id="collapseMultiStationTasks" className="accordion-collapse collapse" aria-labelledby="MultiStationTasks" data-bs-parent="#accordionExample">
                                 <div className="accordion-body">
-                                    <MultiStationTasks />
+
                                 </div>
                             </div>
                         </div>
@@ -371,7 +434,7 @@ const Home = (props) => {
                             </h2>
                             <div id="collapseCycleTaskList" className="accordion-collapse collapse" aria-labelledby="CycleTaskList" data-bs-parent="#accordionExample">
                                 <div className="accordion-body">
-                                    <CycleTaskList />
+
                                 </div>
                             </div>
                         </div>
@@ -389,7 +452,7 @@ const Home = (props) => {
                             </h2>
                             <div id="collapseCustomerArea" className="accordion-collapse collapse" aria-labelledby="CustomerArea" data-bs-parent="#accordionExample">
                                 <div className="accordion-body">
-                                    <CustomerArea />
+
                                 </div>
                             </div>
                         </div>
@@ -407,7 +470,7 @@ const Home = (props) => {
                             </h2>
                             <div id="collapseBackOfHouse" className="accordion-collapse collapse" aria-labelledby="BackOfHouse" data-bs-parent="#accordionExample">
                                 <div className="accordion-body">
-                                    <BackOfHouse />
+
                                 </div>
                             </div>
                         </div>
@@ -425,7 +488,7 @@ const Home = (props) => {
                             </h2>
                             <div id="collapseDishWashing" className="accordion-collapse collapse" aria-labelledby="DishWashing" data-bs-parent="#accordionExample">
                                 <div className="accordion-body">
-                                    <DishWashing />
+
                                 </div>
                             </div>
                         </div>
@@ -443,7 +506,7 @@ const Home = (props) => {
                             </h2>
                             <div id="collapseReadySetGo" className="accordion-collapse collapse" aria-labelledby="ReadySetGo" data-bs-parent="#accordionExample">
                                 <div className="accordion-body">
-                                    <ReadySetGo />
+
                                 </div>
                             </div>
                         </div>
@@ -469,10 +532,27 @@ export async function getStaticProps() {
 
     let data = JSON.stringify(stations);
 
+    let currentDate = new Date();
+    let timeNow = currentDate.getHours()
+
+    console.log(timeNow);
+
+    if(timeNow > 1 && timeNow < 11 ){
+        timeNow = "open-11am"
+    } else if (timeNow >= 11 && timeNow < 14 ){
+        timeNow = "11am-2pm"
+    } else if (timeNow >= 14 && timeNow < 16 ){
+        timeNow = "2pm-4pm"
+    } else if (timeNow >= 16 && timeNow < 21 ){
+        timeNow = "4pm-close"
+    }
+
+
 
     return {
         props: {
             data: JSON.parse(data),
+            timeNow: timeNow
         },
     };
 

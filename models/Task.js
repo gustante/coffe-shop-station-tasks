@@ -9,6 +9,7 @@ const TaskSchema = new Schema({
     time: {type: String, required: true}, //time of the day it needs to me completed. (open-11, 4-close...)
     completedAt: {type: Date, required: false, default: new Date()},
     completedBy: {type: String, required: false},
+    checked: {type: Boolean, required: false, default: false},
 });
 
 
