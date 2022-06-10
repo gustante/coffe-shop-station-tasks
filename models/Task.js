@@ -11,7 +11,14 @@ const TaskSchema = new Schema({
     completedBy: {type: String, required: false},
 });
 
-module.exports = mongoose.models.Task || mongoose.model('Task', TaskSchema);
+
+
+if(mongoose.models == undefined) {
+    module.exports = mongoose.model('Task', TaskSchema);
+    
+} else {
+    module.exports = mongoose.models.Task
+}
 
     
 

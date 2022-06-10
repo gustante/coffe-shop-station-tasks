@@ -20,8 +20,6 @@ import Footer from './footer.js';
 
 
 
-let data = {}
-
 const Management = (props) => {
     const [stationName, setStationName] = useState("");
     const [stationsDropDown, setStationsDropdown] = useState(props.data);
@@ -310,7 +308,7 @@ export async function getStaticProps() {
 
     const stations = await Station.find().populate('tasks');
 
-    data = JSON.stringify(stations);
+    let data = JSON.stringify(stations);
 
 
     return {

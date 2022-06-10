@@ -16,20 +16,31 @@
 .accordion-button:focus {
     border-color: white
 }
+
+.accordion-body {
+    text-align: left;
+    font-size: 0.9em;
+}
+
+.form-check {
+    margin-bottom: 1em;
+}
+
 .nav-pills {
     --bs-nav-pills-link-active-bg: #00633a !important;
-  }
+}
 
-  .nav-link {
+.nav-link {
     color: black;
-  }
+}
 
-  .nav-link:focus, .nav-link:hover {
+.nav-link:focus,
+.nav-link:hover {
     color: #00633a;
 
 }
 
-.station-name{
+.station-name {
     width: 100%;
 }
 
