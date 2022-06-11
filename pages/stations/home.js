@@ -85,7 +85,6 @@ const Home = (props) => {
     function handleChangeTime(e) {
         console.log(e.target.value);
         setTime(e.target.value)
-        
     }
 
     async function handleCheckTask(e) {
@@ -117,6 +116,23 @@ const Home = (props) => {
         //update stations with updates from server
         setStations(data.stations);
 
+    }
+
+
+    async function updateCheckedTasks(){
+        const results = await fetch('/api/updateStations', {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            
+        })
+
+        const data = await results.json()
+        //update stations with updates from server
+        console.log("re-seting stations")
+        console.log(data.stations)
+        setStations(data.stations);
     }
 
 
@@ -179,7 +195,7 @@ const Home = (props) => {
 
 
                     <div className="accordion" id="accordionExample">
-                        <div className="accordion-item">
+                        <div className="accordion-item" onClick={updateCheckedTasks}>
                             <h2 className="accordion-header" id="PlayCaller">
                                 <button className="accordion-button collapsed" style={{ backgroundColor: "#13a37b" }} type="button" data-bs-toggle="collapse" data-bs-target="#collapsePlayCaller" aria-expanded="false" aria-controls="collapsePlayCaller">
                                     <div className="station-name d-flex justify-content-between ">
