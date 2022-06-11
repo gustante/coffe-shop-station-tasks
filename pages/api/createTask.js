@@ -1,15 +1,15 @@
 
 
-const connection = require('../../mongodb/connection.js');
-const Station = require('../../models/Station.js');
-const Task = require('../../models/Task.js');
-
+import connectMongo from '../../mongodb/connection.js';
+import Task from '../../models/Task.js';
+import Station from '../../models/Station.js';
 
 
 
 export default async function handler(req, res) {
     console.log(req.body)
 
+    await connectMongo();
     let station = await Station.findOne({ name: req.body.stationName })
     console.log(station)
 

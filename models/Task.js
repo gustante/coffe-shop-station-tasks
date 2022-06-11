@@ -1,6 +1,5 @@
-const mongoose = require('mongoose');
-const { Schema } = mongoose;
-mongoose.Promise = global.Promise;
+import { mongoose, Schema, model, models } from 'mongoose';
+
 
 const TaskSchema = new Schema({
     description: {type:String, required: true},
@@ -14,12 +13,20 @@ const TaskSchema = new Schema({
 
 
 
-if(mongoose.models == undefined) {
-    module.exports = mongoose.model('Task', TaskSchema);
+let Task
+
+if(mongoose == undefined || mongoose.models == undefined) {
+    Task = model('Task', TaskSchema);
+
+    
     
 } else {
-    module.exports = mongoose.models.Task
+        Task = models.Task 
+
+    
 }
+
+export default Task;
 
     
 

@@ -3,27 +3,10 @@ import Head from 'next/head'
 import Script from 'next/script';
 import Link from 'next/link';
 import { useState } from "react";
-const Station = require('../../models/Station.js');
-const Task = require('../../models/Task.js');
+import connectMongo from "../../mongodb/connection";
+import Station from '../../models/Station';
 
 // Components
-import Warming from './warming.js';
-import BackOfHouse from './back-of-house.js';
-import Brewing from './brewing.js';
-import ColdBeverage from './cold-beverage.js';
-import CustomerArea from './customer-area.js';
-import CycleTaskList from './cycle-task-list.js';
-import DishWashing from './dish-washing.js';
-import Draft from './draft.js';
-import Expresso from './expresso.js';
-import FoodCase from './food-case.js';
-import MOP from './MOP.js';
-import MultiStationTasks from './multi-station-tasks.js';
-import PlayCaller from './play-caller.js';
-import QuickConnect from './quick-connect.js';
-import ReadySetGo from './ready-set-go.js';
-import StoreWalk from './store-walk.js';
-import Temps from './temps.js';
 import Navbar from '../navbar.js';
 import Footer from '../footer.js';
 
@@ -102,15 +85,18 @@ const Home = (props) => {
     function handleChangeTime(e) {
         console.log(e.target.value);
         setTime(e.target.value)
+        
     }
 
     async function handleCheckTask(e) {
         let wasChecked = $(`.${e.target.value}`).attr('data-ischecked');
+
         
         if(wasChecked == "true") {
             $(`.${e.target.value}`).removeClass("text-success");
             $(`#${e.target.value}`).html("&#9633;");
             $(`span.${e.target.value}`).removeClass("text-decoration-line-through");
+            
         } 
         else if(wasChecked == "false") {
             $(`span.${e.target.value}`).removeClass("text-dark");
@@ -128,7 +114,7 @@ const Home = (props) => {
         })
 
         const data = await results.json()
-        console.log(data.message)
+        
 
     }
 
@@ -214,10 +200,10 @@ const Home = (props) => {
                                                    
                                                     <div className="d-flex my-1 mx-4" >
                                                         
-                                                        {task.checked ? (<><button id={task._id} className={`${task._id} btn fs-2 text-success task-check`} data-ischecked="true" value={task._id} onClick={handleCheckTask}> &#x2713;
+                                                        {task.checked ? (<><button id={task._id} className={`${task._id} btn fs-2 text-success task-check`} data-station={task.station} data-ischecked="true" value={task._id} onClick={handleCheckTask}> &#x2713;
                                                         </button> <span className={`${task._id} mx-4 mt-3 text-decoration-line-through text-success`}>
                                                             {task.description}
-                                                        </span> </>) : (<> <button id={task._id} className={`${task._id} btn fs-2 task-check`} data-ischecked="false" value={task._id} onClick={handleCheckTask}> &#9633;
+                                                        </span> </>) : (<> <button id={task._id} className={`${task._id} btn fs-2 task-check`} data-station={task.station} data-ischecked="false" value={task._id} onClick={handleCheckTask}> &#9633;
                                                         </button> <span className={`${task._id} mx-4 mt-3 text-dark`}>
                                                             {task.description}
                                                         </span> </>)}
@@ -338,7 +324,7 @@ const Home = (props) => {
                             </h2>
                             <div id="collapseExpresso" className="accordion-collapse collapse" aria-labelledby="Expresso" data-bs-parent="#accordionExample">
                                 <div className="accordion-body">
-                                    <Expresso />
+                                    
                                 </div>
                             </div>
                         </div>
@@ -574,9 +560,10 @@ const Home = (props) => {
 }
 
 export async function getStaticProps() {
-    const connection = await require('../../mongodb/connection.js');
+    await connectMongo()
 
     const stations = await Station.find().populate('tasks');
+    
 
     let data = JSON.stringify(stations);
 
@@ -602,6 +589,7 @@ export async function getStaticProps() {
             data: JSON.parse(data),
             timeNow: timeNow
         },
+        revalidate: 10, // In seconds
     };
 
 }

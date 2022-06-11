@@ -1,11 +1,9 @@
 require('dotenv').config();
 
-let mongoose = require('mongoose');
+import mongoose from 'mongoose';
 
-let mongoDB = process.env.MONGODBURI;
+let MONGODBURI = process.env.MONGODBURI;
 
-mongoose.connect(mongoDB, { useNewUrlParser: true, useUnifiedTopology:true});
-let connection = mongoose.connection;
-connection.on('error', console.error.bind(console, 'MongoDB connection error:'));
+const  connectMongo = async () => mongoose.connect(MONGODBURI, { useNewUrlParser: true, useUnifiedTopology:true});
 
-module.exports = connection;
+module.exports = connectMongo;

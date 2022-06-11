@@ -2,9 +2,8 @@
 
 
 
-const connection = require('../../mongodb/connection.js');
-const Station = require('../../models/Station.js');
-const Task = require('../../models/Task.js');
+import connectMongo from '../../mongodb/connection.js';
+import Task from '../../models/Task.js';
 
 export default async function handler(req, res) {
     console.log(req.body)
@@ -15,6 +14,8 @@ export default async function handler(req, res) {
     
     let currentDate = new Date();
     let timeNow = currentDate.getHours()
+
+    await connectMongo();
 
     //reset all tasks
     //const taskList = await Task.updateMany({}, {"$set":{checked: false, completedAt: new Date(), completedBy: "Gustavo"}});

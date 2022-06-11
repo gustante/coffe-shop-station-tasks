@@ -1,14 +1,13 @@
 // Imports
 import Head from 'next/head'
 import Script from 'next/script';
-import Link from 'next/link';
 import { useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
     faKey,
 } from "@fortawesome/free-solid-svg-icons";
-const Station = require('../models/Station.js');
-const Task = require('../models/Task.js');
+import connectMongo from "../mongodb/connection";
+import Station from '../models/Station';
 
 
 // Components
@@ -304,7 +303,7 @@ const Management = (props) => {
 
 
 export async function getStaticProps() {
-    const connection = await require('../mongodb/connection.js');
+    await connectMongo()
 
     const stations = await Station.find().populate('tasks');
 

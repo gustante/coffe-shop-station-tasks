@@ -1,10 +1,11 @@
-const connection = require('../../mongodb/connection.js');
-const Station = require('../../models/Station.js');
-const Task = require('../../models/Task.js');
+import connectMongo from "../../mongodb/connection"
+import Task from "../../models/Task"
+import Station from "../../models/Station"
 
 
 
 export default async function handler(req, res) {
+    await connectMongo();
     if (req.method == 'GET') {
         let station = await Station.findOne({ _id: req.query.stationId })
         let tasks = await Task.find({ station: station._id })

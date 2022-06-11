@@ -1,8 +1,6 @@
 
 
-const connection = require('../../mongodb/connection.js');
-
-const Station = require('../../models/Station.js');
+import connectMongo from "../../mongodb/connection";
 
 
 
