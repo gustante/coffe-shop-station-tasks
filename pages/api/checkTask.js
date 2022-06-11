@@ -4,6 +4,7 @@
 
 import connectMongo from '../../mongodb/connection.js';
 import Task from '../../models/Task.js';
+import Station from '../../models/Station.js';
 
 export default async function handler(req, res) {
     console.log(req.body)
@@ -29,11 +30,11 @@ export default async function handler(req, res) {
         await Task.updateOne({_id: req.body.taskId}, {"$set":{checked: false, completedAt: new Date(), completedBy: "Gustavo"}});
     }
     
-
   
     
-    
-    res.json({message: "success"});
+    const stations = await Station.find().populate('tasks');
+    //send back the stations with updated task
+    res.json({stations});
    
 
 

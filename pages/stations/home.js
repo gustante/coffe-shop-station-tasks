@@ -114,7 +114,8 @@ const Home = (props) => {
         })
 
         const data = await results.json()
-        
+        //update stations with updates from server
+        setStations(data.stations);
 
     }
 
