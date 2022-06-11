@@ -51,6 +51,17 @@ import {
 
 } from "@fortawesome/free-solid-svg-icons";
 
+import {
+
+    faSquareCheck,
+    faSquare,
+
+} from "@fortawesome/free-regular-svg-icons";
+
+
+
+
+
 
 //
 
@@ -59,20 +70,25 @@ const Home = (props) => {
     const [stations, setStations] = useState(props.data);
     const [time, setTime] = useState(props.timeNow);
 
-    
-    
+
     const StoreWalk = stations.find(station => station.name == "Store Walk");
     const PlayCaller = stations.find(station => station.name == "Play Caller");
 
 
-    let checkedTask = true;
+
+    // const updateCheckedTasks = document.querySelector("[data-isChecked='true']");
+    // updateCheckedTasks.setAttribute("checked", "true");
+
+
+
+
 
 
 
 
     const QuickConnect = stations.find(station => station.name == "Quick Connect");
 
-    
+
 
 
 
@@ -81,36 +97,53 @@ const Home = (props) => {
         console.log(StoreWalk);
         console.log(PlayCaller);
 
-        // PlayCaller.tasks.map(task =>
-        //     task.role == "Play Caller" ? console.log(task.description) : null)
-
-        // // const PlayCallerPC = PlayCaller.tasks.find(task => task.role == "Play Caller");
-        // // console.log(PlayCallerPC);
-        // // const PlayCallerTW = PlayCaller.tasks.find(task => task.role == "Play Caller");
-
-
     }
 
     function handleChangeTime(e) {
+        console.log(e.target.value);
         setTime(e.target.value)
-        console.log(e.target.value)
-        console.log(props.timeNow)
     }
 
-    function checkTask(e) {
-        setTime(e.target.value)
-      
+    async function handleCheckTask(e) {
+        let wasChecked = $(`.${e.target.value}`).attr('data-ischecked');
+        
+        if(wasChecked == "true") {
+            $(`.${e.target.value}`).removeClass("text-success");
+            $(`#${e.target.value}`).html("&#9633;");
+            $(`span.${e.target.value}`).removeClass("text-decoration-line-through");
+        } 
+        else if(wasChecked == "false") {
+            $(`span.${e.target.value}`).removeClass("text-dark");
+            $(`.${e.target.value}`).addClass("text-success");
+            $(`#${e.target.value}`).html("&#x2713;");
+            $(`span.${e.target.value}`).addClass("text-decoration-line-through");
+        }
+
+        const results = await fetch('/api/checkTask', {
+            method: 'PUT',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ taskId: e.target.value }),
+        })
+
+        const data = await results.json()
+        console.log(data.message)
+
     }
 
 
-
+   
     return (
 
+        
         <>
             <Navbar />
             <Head>
                 <title>Virtual Operations Stations</title>
                 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossOrigin="anonymous" />
+                <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.1/css/all.css"
+        integrity="sha384-vp86vTRFVJgpjF9jiIGPEEqYqlDwgyBgEF109VFjmqGmIY/Y4HV4d3Gp2irVfcrp" crossorigin="anonymous"></link>
             </Head>
 
             <div className="container">
@@ -119,9 +152,9 @@ const Home = (props) => {
                 <Script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossOrigin="anonymous" strategy="lazyOnload" />
 
                 <Script
-                src="https://code.jquery.com/jquery-3.6.0.slim.min.js"
-                integrity="sha256-u7e5khyithlIdTpu22PHhENmPcRdFiHRjhAuHcs05RI="
-                crossorigin="anonymous" />
+                    src="https://code.jquery.com/jquery-3.6.0.slim.min.js"
+                    integrity="sha256-u7e5khyithlIdTpu22PHhENmPcRdFiHRjhAuHcs05RI="
+                    crossorigin="anonymous" />
 
 
 
@@ -135,6 +168,10 @@ const Home = (props) => {
                     <h1 className="my-5">
                         What time is it?
                     </h1>
+
+
+
+
 
                     <ul className="nav nav-pills my-5 d-flex justify-content-center" id="pills-tab" role="tablist">
                         <li className="nav-item" role="presentation">
@@ -174,12 +211,23 @@ const Home = (props) => {
                                         PlayCaller.tasks.map((task, index) =>
                                             task.role == "Play Caller" && task.time == time ? (
                                                 <>
-
-                                                    <div className="form-check mx-4">
-                                                        <input className="form-check-input" type="checkbox" value="" id={task._id} />
-                                                        <label className="form-check-label" for={task._id}>
+                                                   
+                                                    <div className="d-flex my-1 mx-4" >
+                                                        
+                                                        {task.checked ? (<><button id={task._id} className={`${task._id} btn fs-2 text-success task-check`} data-ischecked="true" value={task._id} onClick={handleCheckTask}> &#x2713;
+                                                        </button> <span className={`${task._id} mx-4 mt-3 text-decoration-line-through text-success`}>
                                                             {task.description}
-                                                        </label>
+                                                        </span> </>) : (<> <button id={task._id} className={`${task._id} btn fs-2 task-check`} data-ischecked="false" value={task._id} onClick={handleCheckTask}> &#9633;
+                                                        </button> <span className={`${task._id} mx-4 mt-3 text-dark`}>
+                                                            {task.description}
+                                                        </span> </>)}
+
+                                                        {/* <button id={task._id} className={task.checked ? 'btn fs-2 text-success task-check' : 'btn fs-2 task-check'} data-ischecked={task.checked} value={task._id} onClick={handleCheckTask}> &#x2611;
+                                                        </button> */}
+
+                                                        {/* <span className={`mx-4 mt-3 ${task.checked ? 'text-decoration-line-through text-success' : "text-dark"}`}>
+                                                            {task.description}
+                                                        </span> */}
                                                     </div>
                                                 </>
 
@@ -403,7 +451,7 @@ const Home = (props) => {
                             </div>
                         </div>
 
-                        <div className="accordion-item">
+                        {/* <div className="accordion-item">
                             <h2 className="accordion-header" id="MultiStationTasks">
                                 <button className="accordion-button collapsed" style={{ backgroundColor: "#62555e" }} type="button" data-bs-toggle="collapse" data-bs-target="#collapseMultiStationTasks" aria-expanded="false" aria-controls="collapseMultiStationTasks">
                                     <div className="station-name d-flex justify-content-between ">
@@ -419,7 +467,7 @@ const Home = (props) => {
 
                                 </div>
                             </div>
-                        </div>
+                        </div> */}
 
                         <div className="accordion-item">
                             <h2 className="accordion-header" id="CycleTaskList">
@@ -537,13 +585,13 @@ export async function getStaticProps() {
 
     console.log(timeNow);
 
-    if(timeNow > 1 && timeNow < 11 ){
+    if (timeNow > 1 && timeNow < 11) {
         timeNow = "open-11am"
-    } else if (timeNow >= 11 && timeNow < 14 ){
+    } else if (timeNow >= 11 && timeNow < 14) {
         timeNow = "11am-2pm"
-    } else if (timeNow >= 14 && timeNow < 16 ){
+    } else if (timeNow >= 14 && timeNow < 16) {
         timeNow = "2pm-4pm"
-    } else if (timeNow >= 16 && timeNow < 21 ){
+    } else if (timeNow >= 16 && timeNow < 23) {
         timeNow = "4pm-close"
     }
 

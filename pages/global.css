@@ -22,8 +22,8 @@
     font-size: 0.9em;
 }
 
-.form-check {
-    margin-bottom: 1em;
+.task-check:hover, .task-check:active, .task-check:focus {
+    border: none
 }
 
 .nav-pills {
