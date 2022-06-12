@@ -1178,9 +1178,11 @@ const Home = (props) => {
     )
 }
 
-export async function getStaticProps() {
+export async function getServerSideProps() {
     await connectMongo()
 
+    require("../../models/Station")
+    require("../../models/Task")
     const stations = await Station.find().populate('tasks');
 
 
@@ -1208,7 +1210,7 @@ export async function getStaticProps() {
             data: JSON.parse(data),
             timeNow: timeNow
         },
-        revalidate: 10, // In seconds
+        //revalidate: 10, // In seconds
     };
 
 }

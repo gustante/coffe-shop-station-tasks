@@ -16,56 +16,13 @@ import Login from './login.js';
 import Management from './management.js';
 import Footer from './footer.js';
 
-class Home extends React.Component {
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      partnerName: "",
-      password: "",
-      station: "",
-      stationsDropDown: [],
-    }
-
-    this.handleLogIn = this.handleLogIn.bind(this);
-    this.handleChange = this.handleChange.bind(this);
-    this.handleCreateStation = this.handleCreateStation.bind(this);
-    this.handleCreateTask = this.handleCreateTask.bind(this);
-
-
-  }
+const Home = (props) => {
+  
 
 
 
-  async handleLogIn() {
-    console.log("executes handleLogin")
+  
 
-    const results = await fetch('/api/login', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({ partnerName: this.state.partnerName }),
-    })
-
-    const data = await results.json()
-    console.log(data.partnerName)
-
-
-  }
-
-  async handleCreateStation() {
-
-  }
-  async handleCreateTask() {
-
-  }
-
-  handleChange(e) {
-    this.setState({ [e.target.name]: e.target.value })
-  }
-
-  render() {
     return (
 
 
@@ -90,7 +47,7 @@ class Home extends React.Component {
             </h1>
 
 
-            <Login handleChange={this.handleChange} handleLogIn={this.handleLogIn}/>
+            <Login />
 
 
           </main>
@@ -101,7 +58,7 @@ class Home extends React.Component {
         <Footer />
       </>
     )
-  }
+  
 
 }
 

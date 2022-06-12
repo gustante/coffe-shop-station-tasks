@@ -16,17 +16,32 @@ import {
 //
 
 
-class Login extends React.Component {
+const Login = (props) => {
   
 
 
   
+  async function handleLogIn() {
+    console.log("executes handleLogin")
 
+    const results = await fetch('/api/login', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ partnerName: this.state.partnerName }),
+    })
+
+    const data = await results.json()
+    console.log(data.partnerName)
+
+
+  }
   
 
   
 
-  render(){
+
 
     return (
   
@@ -48,16 +63,16 @@ class Login extends React.Component {
   
               <div className="input-group mb-4">
                   <span className="input-group-text" id="basic-addon1"><FontAwesomeIcon icon={faUserLarge} style={{ fontSize: "1.5em" }}/></span>
-                  <input type="text" name="partnerName" className="form-control p-3" placeholder="name" aria-label="name" aria-describedby="basic-addon1" onChange={this.props.handleChange}/>
+                  <input type="text" name="partnerName" className="form-control p-3" placeholder="name" aria-label="name" aria-describedby="basic-addon1" />
               </div>
               <div className="input-group mb-4">
                   <span className="input-group-text" id="basic-addon1"><FontAwesomeIcon icon={faKey} style={{ fontSize: "1.5em"}}/></span>
-                  <input type="password" name="password" className="form-control p-3" placeholder="password" aria-label="password" aria-describedby="basic-addon1" onChange={this.props.handleChange}/>
+                  <input type="password" name="password" className="form-control p-3" placeholder="password" aria-label="password" aria-describedby="basic-addon1" />
               </div>
   
               <div className="d-grid gap-2">
                 <Link href="/position">
-                  <button onClick={this.props.handleLogIn} className="btn btn-lg btn-login py-3" >Log In</button>
+                  <button className="btn btn-lg btn-login py-3" >Log In</button>
                 </Link>
               </div>
               
@@ -67,7 +82,7 @@ class Login extends React.Component {
       </div>
       </>
     )
-  }
+  
 }
 
 export default Login;
