@@ -61,23 +61,23 @@ const Management = (props) => {
     }
 
 
-    async function handleCreateStation() {
+    // async function handleCreateStation() {
 
-        console.log("executes create station");
+    //     console.log("executes create station");
 
-        const results = await fetch('/api/createStation', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({ stationName: stationName, stationColor: stationColor }),
-        })
+    //     const results = await fetch('/api/createStation', {
+    //         method: 'POST',
+    //         headers: {
+    //             'Content-Type': 'application/json',
+    //         },
+    //         body: JSON.stringify({ stationName: stationName, stationColor: stationColor }),
+    //     })
 
-        const data = await results.json()
-        console.log(data)
-        setStationsDropdown([...stationsDropDown, data]);
+    //     const data = await results.json()
+    //     console.log(data)
+    //     setStationsDropdown([...stationsDropDown, data]);
 
-    }
+    // }
 
     async function handleCreateTask() {
         const results = await fetch('/api/createTask', {
@@ -211,7 +211,7 @@ const Management = (props) => {
 
                     <div id="management" className='d-none'>
 
-                        <h1 className="my-5">
+                        {/* <h1 className="my-5">
                             Create new Station
                         </h1>
 
@@ -225,7 +225,7 @@ const Management = (props) => {
 
                         <div className="d-grid gap-2">
                             <button onClick={handleCreateStation} className="btn btn-lg btn-login py-3" >Create Station</button>
-                        </div>
+                        </div> */}
 
                         <h1 className="my-5">
                             Create new task
@@ -262,7 +262,7 @@ const Management = (props) => {
                         </div>
 
 
-                        <h1 className="my-5">
+                        {/* <h1 className="my-5">
                             Delete station
                         </h1>
 
@@ -272,7 +272,7 @@ const Management = (props) => {
                         </select>
                         <div className="d-grid gap-2">
                             <button onClick={handleDeleteStation} className="btn btn-lg btn-login py-3" >Delete station</button>
-                        </div>
+                        </div> */}
 
                         <h1 className="my-5">
                             Delete task

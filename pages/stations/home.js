@@ -75,8 +75,6 @@ const Home = (props) => {
 
 
 
-
-
     function printProps() {
         console.log(StoreWalk);
         console.log(PlayCaller);
