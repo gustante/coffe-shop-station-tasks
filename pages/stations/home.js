@@ -222,10 +222,10 @@ const Home = (props) => {
 
                                                     <div className="d-flex my-1 mx-4" >
 
-                                                        {task.checked ? (<><button id={task._id} className={`${task._id} btn fs-2 text-success task-check`} data-station={task.station} data-taskdescription={task.description} data-ischecked="true" value={task._id} onClick={handleCheckTask}> &#x2713;
+                                                        {task.checked ? (<><button id={task._id} className={`${task._id} btn fs-2 text-success task-check`} data-taskdescription={task.description} data-station={task.station} data-ischecked="true" value={task._id} onClick={handleCheckTask}> &#x2713;
                                                         </button> <span className={`${task._id} mx-4 mt-3 text-decoration-line-through text-success`}>
                                                                 {task.description}
-                                                            </span> </>) : (<> <button id={task._id} className={`${task._id} btn fs-2 task-check`} data-station={task.station} data-taskdescription={task.description} data-ischecked="false" value={task._id} onClick={handleCheckTask}> &#9633;
+                                                            </span> </>) : (<> <button id={task._id} className={`${task._id} btn fs-2 task-check`} data-taskdescription={task.description} data-station={task.station}  data-ischecked="false" value={task._id} onClick={handleCheckTask}> &#9633;
                                                             </button> <span className={`${task._id} mx-4 mt-3 text-dark`}>
                                                                     {task.description}
                                                                 </span> </>)}
@@ -249,10 +249,10 @@ const Home = (props) => {
 
                                                     <div className="d-flex my-1 mx-4" >
 
-                                                        {task.checked ? (<><button id={task._id} className={`${task._id} btn fs-2 text-success task-check`} data-station={task.station} data-ischecked="true" value={task._id} onClick={handleCheckTask}> &#x2713;
+                                                        {task.checked ? (<><button id={task._id} className={`${task._id} btn fs-2 text-success task-check`} data-taskdescription={task.description} data-station={task.station} data-ischecked="true" value={task._id} onClick={handleCheckTask}> &#x2713;
                                                         </button> <span className={`${task._id} mx-4 mt-3 text-decoration-line-through text-success`}>
                                                                 {task.description}
-                                                            </span> </>) : (<> <button id={task._id} className={`${task._id} btn fs-2 task-check`} data-station={task.station} data-ischecked="false" value={task._id} onClick={handleCheckTask}> &#9633;
+                                                            </span> </>) : (<> <button id={task._id} className={`${task._id} btn fs-2 task-check`} data-taskdescription={task.description} data-station={task.station} data-ischecked="false" value={task._id} onClick={handleCheckTask}> &#9633;
                                                             </button> <span className={`${task._id} mx-4 mt-3 text-dark`}>
                                                                     {task.description}
                                                                 </span> </>)}
@@ -295,10 +295,10 @@ const Home = (props) => {
 
                                                     <div className="d-flex my-1 mx-4" >
 
-                                                        {task.checked ? (<><button id={task._id} className={`${task._id} btn fs-2 text-success task-check`} data-station={task.station} data-ischecked="true" value={task._id} onClick={handleCheckTask}> &#x2713;
+                                                        {task.checked ? (<><button id={task._id} className={`${task._id} btn fs-2 text-success task-check`} data-taskdescription={task.description} data-station={task.station} data-ischecked="true" value={task._id} onClick={handleCheckTask}> &#x2713;
                                                         </button> <span className={`${task._id} mx-4 mt-3 text-decoration-line-through text-success`}>
                                                                 {task.description}
-                                                            </span> </>) : (<> <button id={task._id} className={`${task._id} btn fs-2 task-check`} data-station={task.station} data-ischecked="false" value={task._id} onClick={handleCheckTask}> &#9633;
+                                                            </span> </>) : (<> <button id={task._id} className={`${task._id} btn fs-2 task-check`} data-taskdescription={task.description} data-station={task.station} data-ischecked="false" value={task._id} onClick={handleCheckTask}> &#9633;
                                                             </button> <span className={`${task._id} mx-4 mt-3 text-dark`}>
                                                                     {task.description}
                                                                 </span> </>)}
@@ -341,10 +341,10 @@ const Home = (props) => {
 
                                                     <div className="d-flex my-1 mx-4" >
 
-                                                        {task.checked ? (<><button id={task._id} className={`${task._id} btn fs-2 text-success task-check`} data-station={task.station} data-ischecked="true" value={task._id} onClick={handleCheckTask}> &#x2713;
+                                                        {task.checked ? (<><button id={task._id} className={`${task._id} btn fs-2 text-success task-check`} data-taskdescription={task.description} data-station={task.station} data-ischecked="true" value={task._id} onClick={handleCheckTask}> &#x2713;
                                                         </button> <span className={`${task._id} mx-4 mt-3 text-decoration-line-through text-success`}>
                                                                 {task.description}
-                                                            </span> </>) : (<> <button id={task._id} className={`${task._id} btn fs-2 task-check`} data-station={task.station} data-ischecked="false" value={task._id} onClick={handleCheckTask}> &#9633;
+                                                            </span> </>) : (<> <button id={task._id} className={`${task._id} btn fs-2 task-check`} data-taskdescription={task.description} data-station={task.station} data-ischecked="false" value={task._id} onClick={handleCheckTask}> &#9633;
                                                             </button> <span className={`${task._id} mx-4 mt-3 text-dark`}>
                                                                     {task.description}
                                                                 </span> </>)}
@@ -387,10 +387,10 @@ const Home = (props) => {
 
                                                     <div className="d-flex my-1 mx-4" >
 
-                                                        {task.checked ? (<><button id={task._id} className={`${task._id} btn fs-2 text-success task-check`} data-station={task.station} data-ischecked="true" value={task._id} onClick={handleCheckTask}> &#x2713;
+                                                        {task.checked ? (<><button id={task._id} className={`${task._id} btn fs-2 text-success task-check`} data-taskdescription={task.description} data-station={task.station} data-ischecked="true" value={task._id} onClick={handleCheckTask}> &#x2713;
                                                         </button> <span className={`${task._id} mx-4 mt-3 text-decoration-line-through text-success`}>
                                                                 {task.description}
-                                                            </span> </>) : (<> <button id={task._id} className={`${task._id} btn fs-2 task-check`} data-station={task.station} data-ischecked="false" value={task._id} onClick={handleCheckTask}> &#9633;
+                                                            </span> </>) : (<> <button id={task._id} className={`${task._id} btn fs-2 task-check`} data-taskdescription={task.description} data-station={task.station} data-ischecked="false" value={task._id} onClick={handleCheckTask}> &#9633;
                                                             </button> <span className={`${task._id} mx-4 mt-3 text-dark`}>
                                                                     {task.description}
                                                                 </span> </>)}
@@ -414,10 +414,10 @@ const Home = (props) => {
 
                                                     <div className="d-flex my-1 mx-4" >
 
-                                                        {task.checked ? (<><button id={task._id} className={`${task._id} btn fs-2 text-success task-check`} data-station={task.station} data-ischecked="true" value={task._id} onClick={handleCheckTask}> &#x2713;
+                                                        {task.checked ? (<><button id={task._id} className={`${task._id} btn fs-2 text-success task-check`} data-taskdescription={task.description} data-station={task.station} data-ischecked="true" value={task._id} onClick={handleCheckTask}> &#x2713;
                                                         </button> <span className={`${task._id} mx-4 mt-3 text-decoration-line-through text-success`}>
                                                                 {task.description}
-                                                            </span> </>) : (<> <button id={task._id} className={`${task._id} btn fs-2 task-check`} data-station={task.station} data-ischecked="false" value={task._id} onClick={handleCheckTask}> &#9633;
+                                                            </span> </>) : (<> <button id={task._id} className={`${task._id} btn fs-2 task-check`} data-taskdescription={task.description} data-station={task.station} data-ischecked="false" value={task._id} onClick={handleCheckTask}> &#9633;
                                                             </button> <span className={`${task._id} mx-4 mt-3 text-dark`}>
                                                                     {task.description}
                                                                 </span> </>)}
@@ -458,10 +458,10 @@ const Home = (props) => {
                                                    
                                                     <div className="d-flex my-1 mx-4" >
                                                         
-                                                        {task.checked ? (<><button id={task._id} className={`${task._id} btn fs-2 text-success task-check`} data-station={task.station} data-ischecked="true" value={task._id} onClick={handleCheckTask}> &#x2713;
+                                                        {task.checked ? (<><button id={task._id} className={`${task._id} btn fs-2 text-success task-check`} data-taskdescription={task.description} data-station={task.station} data-ischecked="true" value={task._id} onClick={handleCheckTask}> &#x2713;
                                                         </button> <span className={`${task._id} mx-4 mt-3 text-decoration-line-through text-success`}>
                                                             {task.description}
-                                                        </span> </>) : (<> <button id={task._id} className={`${task._id} btn fs-2 task-check`} data-station={task.station} data-ischecked="false" value={task._id} onClick={handleCheckTask}> &#9633;
+                                                        </span> </>) : (<> <button id={task._id} className={`${task._id} btn fs-2 task-check`} data-taskdescription={task.description} data-station={task.station} data-ischecked="false" value={task._id} onClick={handleCheckTask}> &#9633;
                                                         </button> <span className={`${task._id} mx-4 mt-3 text-dark`}>
                                                             {task.description}
                                                         </span> </>)}
@@ -485,10 +485,10 @@ const Home = (props) => {
                                                    
                                                     <div className="d-flex my-1 mx-4" >
                                                         
-                                                        {task.checked ? (<><button id={task._id} className={`${task._id} btn fs-2 text-success task-check`} data-station={task.station} data-ischecked="true" value={task._id} onClick={handleCheckTask}> &#x2713;
+                                                        {task.checked ? (<><button id={task._id} className={`${task._id} btn fs-2 text-success task-check`} data-taskdescription={task.description} data-station={task.station} data-ischecked="true" value={task._id} onClick={handleCheckTask}> &#x2713;
                                                         </button> <span className={`${task._id} mx-4 mt-3 text-decoration-line-through text-success`}>
                                                             {task.description}
-                                                        </span> </>) : (<> <button id={task._id} className={`${task._id} btn fs-2 task-check`} data-station={task.station} data-ischecked="false" value={task._id} onClick={handleCheckTask}> &#9633;
+                                                        </span> </>) : (<> <button id={task._id} className={`${task._id} btn fs-2 task-check`} data-taskdescription={task.description} data-station={task.station} data-ischecked="false" value={task._id} onClick={handleCheckTask}> &#9633;
                                                         </button> <span className={`${task._id} mx-4 mt-3 text-dark`}>
                                                             {task.description}
                                                         </span> </>)}
@@ -529,10 +529,10 @@ const Home = (props) => {
                                                    
                                                     <div className="d-flex my-1 mx-4" >
                                                         
-                                                        {task.checked ? (<><button id={task._id} className={`${task._id} btn fs-2 text-success task-check`} data-station={task.station} data-ischecked="true" value={task._id} onClick={handleCheckTask}> &#x2713;
+                                                        {task.checked ? (<><button id={task._id} className={`${task._id} btn fs-2 text-success task-check`} data-taskdescription={task.description} data-station={task.station} data-ischecked="true" value={task._id} onClick={handleCheckTask}> &#x2713;
                                                         </button> <span className={`${task._id} mx-4 mt-3 text-decoration-line-through text-success`}>
                                                             {task.description}
-                                                        </span> </>) : (<> <button id={task._id} className={`${task._id} btn fs-2 task-check`} data-station={task.station} data-ischecked="false" value={task._id} onClick={handleCheckTask}> &#9633;
+                                                        </span> </>) : (<> <button id={task._id} className={`${task._id} btn fs-2 task-check`} data-taskdescription={task.description} data-station={task.station} data-ischecked="false" value={task._id} onClick={handleCheckTask}> &#9633;
                                                         </button> <span className={`${task._id} mx-4 mt-3 text-dark`}>
                                                             {task.description}
                                                         </span> </>)}
@@ -556,10 +556,10 @@ const Home = (props) => {
                                                    
                                                     <div className="d-flex my-1 mx-4" >
                                                         
-                                                        {task.checked ? (<><button id={task._id} className={`${task._id} btn fs-2 text-success task-check`} data-station={task.station} data-ischecked="true" value={task._id} onClick={handleCheckTask}> &#x2713;
+                                                        {task.checked ? (<><button id={task._id} className={`${task._id} btn fs-2 text-success task-check`} data-taskdescription={task.description} data-station={task.station} data-ischecked="true" value={task._id} onClick={handleCheckTask}> &#x2713;
                                                         </button> <span className={`${task._id} mx-4 mt-3 text-decoration-line-through text-success`}>
                                                             {task.description}
-                                                        </span> </>) : (<> <button id={task._id} className={`${task._id} btn fs-2 task-check`} data-station={task.station} data-ischecked="false" value={task._id} onClick={handleCheckTask}> &#9633;
+                                                        </span> </>) : (<> <button id={task._id} className={`${task._id} btn fs-2 task-check`} data-taskdescription={task.description} data-station={task.station} data-ischecked="false" value={task._id} onClick={handleCheckTask}> &#9633;
                                                         </button> <span className={`${task._id} mx-4 mt-3 text-dark`}>
                                                             {task.description}
                                                         </span> </>)}
@@ -600,10 +600,10 @@ const Home = (props) => {
                                                    
                                                     <div className="d-flex my-1 mx-4" >
                                                         
-                                                        {task.checked ? (<><button id={task._id} className={`${task._id} btn fs-2 text-success task-check`} data-station={task.station} data-ischecked="true" value={task._id} onClick={handleCheckTask}> &#x2713;
+                                                        {task.checked ? (<><button id={task._id} className={`${task._id} btn fs-2 text-success task-check`} data-taskdescription={task.description} data-station={task.station} data-ischecked="true" value={task._id} onClick={handleCheckTask}> &#x2713;
                                                         </button> <span className={`${task._id} mx-4 mt-3 text-decoration-line-through text-success`}>
                                                             {task.description}
-                                                        </span> </>) : (<> <button id={task._id} className={`${task._id} btn fs-2 task-check`} data-station={task.station} data-ischecked="false" value={task._id} onClick={handleCheckTask}> &#9633;
+                                                        </span> </>) : (<> <button id={task._id} className={`${task._id} btn fs-2 task-check`} data-taskdescription={task.description} data-station={task.station} data-ischecked="false" value={task._id} onClick={handleCheckTask}> &#9633;
                                                         </button> <span className={`${task._id} mx-4 mt-3 text-dark`}>
                                                             {task.description}
                                                         </span> </>)}
@@ -627,10 +627,10 @@ const Home = (props) => {
                                                    
                                                     <div className="d-flex my-1 mx-4" >
                                                         
-                                                        {task.checked ? (<><button id={task._id} className={`${task._id} btn fs-2 text-success task-check`} data-station={task.station} data-ischecked="true" value={task._id} onClick={handleCheckTask}> &#x2713;
+                                                        {task.checked ? (<><button id={task._id} className={`${task._id} btn fs-2 text-success task-check`} data-taskdescription={task.description} data-station={task.station} data-ischecked="true" value={task._id} onClick={handleCheckTask}> &#x2713;
                                                         </button> <span className={`${task._id} mx-4 mt-3 text-decoration-line-through text-success`}>
                                                             {task.description}
-                                                        </span> </>) : (<> <button id={task._id} className={`${task._id} btn fs-2 task-check`} data-station={task.station} data-ischecked="false" value={task._id} onClick={handleCheckTask}> &#9633;
+                                                        </span> </>) : (<> <button id={task._id} className={`${task._id} btn fs-2 task-check`} data-taskdescription={task.description} data-station={task.station} data-ischecked="false" value={task._id} onClick={handleCheckTask}> &#9633;
                                                         </button> <span className={`${task._id} mx-4 mt-3 text-dark`}>
                                                             {task.description}
                                                         </span> </>)}
@@ -671,10 +671,10 @@ const Home = (props) => {
 
                                                     <div className="d-flex my-1 mx-4" >
 
-                                                        {task.checked ? (<><button id={task._id} className={`${task._id} btn fs-2 text-success task-check`} data-station={task.station} data-ischecked="true" value={task._id} onClick={handleCheckTask}> &#x2713;
+                                                        {task.checked ? (<><button id={task._id} className={`${task._id} btn fs-2 text-success task-check`} data-taskdescription={task.description} data-station={task.station} data-ischecked="true" value={task._id} onClick={handleCheckTask}> &#x2713;
                                                         </button> <span className={`${task._id} mx-4 mt-3 text-decoration-line-through text-success`}>
                                                                 {task.description}
-                                                            </span> </>) : (<> <button id={task._id} className={`${task._id} btn fs-2 task-check`} data-station={task.station} data-ischecked="false" value={task._id} onClick={handleCheckTask}> &#9633;
+                                                            </span> </>) : (<> <button id={task._id} className={`${task._id} btn fs-2 task-check`} data-taskdescription={task.description} data-station={task.station} data-ischecked="false" value={task._id} onClick={handleCheckTask}> &#9633;
                                                             </button> <span className={`${task._id} mx-4 mt-3 text-dark`}>
                                                                     {task.description}
                                                                 </span> </>)}
@@ -698,10 +698,10 @@ const Home = (props) => {
 
                                                     <div className="d-flex my-1 mx-4" >
 
-                                                        {task.checked ? (<><button id={task._id} className={`${task._id} btn fs-2 text-success task-check`} data-station={task.station} data-ischecked="true" value={task._id} onClick={handleCheckTask}> &#x2713;
+                                                        {task.checked ? (<><button id={task._id} className={`${task._id} btn fs-2 text-success task-check`} data-taskdescription={task.description} data-station={task.station} data-ischecked="true" value={task._id} onClick={handleCheckTask}> &#x2713;
                                                         </button> <span className={`${task._id} mx-4 mt-3 text-decoration-line-through text-success`}>
                                                                 {task.description}
-                                                            </span> </>) : (<> <button id={task._id} className={`${task._id} btn fs-2 task-check`} data-station={task.station} data-ischecked="false" value={task._id} onClick={handleCheckTask}> &#9633;
+                                                            </span> </>) : (<> <button id={task._id} className={`${task._id} btn fs-2 task-check`} data-taskdescription={task.description} data-station={task.station} data-ischecked="false" value={task._id} onClick={handleCheckTask}> &#9633;
                                                             </button> <span className={`${task._id} mx-4 mt-3 text-dark`}>
                                                                     {task.description}
                                                                 </span> </>)}
@@ -742,10 +742,10 @@ const Home = (props) => {
                                                    
                                                     <div className="d-flex my-1 mx-4" >
                                                         
-                                                        {task.checked ? (<><button id={task._id} className={`${task._id} btn fs-2 text-success task-check`} data-station={task.station} data-ischecked="true" value={task._id} onClick={handleCheckTask}> &#x2713;
+                                                        {task.checked ? (<><button id={task._id} className={`${task._id} btn fs-2 text-success task-check`} data-taskdescription={task.description} data-station={task.station} data-ischecked="true" value={task._id} onClick={handleCheckTask}> &#x2713;
                                                         </button> <span className={`${task._id} mx-4 mt-3 text-decoration-line-through text-success`}>
                                                             {task.description}
-                                                        </span> </>) : (<> <button id={task._id} className={`${task._id} btn fs-2 task-check`} data-station={task.station} data-ischecked="false" value={task._id} onClick={handleCheckTask}> &#9633;
+                                                        </span> </>) : (<> <button id={task._id} className={`${task._id} btn fs-2 task-check`} data-taskdescription={task.description} data-station={task.station} data-ischecked="false" value={task._id} onClick={handleCheckTask}> &#9633;
                                                         </button> <span className={`${task._id} mx-4 mt-3 text-dark`}>
                                                             {task.description}
                                                         </span> </>)}
@@ -769,10 +769,10 @@ const Home = (props) => {
                                                    
                                                     <div className="d-flex my-1 mx-4" >
                                                         
-                                                        {task.checked ? (<><button id={task._id} className={`${task._id} btn fs-2 text-success task-check`} data-station={task.station} data-ischecked="true" value={task._id} onClick={handleCheckTask}> &#x2713;
+                                                        {task.checked ? (<><button id={task._id} className={`${task._id} btn fs-2 text-success task-check`} data-taskdescription={task.description} data-station={task.station} data-ischecked="true" value={task._id} onClick={handleCheckTask}> &#x2713;
                                                         </button> <span className={`${task._id} mx-4 mt-3 text-decoration-line-through text-success`}>
                                                             {task.description}
-                                                        </span> </>) : (<> <button id={task._id} className={`${task._id} btn fs-2 task-check`} data-station={task.station} data-ischecked="false" value={task._id} onClick={handleCheckTask}> &#9633;
+                                                        </span> </>) : (<> <button id={task._id} className={`${task._id} btn fs-2 task-check`} data-taskdescription={task.description} data-station={task.station} data-ischecked="false" value={task._id} onClick={handleCheckTask}> &#9633;
                                                         </button> <span className={`${task._id} mx-4 mt-3 text-dark`}>
                                                             {task.description}
                                                         </span> </>)}
@@ -813,10 +813,10 @@ const Home = (props) => {
                                                    
                                                     <div className="d-flex my-1 mx-4" >
                                                         
-                                                        {task.checked ? (<><button id={task._id} className={`${task._id} btn fs-2 text-success task-check`} data-station={task.station} data-ischecked="true" value={task._id} onClick={handleCheckTask}> &#x2713;
+                                                        {task.checked ? (<><button id={task._id} className={`${task._id} btn fs-2 text-success task-check`} data-taskdescription={task.description} data-station={task.station} data-ischecked="true" value={task._id} onClick={handleCheckTask}> &#x2713;
                                                         </button> <span className={`${task._id} mx-4 mt-3 text-decoration-line-through text-success`}>
                                                             {task.description}
-                                                        </span> </>) : (<> <button id={task._id} className={`${task._id} btn fs-2 task-check`} data-station={task.station} data-ischecked="false" value={task._id} onClick={handleCheckTask}> &#9633;
+                                                        </span> </>) : (<> <button id={task._id} className={`${task._id} btn fs-2 task-check`} data-taskdescription={task.description} data-station={task.station} data-ischecked="false" value={task._id} onClick={handleCheckTask}> &#9633;
                                                         </button> <span className={`${task._id} mx-4 mt-3 text-dark`}>
                                                             {task.description}
                                                         </span> </>)}
@@ -840,10 +840,10 @@ const Home = (props) => {
                                                    
                                                     <div className="d-flex my-1 mx-4" >
                                                         
-                                                        {task.checked ? (<><button id={task._id} className={`${task._id} btn fs-2 text-success task-check`} data-station={task.station} data-ischecked="true" value={task._id} onClick={handleCheckTask}> &#x2713;
+                                                        {task.checked ? (<><button id={task._id} className={`${task._id} btn fs-2 text-success task-check`} data-taskdescription={task.description} data-station={task.station} data-ischecked="true" value={task._id} onClick={handleCheckTask}> &#x2713;
                                                         </button> <span className={`${task._id} mx-4 mt-3 text-decoration-line-through text-success`}>
                                                             {task.description}
-                                                        </span> </>) : (<> <button id={task._id} className={`${task._id} btn fs-2 task-check`} data-station={task.station} data-ischecked="false" value={task._id} onClick={handleCheckTask}> &#9633;
+                                                        </span> </>) : (<> <button id={task._id} className={`${task._id} btn fs-2 task-check`} data-taskdescription={task.description} data-station={task.station} data-ischecked="false" value={task._id} onClick={handleCheckTask}> &#9633;
                                                         </button> <span className={`${task._id} mx-4 mt-3 text-dark`}>
                                                             {task.description}
                                                         </span> </>)}
@@ -885,10 +885,10 @@ const Home = (props) => {
                                                    
                                                     <div className="d-flex my-1 mx-4" >
                                                         
-                                                        {task.checked ? (<><button id={task._id} className={`${task._id} btn fs-2 text-success task-check`} data-station={task.station} data-ischecked="true" value={task._id} onClick={handleCheckTask}> &#x2713;
+                                                        {task.checked ? (<><button id={task._id} className={`${task._id} btn fs-2 text-success task-check`} data-taskdescription={task.description} data-station={task.station} data-ischecked="true" value={task._id} onClick={handleCheckTask}> &#x2713;
                                                         </button> <span className={`${task._id} mx-4 mt-3 text-decoration-line-through text-success`}>
                                                             {task.description}
-                                                        </span> </>) : (<> <button id={task._id} className={`${task._id} btn fs-2 task-check`} data-station={task.station} data-ischecked="false" value={task._id} onClick={handleCheckTask}> &#9633;
+                                                        </span> </>) : (<> <button id={task._id} className={`${task._id} btn fs-2 task-check`} data-taskdescription={task.description} data-station={task.station} data-ischecked="false" value={task._id} onClick={handleCheckTask}> &#9633;
                                                         </button> <span className={`${task._id} mx-4 mt-3 text-dark`}>
                                                             {task.description}
                                                         </span> </>)}
@@ -912,10 +912,10 @@ const Home = (props) => {
                                                    
                                                     <div className="d-flex my-1 mx-4" >
                                                         
-                                                        {task.checked ? (<><button id={task._id} className={`${task._id} btn fs-2 text-success task-check`} data-station={task.station} data-ischecked="true" value={task._id} onClick={handleCheckTask}> &#x2713;
+                                                        {task.checked ? (<><button id={task._id} className={`${task._id} btn fs-2 text-success task-check`} data-taskdescription={task.description} data-station={task.station} data-ischecked="true" value={task._id} onClick={handleCheckTask}> &#x2713;
                                                         </button> <span className={`${task._id} mx-4 mt-3 text-decoration-line-through text-success`}>
                                                             {task.description}
-                                                        </span> </>) : (<> <button id={task._id} className={`${task._id} btn fs-2 task-check`} data-station={task.station} data-ischecked="false" value={task._id} onClick={handleCheckTask}> &#9633;
+                                                        </span> </>) : (<> <button id={task._id} className={`${task._id} btn fs-2 task-check`} data-taskdescription={task.description} data-station={task.station} data-ischecked="false" value={task._id} onClick={handleCheckTask}> &#9633;
                                                         </button> <span className={`${task._id} mx-4 mt-3 text-dark`}>
                                                             {task.description}
                                                         </span> </>)}
@@ -956,10 +956,10 @@ const Home = (props) => {
                                                    
                                                     <div className="d-flex my-1 mx-4" >
                                                         
-                                                        {task.checked ? (<><button id={task._id} className={`${task._id} btn fs-2 text-success task-check`} data-station={task.station} data-ischecked="true" value={task._id} onClick={handleCheckTask}> &#x2713;
+                                                        {task.checked ? (<><button id={task._id} className={`${task._id} btn fs-2 text-success task-check`} data-taskdescription={task.description} data-station={task.station} data-ischecked="true" value={task._id} onClick={handleCheckTask}> &#x2713;
                                                         </button> <span className={`${task._id} mx-4 mt-3 text-decoration-line-through text-success`}>
                                                             {task.description}
-                                                        </span> </>) : (<> <button id={task._id} className={`${task._id} btn fs-2 task-check`} data-station={task.station} data-ischecked="false" value={task._id} onClick={handleCheckTask}> &#9633;
+                                                        </span> </>) : (<> <button id={task._id} className={`${task._id} btn fs-2 task-check`} data-taskdescription={task.description} data-station={task.station} data-ischecked="false" value={task._id} onClick={handleCheckTask}> &#9633;
                                                         </button> <span className={`${task._id} mx-4 mt-3 text-dark`}>
                                                             {task.description}
                                                         </span> </>)}
@@ -983,10 +983,10 @@ const Home = (props) => {
                                                    
                                                     <div className="d-flex my-1 mx-4" >
                                                         
-                                                        {task.checked ? (<><button id={task._id} className={`${task._id} btn fs-2 text-success task-check`} data-station={task.station} data-ischecked="true" value={task._id} onClick={handleCheckTask}> &#x2713;
+                                                        {task.checked ? (<><button id={task._id} className={`${task._id} btn fs-2 text-success task-check`} data-taskdescription={task.description} data-station={task.station} data-ischecked="true" value={task._id} onClick={handleCheckTask}> &#x2713;
                                                         </button> <span className={`${task._id} mx-4 mt-3 text-decoration-line-through text-success`}>
                                                             {task.description}
-                                                        </span> </>) : (<> <button id={task._id} className={`${task._id} btn fs-2 task-check`} data-station={task.station} data-ischecked="false" value={task._id} onClick={handleCheckTask}> &#9633;
+                                                        </span> </>) : (<> <button id={task._id} className={`${task._id} btn fs-2 task-check`} data-taskdescription={task.description} data-station={task.station} data-ischecked="false" value={task._id} onClick={handleCheckTask}> &#9633;
                                                         </button> <span className={`${task._id} mx-4 mt-3 text-dark`}>
                                                             {task.description}
                                                         </span> </>)}
@@ -1027,10 +1027,10 @@ const Home = (props) => {
                                                    
                                                     <div className="d-flex my-1 mx-4" >
                                                         
-                                                        {task.checked ? (<><button id={task._id} className={`${task._id} btn fs-2 text-success task-check`} data-station={task.station} data-ischecked="true" value={task._id} onClick={handleCheckTask}> &#x2713;
+                                                        {task.checked ? (<><button id={task._id} className={`${task._id} btn fs-2 text-success task-check`} data-taskdescription={task.description} data-station={task.station} data-ischecked="true" value={task._id} onClick={handleCheckTask}> &#x2713;
                                                         </button> <span className={`${task._id} mx-4 mt-3 text-decoration-line-through text-success`}>
                                                             {task.description}
-                                                        </span> </>) : (<> <button id={task._id} className={`${task._id} btn fs-2 task-check`} data-station={task.station} data-ischecked="false" value={task._id} onClick={handleCheckTask}> &#9633;
+                                                        </span> </>) : (<> <button id={task._id} className={`${task._id} btn fs-2 task-check`} data-taskdescription={task.description} data-station={task.station} data-ischecked="false" value={task._id} onClick={handleCheckTask}> &#9633;
                                                         </button> <span className={`${task._id} mx-4 mt-3 text-dark`}>
                                                             {task.description}
                                                         </span> </>)}
@@ -1054,10 +1054,10 @@ const Home = (props) => {
                                                    
                                                     <div className="d-flex my-1 mx-4" >
                                                         
-                                                        {task.checked ? (<><button id={task._id} className={`${task._id} btn fs-2 text-success task-check`} data-station={task.station} data-ischecked="true" value={task._id} onClick={handleCheckTask}> &#x2713;
+                                                        {task.checked ? (<><button id={task._id} className={`${task._id} btn fs-2 text-success task-check`} data-taskdescription={task.description} data-station={task.station} data-ischecked="true" value={task._id} onClick={handleCheckTask}> &#x2713;
                                                         </button> <span className={`${task._id} mx-4 mt-3 text-decoration-line-through text-success`}>
                                                             {task.description}
-                                                        </span> </>) : (<> <button id={task._id} className={`${task._id} btn fs-2 task-check`} data-station={task.station} data-ischecked="false" value={task._id} onClick={handleCheckTask}> &#9633;
+                                                        </span> </>) : (<> <button id={task._id} className={`${task._id} btn fs-2 task-check`} data-taskdescription={task.description} data-station={task.station} data-ischecked="false" value={task._id} onClick={handleCheckTask}> &#9633;
                                                         </button> <span className={`${task._id} mx-4 mt-3 text-dark`}>
                                                             {task.description}
                                                         </span> </>)}
@@ -1101,10 +1101,10 @@ const Home = (props) => {
 
                                                     <div className="d-flex my-1 mx-4" >
 
-                                                        {task.checked ? (<><button id={task._id} className={`${task._id} btn fs-2 text-success task-check`} data-station={task.station} data-ischecked="true" value={task._id} onClick={handleCheckTask}> &#x2713;
+                                                        {task.checked ? (<><button id={task._id} className={`${task._id} btn fs-2 text-success task-check`} data-taskdescription={task.description} data-station={task.station} data-ischecked="true" value={task._id} onClick={handleCheckTask}> &#x2713;
                                                         </button> <span className={`${task._id} mx-4 mt-3 text-decoration-line-through text-success`}>
                                                                 {task.description}
-                                                            </span> </>) : (<> <button id={task._id} className={`${task._id} btn fs-2 task-check`} data-station={task.station} data-ischecked="false" value={task._id} onClick={handleCheckTask}> &#9633;
+                                                            </span> </>) : (<> <button id={task._id} className={`${task._id} btn fs-2 task-check`} data-taskdescription={task.description} data-station={task.station} data-ischecked="false" value={task._id} onClick={handleCheckTask}> &#9633;
                                                             </button> <span className={`${task._id} mx-4 mt-3 text-dark`}>
                                                                     {task.description}
                                                                 </span> </>)}
@@ -1146,10 +1146,10 @@ const Home = (props) => {
 
                                                     <div className="d-flex my-1 mx-4" >
 
-                                                        {task.checked ? (<><button id={task._id} className={`${task._id} btn fs-2 text-success task-check`} data-station={task.station} data-ischecked="true" value={task._id} onClick={handleCheckTask}> &#x2713;
+                                                        {task.checked ? (<><button id={task._id} className={`${task._id} btn fs-2 text-success task-check`} data-taskdescription={task.description} data-station={task.station} data-ischecked="true" value={task._id} onClick={handleCheckTask}> &#x2713;
                                                         </button> <span className={`${task._id} mx-4 mt-3 text-decoration-line-through text-success`}>
                                                                 {task.description}
-                                                            </span> </>) : (<> <button id={task._id} className={`${task._id} btn fs-2 task-check`} data-station={task.station} data-ischecked="false" value={task._id} onClick={handleCheckTask}> &#9633;
+                                                            </span> </>) : (<> <button id={task._id} className={`${task._id} btn fs-2 task-check`} data-taskdescription={task.description} data-station={task.station} data-ischecked="false" value={task._id} onClick={handleCheckTask}> &#9633;
                                                             </button> <span className={`${task._id} mx-4 mt-3 text-dark`}>
                                                                     {task.description}
                                                                 </span> </>)}
