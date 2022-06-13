@@ -6,7 +6,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
     faKey,
 } from "@fortawesome/free-solid-svg-icons";
-import connectMongo from "../mongodb/connection";
+import connectMongo from "../mongodb/mongodb";
 import Station from '../models/Station';
 
 

@@ -3,8 +3,9 @@ import Head from 'next/head'
 import Script from 'next/script';
 import Link from 'next/link';
 import { useState } from "react";
-import connectMongo from "../../mongodb/connection";
+//import connectMongo from "../../mongodb/connection";
 import Station from '../../models/Station';
+import clientPromise from "../../mongodb/mongodb";
 
 // Components
 import Navbar from '../navbar.js';
@@ -43,6 +44,7 @@ import {
     faSquare,
 
 } from "@fortawesome/free-regular-svg-icons";
+import { loadGetInitialProps } from 'next/dist/shared/lib/utils';
 
 
 
@@ -88,6 +90,9 @@ const Home = (props) => {
 
     async function handleCheckTask(e) {
         let wasChecked = $(`.${e.target.value}`).attr('data-ischecked');
+        let taskDescription = $(`.${e.target.value}`).attr('data-taskdescription');
+
+        
 
 
         if (wasChecked == "true") {
@@ -108,12 +113,12 @@ const Home = (props) => {
             headers: {
                 'Content-Type': 'application/json',
             },
-            body: JSON.stringify({ taskId: e.target.value }),
+            body: JSON.stringify({ taskId: e.target.value, taskDescription: taskDescription }),
         })
 
         const data = await results.json()
         //update stations with updates from server
-        setStations(data.stations);
+        //setStations(data.stations);
 
     }
 
@@ -217,10 +222,10 @@ const Home = (props) => {
 
                                                     <div className="d-flex my-1 mx-4" >
 
-                                                        {task.checked ? (<><button id={task._id} className={`${task._id} btn fs-2 text-success task-check`} data-station={task.station} data-ischecked="true" value={task._id} onClick={handleCheckTask}> &#x2713;
+                                                        {task.checked ? (<><button id={task._id} className={`${task._id} btn fs-2 text-success task-check`} data-station={task.station} data-taskdescription={task.description} data-ischecked="true" value={task._id} onClick={handleCheckTask}> &#x2713;
                                                         </button> <span className={`${task._id} mx-4 mt-3 text-decoration-line-through text-success`}>
                                                                 {task.description}
-                                                            </span> </>) : (<> <button id={task._id} className={`${task._id} btn fs-2 task-check`} data-station={task.station} data-ischecked="false" value={task._id} onClick={handleCheckTask}> &#9633;
+                                                            </span> </>) : (<> <button id={task._id} className={`${task._id} btn fs-2 task-check`} data-station={task.station} data-taskdescription={task.description} data-ischecked="false" value={task._id} onClick={handleCheckTask}> &#9633;
                                                             </button> <span className={`${task._id} mx-4 mt-3 text-dark`}>
                                                                     {task.description}
                                                                 </span> </>)}
@@ -1178,12 +1183,47 @@ const Home = (props) => {
     )
 }
 
-export async function getServerSideProps() {
-    await connectMongo()
+export async function getStaticProps() {
+    //await connectMongo()
 
-    require("../../models/Station")
-    require("../../models/Task")
-    const stations = await Station.find().populate('tasks');
+    //const { MongoClient } = require('mongodb');
+
+    const client = await clientPromise;
+
+    // const uri = processs.env.MONGODBURI; 
+    // const client = new MongoClient(uri);
+
+    // require("../../models/Station.js")
+    // require("../../models/Task.js")
+    //const stations = await Station.find().populate('tasks');
+
+    //const collection = client.collection()
+
+    const db = client.db("SbuxOperations")
+
+    
+    // Create const stations and populate stations with tasks
+    // const stations = await db.collection("stations").find({}).toArray()
+    // const tasks = await db.collection("tasks").find().toArray()
+    // const stationsWithTasks = stations.map(station => {
+    //     // console.log("== station", station._id)
+
+    //     // Find all tasks that have the same station id
+    //     const tasksForStation = tasks.filter(task => {
+    //         task.station == station._id})
+    //     console.log(tasksForStation)
+       
+    // }
+    // )
+    // console.log(stationsWithTasks)
+    
+    const stations = await db.collection("stations").find({}).toArray();
+    //populate stations.tasks   with tasks
+    for (let station of stations) {
+        station.tasks = await db.collection("tasks").find({ station: station._id }).toArray();
+    }
+
+    console.log(stations.map(station => station.tasks))
 
 
     let data = JSON.stringify(stations);

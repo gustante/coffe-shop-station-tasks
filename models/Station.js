@@ -1,14 +1,23 @@
+import { mongoose, Schema, model, models } from 'mongoose';
 
-const mongoose = require('mongoose');
-const Schema = mongoose.Schema;
 
-const StationSchema = new mongoose.Schema({
+const StationSchema = new Schema({
     name:{type:String, required: true},
     color:{type:String, required: false},
     tasks:[{type: Schema.Types.ObjectId, ref: 'Task'}] //every station has a list of tasks
 })
 
+let Station
 
-module.exports = mongoose.models.Station || mongoose.model('Station', StationSchema);
+if(mongoose == undefined || mongoose.models == undefined) {
+    Station = model('Station', StationSchema);
 
+    
+    
+} else {
+        Station = models.Station 
 
+    
+}
+
+export default Station;

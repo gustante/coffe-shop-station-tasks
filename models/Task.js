@@ -1,8 +1,8 @@
 
-const mongoose = require('mongoose');
-const Schema = mongoose.Schema;
+import { mongoose, Schema, model, models } from 'mongoose';
 
-const TaskSchema = new mongoose.Schema({
+
+const TaskSchema = new Schema({
     description: {type:String, required: true},
     station: {type: Schema.Types.ObjectId, ref: 'Station'},
     role: {type: String, required: true},
@@ -14,9 +14,17 @@ const TaskSchema = new mongoose.Schema({
 
 
 
-module.exports = mongoose.models.Task || mongoose.model('Task', TaskSchema);
+let Task
+
+if(mongoose == undefined || mongoose.models == undefined) {
+    Task = model('Task', TaskSchema);
 
     
+    
+} else {
+        Task = models.Task 
 
+    
+}
 
-
+export default Task;

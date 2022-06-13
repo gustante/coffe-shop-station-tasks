@@ -1,6 +1,6 @@
 
 
-import connectMongo from "../../mongodb/connection";
+import connectMongo from "../../mongodb/mongodb";
 
 
 
