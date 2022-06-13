@@ -1223,7 +1223,7 @@ export async function getStaticProps() {
         station.tasks = await db.collection("tasks").find({ station: station._id }).toArray();
     }
 
-    console.log(stations.map(station => station.tasks))
+    
 
 
     let data = JSON.stringify(stations);
