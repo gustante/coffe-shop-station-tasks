@@ -4,7 +4,7 @@ import clientPromise from "../../mongodb/mongodb";
 export default async function handler(req, res) {
     console.log(req.body)
 
-    console.log("received request to check task: " + req.body.taskDescription);
+    console.log("received request to check task: " + req.body.taskDescription + " to " + req.body.checked);
     
     const client = await clientPromise;
     const db = client.db("SbuxOperations")
@@ -12,16 +12,14 @@ export default async function handler(req, res) {
     let currentDate = new Date();
     let timeNow = currentDate.getHours()
 
-    const selectTask = await db.collection("tasks").find({ description: req.body.taskDescription }).toArray()
-
     let updatedTask;
 
-    if(selectTask[0].checked == false){
+    if(req.body.checked == false){
         console.log("changing to checked")
-        updatedTask =  await db.collection("tasks").findOneAndUpdate({ description: req.body.taskDescription }, { "$set": { checked: true, completedAt: new Date(), completedBy: "Gustavo" } });
-    } else if (selectTask[0].checked == true) {
+        updatedTask =  await db.collection("tasks").findOneAndUpdate({ description: req.body.taskDescription }, { "$set": { checked: false, completedAt: new Date(), completedBy: "Gustavo" } });
+    } else if (req.body.checked == true) {
         console.log("changing to unchecked")
-        updatedTask = await db.collection("tasks").findOneAndUpdate({ description: req.body.taskDescription }, { "$set": { checked: false, completedAt: new Date(), completedBy: "Gustavo" } });
+        updatedTask = await db.collection("tasks").findOneAndUpdate({ description: req.body.taskDescription }, { "$set": { checked: true, completedAt: new Date(), completedBy: "Gustavo" } });
     }
 
     //find station whose id is equal to updatedTask.station

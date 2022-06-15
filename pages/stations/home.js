@@ -98,6 +98,14 @@ const Home = (props) => {
         let wasChecked = $(`.${e.target.value}`).attr('data-ischecked');
         let taskDescription = $(`.${e.target.value}`).attr('data-taskdescription');
 
+        let changeTo;
+        if(wasChecked == "false"){
+            changeTo = true;
+        } else if (wasChecked == "true") {
+            changeTo = false;
+        }
+
+
 
 
 
@@ -119,7 +127,7 @@ const Home = (props) => {
             headers: {
                 'Content-Type': 'application/json',
             },
-            body: JSON.stringify({ taskId: e.target.value, taskDescription: taskDescription }),
+            body: JSON.stringify({ taskId: e.target.value, taskDescription: taskDescription, checked: changeTo }),
         })
 
         //received updated station from the backend whose task got checked
