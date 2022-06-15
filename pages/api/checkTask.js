@@ -14,16 +14,13 @@ export default async function handler(req, res) {
 
     const selectTask = await db.collection("tasks").find({ description: req.body.taskDescription }).toArray()
 
-    console.log("selected task is: ")
-    console.log(selectTask[0]);
-    let updated
 
     if(selectTask[0].checked == false){
         console.log("changing to checked")
-        updated = await db.collection("tasks").findOneAndUpdate({ description: req.body.taskDescription }, { "$set": { checked: true, completedAt: new Date(), completedBy: "Gustavo" } });
+        await db.collection("tasks").findOneAndUpdate({ description: req.body.taskDescription }, { "$set": { checked: true, completedAt: new Date(), completedBy: "Gustavo" } });
     } else if (selectTask[0].checked == true) {
         console.log("changing to unchecked")
-        updated = await db.collection("tasks").findOneAndUpdate({ description: req.body.taskDescription }, { "$set": { checked: false, completedAt: new Date(), completedBy: "Gustavo" } });
+        await db.collection("tasks").findOneAndUpdate({ description: req.body.taskDescription }, { "$set": { checked: false, completedAt: new Date(), completedBy: "Gustavo" } });
     }
 
 
