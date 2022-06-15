@@ -122,14 +122,19 @@ const Home = (props) => {
             body: JSON.stringify({ taskId: e.target.value, taskDescription: taskDescription }),
         })
 
+        //received updated station from the backend whose task got checked
         const data = await results.json()
-        //update stations with updates from server
-        //setStations(data.stations);
+
+
+        setStations([...stations.filter(station => station._id != data.station._id), data.station]); //replaces station with new one only
+
+
+
 
     }
 
 
-    
+
 
     async function handleResetStation(e) {
         console.log("reseting stations : " + e.target.value)
@@ -1228,7 +1233,8 @@ export async function getStaticProps() {
     const db = client.db("SbuxOperations")
 
     const stations = await db.collection("stations").find({}).toArray();
-    //populate stations.tasks   with tasks
+
+    // //populate stations.tasks   with tasks
     for (let station of stations) {
         station.tasks = await db.collection("tasks").find({ station: station._id }).toArray();
     }

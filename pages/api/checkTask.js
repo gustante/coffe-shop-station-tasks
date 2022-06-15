@@ -14,17 +14,25 @@ export default async function handler(req, res) {
 
     const selectTask = await db.collection("tasks").find({ description: req.body.taskDescription }).toArray()
 
+    let updatedTask;
 
     if(selectTask[0].checked == false){
         console.log("changing to checked")
-        await db.collection("tasks").findOneAndUpdate({ description: req.body.taskDescription }, { "$set": { checked: true, completedAt: new Date(), completedBy: "Gustavo" } });
+        updatedTask =  await db.collection("tasks").findOneAndUpdate({ description: req.body.taskDescription }, { "$set": { checked: true, completedAt: new Date(), completedBy: "Gustavo" } });
     } else if (selectTask[0].checked == true) {
         console.log("changing to unchecked")
-        await db.collection("tasks").findOneAndUpdate({ description: req.body.taskDescription }, { "$set": { checked: false, completedAt: new Date(), completedBy: "Gustavo" } });
+        updatedTask = await db.collection("tasks").findOneAndUpdate({ description: req.body.taskDescription }, { "$set": { checked: false, completedAt: new Date(), completedBy: "Gustavo" } });
     }
 
+    //find station whose id is equal to updatedTask.station
+    console.log(updatedTask)
+    const station = await db.collection("stations").find({ _id: updatedTask.value.station }).toArray()
+    //populate station tasks with tasks
+    station[0].tasks = await db.collection("tasks").find({ station: station[0]._id }).toArray()
+    
 
-    res.json({message: "task updated"});
+    
+    res.json({station: station[0]});
    
 
 
