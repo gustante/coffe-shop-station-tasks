@@ -37,9 +37,6 @@ export default function Navbar() {
                 </Link>
                 </li>
                 <li className="nav-item btn">
-                <Link href="/position">
-                    <a className="nav-link active" aria-current="page" href="#">Positions</a>
-                </Link>
                 </li>
                 <li className="nav-item btn">
                   <a className="nav-link active" aria-current="page" href="#">View as PlayCaller</a>

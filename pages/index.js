@@ -11,7 +11,6 @@ require('../models/Task.js');
 
 //COMPONENTS
 import Navbar from './navbar.js';
-import Position from './position.js';
 import Login from './login.js';
 import Management from './management.js';
 import Footer from './footer.js';

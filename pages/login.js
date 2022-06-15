@@ -71,7 +71,7 @@ const Login = (props) => {
               </div>
   
               <div className="d-grid gap-2">
-                <Link href="/position">
+                <Link href="/stations/home">
                   <button className="btn btn-lg btn-login py-3" >Log In</button>
                 </Link>
               </div>
