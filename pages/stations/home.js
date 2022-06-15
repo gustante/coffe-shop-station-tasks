@@ -244,7 +244,7 @@ const Home = (props) => {
 
                                 </button>
                             </h2>
-                            <div id="collapsePlayCaller" className="accordion-collapse collapse" aria-labelledby="PlayCaller" data-bs-parent="#accordionExample">
+                            <div id="collapsePlayCaller" className="accordion-collapse collapse" aria-labelledby="PlayCaller" >
 
 
                                 <div className="accordion-body">
@@ -322,7 +322,7 @@ const Home = (props) => {
                                     </div>
                                 </button>
                             </h2>
-                            <div id="collapseCycleTaskList" className="accordion-collapse collapse" aria-labelledby="CycleTaskList" data-bs-parent="#accordionExample">
+                            <div id="collapseCycleTaskList" className="accordion-collapse collapse" aria-labelledby="CycleTaskList" >
                                 <div className="accordion-body">
                                     <div className='reset-station'  ><button className="task-check btn" type="button " value={CycleTaskList.name} onClick={handleResetStation} ><FontAwesomeIcon icon={faArrowRotateRight} style={{ fontSize: "1.0em", color: "green" }} /> Reset</button></div>
                                     <h5 className="text-dark"> <FontAwesomeIcon icon={faClockRotateLeft} style={{ fontSize: "1.5em", color: "green" }} /> Customer Support:</h5>
@@ -368,7 +368,7 @@ const Home = (props) => {
                                     </div>
                                 </button>
                             </h2>
-                            <div id="collapseReadySetGo" className="accordion-collapse collapse" aria-labelledby="ReadySetGo" data-bs-parent="#accordionExample">
+                            <div id="collapseReadySetGo" className="accordion-collapse collapse" aria-labelledby="ReadySetGo" >
                                 <div className="accordion-body">
                                     <div className='reset-station'  ><button className="task-check btn" type="button " value={ReadySetGo.name} onClick={handleResetStation} ><FontAwesomeIcon icon={faArrowRotateRight} style={{ fontSize: "1.0em", color: "green" }} /> Reset</button></div>
                                     <p>Complete to replesh store before peak period</p>
@@ -416,7 +416,7 @@ const Home = (props) => {
                                     </div>
                                 </button>
                             </h2>
-                            <div id="collapseExpresso" className="accordion-collapse collapse" aria-labelledby="Expresso" data-bs-parent="#accordionExample">
+                            <div id="collapseExpresso" className="accordion-collapse collapse" aria-labelledby="Expresso" >
                                 <div className="accordion-body">
                                     <div className='reset-station'  ><button className="task-check btn" type="button " value={Expresso.name} onClick={handleResetStation} ><FontAwesomeIcon icon={faArrowRotateRight} style={{ fontSize: "1.0em", color: "green" }} /> Reset</button></div>
                                     <h5 className="text-dark"><FontAwesomeIcon icon={faClockRotateLeft} style={{ fontSize: "1.5em", color: "green" }} /> Customer Support: </h5>
@@ -488,7 +488,7 @@ const Home = (props) => {
                                     </div>
                                 </button>
                             </h2>
-                            <div id="collapseColdBeverage" className="accordion-collapse collapse" aria-labelledby="ColdBeverage" data-bs-parent="#accordionExample">
+                            <div id="collapseColdBeverage" className="accordion-collapse collapse" aria-labelledby="ColdBeverage" >
                                 <div className="accordion-body">
                                     <div className='reset-station'  ><button className="task-check btn" type="button " value={ColdBeverage.name} onClick={handleResetStation} ><FontAwesomeIcon icon={faArrowRotateRight} style={{ fontSize: "1.0em", color: "green" }} /> Reset</button></div>
                                     <h5 className="text-dark"><FontAwesomeIcon icon={faClockRotateLeft} style={{ fontSize: "1.5em", color: "green" }} /> Customer Support:</h5>
@@ -560,7 +560,7 @@ const Home = (props) => {
                                     </div>
                                 </button>
                             </h2>
-                            <div id="collapseDraft" className="accordion-collapse collapse" aria-labelledby="Draft" data-bs-parent="#accordionExample">
+                            <div id="collapseDraft" className="accordion-collapse collapse" aria-labelledby="Draft" >
                                 <div className="accordion-body">
                                     <div className='reset-station'  ><button className="task-check btn" type="button " value={Draft.name} onClick={handleResetStation} ><FontAwesomeIcon icon={faArrowRotateRight} style={{ fontSize: "1.0em", color: "green" }} /> Reset</button></div>
                                     <h5 className="text-dark"><FontAwesomeIcon icon={faClockRotateLeft} style={{ fontSize: "1.5em", color: "green" }} /> Customer Support:</h5>
@@ -632,7 +632,7 @@ const Home = (props) => {
                                     </div>
                                 </button>
                             </h2>
-                            <div id="collapseMOP" className="accordion-collapse collapse" aria-labelledby="MOP" data-bs-parent="#accordionExample">
+                            <div id="collapseMOP" className="accordion-collapse collapse" aria-labelledby="MOP" >
                                 <div className="accordion-body">
                                     <div className='reset-station'  ><button className="task-check btn" type="button " value={MOP.name} onClick={handleResetStation} ><FontAwesomeIcon icon={faArrowRotateRight} style={{ fontSize: "1.0em", color: "green" }} /> Reset</button></div>
                                     <h5 className="text-dark"><FontAwesomeIcon icon={faClockRotateLeft} style={{ fontSize: "1.5em", color: "green" }} /> Customer Support:</h5>
@@ -704,7 +704,7 @@ const Home = (props) => {
                                     </div>
                                 </button>
                             </h2>
-                            <div id="collapseBrewing" className="accordion-collapse collapse" aria-labelledby="Brewing" data-bs-parent="#accordionExample">
+                            <div id="collapseBrewing" className="accordion-collapse collapse" aria-labelledby="Brewing" >
                                 <div className="accordion-body">
                                     <div className='reset-station'  ><button className="task-check btn" type="button " value={Brewing.name} onClick={handleResetStation} ><FontAwesomeIcon icon={faArrowRotateRight} style={{ fontSize: "1.0em", color: "green" }} /> Reset</button></div>
                                     <h5 className="text-dark"><FontAwesomeIcon icon={faClockRotateLeft} style={{ fontSize: "1.5em", color: "green" }} /> Customer Support:</h5>
@@ -776,7 +776,7 @@ const Home = (props) => {
                                     </div>
                                 </button>
                             </h2>
-                            <div id="collapseWarming" className="accordion-collapse collapse" aria-labelledby="Warming" data-bs-parent="#accordionExample">
+                            <div id="collapseWarming" className="accordion-collapse collapse" aria-labelledby="Warming" >
                                 <div className="accordion-body">
                                     <div className='reset-station'  ><button className="task-check btn" type="button " value={Warming.name} onClick={handleResetStation} ><FontAwesomeIcon icon={faArrowRotateRight} style={{ fontSize: "1.0em", color: "green" }} /> Reset</button></div>
                                     <h5 className="text-dark"><FontAwesomeIcon icon={faClockRotateLeft} style={{ fontSize: "1.5em", color: "green" }} /> Customer Support:</h5>
@@ -848,7 +848,7 @@ const Home = (props) => {
                                     </div>
                                 </button>
                             </h2>
-                            <div id="collapseFoodCase" className="accordion-collapse collapse" aria-labelledby="FoodCase" data-bs-parent="#accordionExample">
+                            <div id="collapseFoodCase" className="accordion-collapse collapse" aria-labelledby="FoodCase" >
                                 <div className="accordion-body">
                                     <div className='reset-station'  ><button className="task-check btn" type="button " value={FoodCase.name} onClick={handleResetStation} ><FontAwesomeIcon icon={faArrowRotateRight} style={{ fontSize: "1.0em", color: "green" }} /> Reset</button></div>
                                     <h5 className="text-dark"><FontAwesomeIcon icon={faClockRotateLeft} style={{ fontSize: "1.5em", color: "green" }} /> Customer Support:</h5>
@@ -921,7 +921,7 @@ const Home = (props) => {
                                     </div>
                                 </button>
                             </h2>
-                            <div id="collapseCustomerArea" className="accordion-collapse collapse" aria-labelledby="CustomerArea" data-bs-parent="#accordionExample">
+                            <div id="collapseCustomerArea" className="accordion-collapse collapse" aria-labelledby="CustomerArea" >
                                 <div className="accordion-body">
                                     <div className='reset-station'  ><button className="task-check btn" type="button " value={CustomerArea.name} onClick={handleResetStation} ><FontAwesomeIcon icon={faArrowRotateRight} style={{ fontSize: "1.0em", color: "green" }} /> Reset</button></div>
                                     <h5 className="text-dark"><FontAwesomeIcon icon={faClockRotateLeft} style={{ fontSize: "1.5em", color: "green" }} /> Customer Support:</h5>
@@ -993,7 +993,7 @@ const Home = (props) => {
                                     </div>
                                 </button>
                             </h2>
-                            <div id="collapseBackOfHouse" className="accordion-collapse collapse" aria-labelledby="BackOfHouse" data-bs-parent="#accordionExample">
+                            <div id="collapseBackOfHouse" className="accordion-collapse collapse" aria-labelledby="BackOfHouse" >
                                 <div className="accordion-body">
                                     <div className='reset-station'  ><button className="task-check btn" type="button " value={BackOfHouse.name} onClick={handleResetStation} ><FontAwesomeIcon icon={faArrowRotateRight} style={{ fontSize: "1.0em", color: "green" }} /> Reset</button></div>
                                     <h5 className="text-dark"><FontAwesomeIcon icon={faClockRotateLeft} style={{ fontSize: "1.5em", color: "green" }} /> Customer Support:</h5>
@@ -1065,7 +1065,7 @@ const Home = (props) => {
                                     </div>
                                 </button>
                             </h2>
-                            <div id="collapseDishWashing" className="accordion-collapse collapse" aria-labelledby="DishWashing" data-bs-parent="#accordionExample">
+                            <div id="collapseDishWashing" className="accordion-collapse collapse" aria-labelledby="DishWashing">
                                 <div className="accordion-body">
                                     <div className='reset-station'  ><button className="task-check btn" type="button " value={DishWashing.name} onClick={handleResetStation} ><FontAwesomeIcon icon={faArrowRotateRight} style={{ fontSize: "1.0em", color: "green" }} /> Reset</button></div>
                                     <h5 className="text-dark"><FontAwesomeIcon icon={faClockRotateLeft} style={{ fontSize: "1.5em", color: "green" }} /> Customer Support:</h5>
@@ -1140,7 +1140,7 @@ const Home = (props) => {
                                     </div>
                                 </button>
                             </h2>
-                            <div id="collapseStoreWalk" className="accordion-collapse collapse" aria-labelledby="StoreWalk" data-bs-parent="#accordionExample">
+                            <div id="collapseStoreWalk" className="accordion-collapse collapse" aria-labelledby="StoreWalk" >
                                 <div className="accordion-body">
                                     <div className='reset-station'  ><button className="task-check btn" type="button " value={StoreWalk.name} onClick={handleResetStation} ><FontAwesomeIcon icon={faArrowRotateRight} style={{ fontSize: "1.0em", color: "green" }} /> Reset</button></div>
                                     <h5 className="text-dark"><FontAwesomeIcon icon={faClipboardUser} style={{ fontSize: "1.5em", color: "green" }} /> Play Caller:</h5>
@@ -1186,7 +1186,7 @@ const Home = (props) => {
                                     </div>
                                 </button>
                             </h2>
-                            <div id="collapseQuickConnect" className="accordion-collapse collapse" aria-labelledby="QuickConnect" data-bs-parent="#accordionExample">
+                            <div id="collapseQuickConnect" className="accordion-collapse collapse" aria-labelledby="QuickConnect" >
                                 <div className="accordion-body">
                                     <div className='reset-station'  ><button className="task-check btn" type="button " value={QuickConnect.name} onClick={handleResetStation} ><FontAwesomeIcon icon={faArrowRotateRight} style={{ fontSize: "1.0em", color: "green" }} /> Reset</button></div>
                                     <h5 className="text-dark"><FontAwesomeIcon icon={faClipboardUser} style={{ fontSize: "1.5em", color: "green" }} /> Play Caller:</h5>
