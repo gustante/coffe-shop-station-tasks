@@ -78,6 +78,8 @@ const Home = (props) => {
     }
 
     async function updateCheckedTasks() {
+        
+
         const results = await fetch('/api/updateStations', {
             method: 'GET',
             headers: {
@@ -91,6 +93,11 @@ const Home = (props) => {
         //update stations with updates from server
         console.log(data.stations)
         setStations(data.stations);
+        // initialize popovers
+        const popoverTriggerList = document.querySelectorAll('[data-bs-toggle="popover"]')
+        const popoverList = [...popoverTriggerList].map(popoverTriggerEl => new bootstrap.Popover(popoverTriggerEl, '.popover-dismiss', {
+            trigger: 'focus'
+        }))
 
     }
 
@@ -99,15 +106,11 @@ const Home = (props) => {
         let taskDescription = $(`.${e.target.value}`).attr('data-taskdescription');
 
         let changeTo;
-        if(wasChecked == "false"){
+        if (wasChecked == "false") {
             changeTo = true;
         } else if (wasChecked == "true") {
             changeTo = false;
         }
-
-
-
-
 
         if (wasChecked == "true") {
             $(`.${e.target.value}`).removeClass("text-success");
@@ -136,8 +139,11 @@ const Home = (props) => {
 
         setStations([...stations.filter(station => station._id != data.station._id), data.station]); //replaces station with new one only
 
-
-
+        // re-load popovers
+        const popoverTriggerList = document.querySelectorAll('[data-bs-toggle="popover"]')
+        const popoverList = [...popoverTriggerList].map(popoverTriggerEl => new bootstrap.Popover(popoverTriggerEl, '.popover-dismiss', {
+            trigger: 'focus'
+        }))
 
     }
 
@@ -211,7 +217,6 @@ const Home = (props) => {
 
 
 
-
                     <ul className="nav nav-pills my-5 d-flex justify-content-center" id="pills-tab" role="tablist">
                         <li className="nav-item" role="presentation">
                             <button className="nav-link" id="pills-open-11am" data-bs-toggle="pill" data-bs-target="#pills-home" type="button" role="tab" aria-controls="pills-home" aria-selected="true" value="open-11am" onClick={handleChangeTime}>Open-11am</button>
@@ -261,13 +266,18 @@ const Home = (props) => {
 
                                                         {task.checked ? (<><button id={task._id} className={`${task._id} btn fs-2 text-success task-check`} data-taskdescription={task.description} data-station={task.station} data-ischecked="true" value={task._id} onClick={handleCheckTask}> &#x2713;
                                                         </button> <span className={`${task._id} mx-4 mt-3 text-decoration-line-through text-success`}>
-                                                                {task.description}
-                                                            </span> </>) : (<> <button id={task._id} className={`${task._id} btn fs-2 task-check`} data-taskdescription={task.description} data-station={task.station} data-ischecked="false" value={task._id} onClick={handleCheckTask}> &#9633;
-                                                            </button> <span className={`${task._id} mx-4 mt-3 text-dark`}>
-                                                                    {task.description}
-                                                                </span> </>)}
+                                                                <a tabindex="0" className="btn-secondary text-reset text-decoration-none" role="button" data-bs-toggle="popover" data-bs-trigger="focus" title="Task log" data-bs-placement="bottom" data-bs-content={task.completedAt}>{task.description}</a>
+                                                            </span>
+
+                                                        </>)
+                                                            : (<> <button id={task._id} className={`${task._id} btn fs-2 task-check`} data-taskdescription={task.description} data-station={task.station} data-ischecked="false" value={task._id} onClick={handleCheckTask}> &#9633;
+                                                            </button> <span className={`${task._id} mx-4 mt-3 text-dark`} >
+                                                                    <a tabindex="0" className="btn-secondary text-reset text-decoration-none" role="button" data-bs-toggle="popover" data-bs-trigger="focus" title="Task log" data-bs-placement="bottom" data-bs-content={task.completedAt}>{task.description}</a>
+                                                                </span>
+                                                            </>)}
 
                                                     </div>
+
                                                 </>
 
                                             ) : (
@@ -288,10 +298,10 @@ const Home = (props) => {
 
                                                         {task.checked ? (<><button id={task._id} className={`${task._id} btn fs-2 text-success task-check`} data-taskdescription={task.description} data-station={task.station} data-ischecked="true" value={task._id} onClick={handleCheckTask}> &#x2713;
                                                         </button> <span className={`${task._id} mx-4 mt-3 text-decoration-line-through text-success`}>
-                                                                {task.description}
+                                                        <a tabindex="0" className="btn-secondary text-reset text-decoration-none" role="button" data-bs-toggle="popover" data-bs-trigger="focus" title="Task log" data-bs-placement="bottom" data-bs-content={task.completedAt}>{task.description}</a>
                                                             </span> </>) : (<> <button id={task._id} className={`${task._id} btn fs-2 task-check`} data-taskdescription={task.description} data-station={task.station} data-ischecked="false" value={task._id} onClick={handleCheckTask}> &#9633;
                                                             </button> <span className={`${task._id} mx-4 mt-3 text-dark`}>
-                                                                    {task.description}
+                                                            <a tabindex="0" className="btn-secondary text-reset text-decoration-none" role="button" data-bs-toggle="popover" data-bs-trigger="focus" title="Task log" data-bs-placement="bottom" data-bs-content={task.completedAt}>{task.description}</a>
                                                                 </span> </>)}
 
                                                     </div>
@@ -335,10 +345,10 @@ const Home = (props) => {
 
                                                         {task.checked ? (<><button id={task._id} className={`${task._id} btn fs-2 text-success task-check`} data-taskdescription={task.description} data-station={task.station} data-ischecked="true" value={task._id} onClick={handleCheckTask}> &#x2713;
                                                         </button> <span className={`${task._id} mx-4 mt-3 text-decoration-line-through text-success`}>
-                                                                {task.description}
+                                                               <a tabindex="0" className="btn-secondary text-reset text-decoration-none" role="button" data-bs-toggle="popover" data-bs-trigger="focus" title="Task log" data-bs-placement="bottom" data-bs-content={task.completedAt}>{task.description}</a>
                                                             </span> </>) : (<> <button id={task._id} className={`${task._id} btn fs-2 task-check`} data-taskdescription={task.description} data-station={task.station} data-ischecked="false" value={task._id} onClick={handleCheckTask}> &#9633;
                                                             </button> <span className={`${task._id} mx-4 mt-3 text-dark`}>
-                                                                    {task.description}
+                                                                   <a tabindex="0" className="btn-secondary text-reset text-decoration-none" role="button" data-bs-toggle="popover" data-bs-trigger="focus" title="Task log" data-bs-placement="bottom" data-bs-content={task.completedAt}>{task.description}</a>
                                                                 </span> </>)}
 
                                                     </div>
@@ -371,7 +381,7 @@ const Home = (props) => {
                             <div id="collapseReadySetGo" className="accordion-collapse collapse" aria-labelledby="ReadySetGo" >
                                 <div className="accordion-body">
                                     <div className='reset-station'  ><button className="task-check btn" type="button " value={ReadySetGo.name} onClick={handleResetStation} ><FontAwesomeIcon icon={faArrowRotateRight} style={{ fontSize: "1.0em", color: "green" }} /> Reset</button></div>
-                                    <p>Complete to replesh store before peak period</p>
+                                    <p>Complete to replenish store before peak period</p>
                                     <h5 className="text-dark"><FontAwesomeIcon icon={faClockRotateLeft} style={{ fontSize: "1.5em", color: "green" }} /> Customer Support:</h5>
                                     {
                                         ReadySetGo.tasks.map((task, index) =>
@@ -382,11 +392,15 @@ const Home = (props) => {
 
                                                         {task.checked ? (<><button id={task._id} className={`${task._id} btn fs-2 text-success task-check`} data-taskdescription={task.description} data-station={task.station} data-ischecked="true" value={task._id} onClick={handleCheckTask}> &#x2713;
                                                         </button> <span className={`${task._id} mx-4 mt-3 text-decoration-line-through text-success`}>
-                                                                {task.description}
+
+                                                               <a tabindex="0" className="btn-secondary text-reset text-decoration-none" role="button" data-bs-toggle="popover" data-bs-trigger="focus" title="Task log" data-bs-placement="bottom" data-bs-content={task.completedAt}>{task.description}</a>
+
                                                             </span> </>) : (<> <button id={task._id} className={`${task._id} btn fs-2 task-check`} data-taskdescription={task.description} data-station={task.station} data-ischecked="false" value={task._id} onClick={handleCheckTask}> &#9633;
                                                             </button> <span className={`${task._id} mx-4 mt-3 text-dark`}>
-                                                                    {task.description}
-                                                                </span> </>)}
+
+                                                                   <a tabindex="0" className="btn-secondary text-reset text-decoration-none" role="button" data-bs-toggle="popover" data-bs-trigger="focus" title="Task log" data-bs-placement="bottom" data-bs-content={task.completedAt}>{task.description}</a>
+
+                                                                </span>  </>)}
 
                                                     </div>
                                                 </>
@@ -429,10 +443,10 @@ const Home = (props) => {
 
                                                         {task.checked ? (<><button id={task._id} className={`${task._id} btn fs-2 text-success task-check`} data-taskdescription={task.description} data-station={task.station} data-ischecked="true" value={task._id} onClick={handleCheckTask}> &#x2713;
                                                         </button> <span className={`${task._id} mx-4 mt-3 text-decoration-line-through text-success`}>
-                                                                {task.description}
+                                                               <a tabindex="0" className="btn-secondary text-reset text-decoration-none" role="button" data-bs-toggle="popover" data-bs-trigger="focus" title="Task log" data-bs-placement="bottom" data-bs-content={task.completedAt}>{task.description}</a>
                                                             </span> </>) : (<> <button id={task._id} className={`${task._id} btn fs-2 task-check`} data-taskdescription={task.description} data-station={task.station} data-ischecked="false" value={task._id} onClick={handleCheckTask}> &#9633;
                                                             </button> <span className={`${task._id} mx-4 mt-3 text-dark`}>
-                                                                    {task.description}
+                                                                   <a tabindex="0" className="btn-secondary text-reset text-decoration-none" role="button" data-bs-toggle="popover" data-bs-trigger="focus" title="Task log" data-bs-placement="bottom" data-bs-content={task.completedAt}>{task.description}</a>
                                                                 </span> </>)}
 
                                                     </div>
@@ -456,10 +470,10 @@ const Home = (props) => {
 
                                                         {task.checked ? (<><button id={task._id} className={`${task._id} btn fs-2 text-success task-check`} data-taskdescription={task.description} data-station={task.station} data-ischecked="true" value={task._id} onClick={handleCheckTask}> &#x2713;
                                                         </button> <span className={`${task._id} mx-4 mt-3 text-decoration-line-through text-success`}>
-                                                                {task.description}
+                                                               <a tabindex="0" className="btn-secondary text-reset text-decoration-none" role="button" data-bs-toggle="popover" data-bs-trigger="focus" title="Task log" data-bs-placement="bottom" data-bs-content={task.completedAt}>{task.description}</a>
                                                             </span> </>) : (<> <button id={task._id} className={`${task._id} btn fs-2 task-check`} data-taskdescription={task.description} data-station={task.station} data-ischecked="false" n value={task._id} onClick={handleCheckTask}> &#9633;
                                                             </button> <span className={`${task._id} mx-4 mt-3 text-dark`}>
-                                                                    {task.description}
+                                                                   <a tabindex="0" className="btn-secondary text-reset text-decoration-none" role="button" data-bs-toggle="popover" data-bs-trigger="focus" title="Task log" data-bs-placement="bottom" data-bs-content={task.completedAt}>{task.description}</a>
                                                                 </span> </>)}
 
                                                     </div>
@@ -501,10 +515,10 @@ const Home = (props) => {
 
                                                         {task.checked ? (<><button id={task._id} className={`${task._id} btn fs-2 text-success task-check`} data-taskdescription={task.description} data-station={task.station} data-ischecked="true" value={task._id} onClick={handleCheckTask}> &#x2713;
                                                         </button> <span className={`${task._id} mx-4 mt-3 text-decoration-line-through text-success`}>
-                                                                {task.description}
+                                                               <a tabindex="0" className="btn-secondary text-reset text-decoration-none" role="button" data-bs-toggle="popover" data-bs-trigger="focus" title="Task log" data-bs-placement="bottom" data-bs-content={task.completedAt}>{task.description}</a>
                                                             </span> </>) : (<> <button id={task._id} className={`${task._id} btn fs-2 task-check`} data-taskdescription={task.description} data-station={task.station} data-ischecked="false" value={task._id} onClick={handleCheckTask}> &#9633;
                                                             </button> <span className={`${task._id} mx-4 mt-3 text-dark`}>
-                                                                    {task.description}
+                                                                   <a tabindex="0" className="btn-secondary text-reset text-decoration-none" role="button" data-bs-toggle="popover" data-bs-trigger="focus" title="Task log" data-bs-placement="bottom" data-bs-content={task.completedAt}>{task.description}</a>
                                                                 </span> </>)}
 
                                                     </div>
@@ -528,10 +542,10 @@ const Home = (props) => {
 
                                                         {task.checked ? (<><button id={task._id} className={`${task._id} btn fs-2 text-success task-check`} data-taskdescription={task.description} data-station={task.station} data-ischecked="true" value={task._id} onClick={handleCheckTask}> &#x2713;
                                                         </button> <span className={`${task._id} mx-4 mt-3 text-decoration-line-through text-success`}>
-                                                                {task.description}
+                                                               <a tabindex="0" className="btn-secondary text-reset text-decoration-none" role="button" data-bs-toggle="popover" data-bs-trigger="focus" title="Task log" data-bs-placement="bottom" data-bs-content={task.completedAt}>{task.description}</a>
                                                             </span> </>) : (<> <button id={task._id} className={`${task._id} btn fs-2 task-check`} data-taskdescription={task.description} data-station={task.station} data-ischecked="false" value={task._id} onClick={handleCheckTask}> &#9633;
                                                             </button> <span className={`${task._id} mx-4 mt-3 text-dark`}>
-                                                                    {task.description}
+                                                                   <a tabindex="0" className="btn-secondary text-reset text-decoration-none" role="button" data-bs-toggle="popover" data-bs-trigger="focus" title="Task log" data-bs-placement="bottom" data-bs-content={task.completedAt}>{task.description}</a>
                                                                 </span> </>)}
 
                                                     </div>
@@ -573,10 +587,10 @@ const Home = (props) => {
 
                                                         {task.checked ? (<><button id={task._id} className={`${task._id} btn fs-2 text-success task-check`} data-taskdescription={task.description} data-station={task.station} data-ischecked="true" value={task._id} onClick={handleCheckTask}> &#x2713;
                                                         </button> <span className={`${task._id} mx-4 mt-3 text-decoration-line-through text-success`}>
-                                                                {task.description}
+                                                               <a tabindex="0" className="btn-secondary text-reset text-decoration-none" role="button" data-bs-toggle="popover" data-bs-trigger="focus" title="Task log" data-bs-placement="bottom" data-bs-content={task.completedAt}>{task.description}</a>
                                                             </span> </>) : (<> <button id={task._id} className={`${task._id} btn fs-2 task-check`} data-taskdescription={task.description} data-station={task.station} data-ischecked="false" value={task._id} onClick={handleCheckTask}> &#9633;
                                                             </button> <span className={`${task._id} mx-4 mt-3 text-dark`}>
-                                                                    {task.description}
+                                                                   <a tabindex="0" className="btn-secondary text-reset text-decoration-none" role="button" data-bs-toggle="popover" data-bs-trigger="focus" title="Task log" data-bs-placement="bottom" data-bs-content={task.completedAt}>{task.description}</a>
                                                                 </span> </>)}
 
                                                     </div>
@@ -600,10 +614,10 @@ const Home = (props) => {
 
                                                         {task.checked ? (<><button id={task._id} className={`${task._id} btn fs-2 text-success task-check`} data-taskdescription={task.description} data-station={task.station} data-ischecked="true" value={task._id} onClick={handleCheckTask}> &#x2713;
                                                         </button> <span className={`${task._id} mx-4 mt-3 text-decoration-line-through text-success`}>
-                                                                {task.description}
+                                                               <a tabindex="0" className="btn-secondary text-reset text-decoration-none" role="button" data-bs-toggle="popover" data-bs-trigger="focus" title="Task log" data-bs-placement="bottom" data-bs-content={task.completedAt}>{task.description}</a>
                                                             </span> </>) : (<> <button id={task._id} className={`${task._id} btn fs-2 task-check`} data-taskdescription={task.description} data-station={task.station} data-ischecked="false" value={task._id} onClick={handleCheckTask}> &#9633;
                                                             </button> <span className={`${task._id} mx-4 mt-3 text-dark`}>
-                                                                    {task.description}
+                                                                   <a tabindex="0" className="btn-secondary text-reset text-decoration-none" role="button" data-bs-toggle="popover" data-bs-trigger="focus" title="Task log" data-bs-placement="bottom" data-bs-content={task.completedAt}>{task.description}</a>
                                                                 </span> </>)}
 
                                                     </div>
@@ -645,10 +659,10 @@ const Home = (props) => {
 
                                                         {task.checked ? (<><button id={task._id} className={`${task._id} btn fs-2 text-success task-check`} data-taskdescription={task.description} data-station={task.station} data-ischecked="true" value={task._id} onClick={handleCheckTask}> &#x2713;
                                                         </button> <span className={`${task._id} mx-4 mt-3 text-decoration-line-through text-success`}>
-                                                                {task.description}
+                                                               <a tabindex="0" className="btn-secondary text-reset text-decoration-none" role="button" data-bs-toggle="popover" data-bs-trigger="focus" title="Task log" data-bs-placement="bottom" data-bs-content={task.completedAt}>{task.description}</a>
                                                             </span> </>) : (<> <button id={task._id} className={`${task._id} btn fs-2 task-check`} data-taskdescription={task.description} data-station={task.station} data-ischecked="false" value={task._id} onClick={handleCheckTask}> &#9633;
                                                             </button> <span className={`${task._id} mx-4 mt-3 text-dark`}>
-                                                                    {task.description}
+                                                                   <a tabindex="0" className="btn-secondary text-reset text-decoration-none" role="button" data-bs-toggle="popover" data-bs-trigger="focus" title="Task log" data-bs-placement="bottom" data-bs-content={task.completedAt}>{task.description}</a>
                                                                 </span> </>)}
 
                                                     </div>
@@ -672,10 +686,10 @@ const Home = (props) => {
 
                                                         {task.checked ? (<><button id={task._id} className={`${task._id} btn fs-2 text-success task-check`} data-taskdescription={task.description} data-station={task.station} data-ischecked="true" value={task._id} onClick={handleCheckTask}> &#x2713;
                                                         </button> <span className={`${task._id} mx-4 mt-3 text-decoration-line-through text-success`}>
-                                                                {task.description}
+                                                               <a tabindex="0" className="btn-secondary text-reset text-decoration-none" role="button" data-bs-toggle="popover" data-bs-trigger="focus" title="Task log" data-bs-placement="bottom" data-bs-content={task.completedAt}>{task.description}</a>
                                                             </span> </>) : (<> <button id={task._id} className={`${task._id} btn fs-2 task-check`} data-taskdescription={task.description} data-station={task.station} data-ischecked="false" value={task._id} onClick={handleCheckTask}> &#9633;
                                                             </button> <span className={`${task._id} mx-4 mt-3 text-dark`}>
-                                                                    {task.description}
+                                                                   <a tabindex="0" className="btn-secondary text-reset text-decoration-none" role="button" data-bs-toggle="popover" data-bs-trigger="focus" title="Task log" data-bs-placement="bottom" data-bs-content={task.completedAt}>{task.description}</a>
                                                                 </span> </>)}
 
                                                     </div>
@@ -717,10 +731,10 @@ const Home = (props) => {
 
                                                         {task.checked ? (<><button id={task._id} className={`${task._id} btn fs-2 text-success task-check`} data-taskdescription={task.description} data-station={task.station} data-ischecked="true" value={task._id} onClick={handleCheckTask}> &#x2713;
                                                         </button> <span className={`${task._id} mx-4 mt-3 text-decoration-line-through text-success`}>
-                                                                {task.description}
+                                                               <a tabindex="0" className="btn-secondary text-reset text-decoration-none" role="button" data-bs-toggle="popover" data-bs-trigger="focus" title="Task log" data-bs-placement="bottom" data-bs-content={task.completedAt}>{task.description}</a>
                                                             </span> </>) : (<> <button id={task._id} className={`${task._id} btn fs-2 task-check`} data-taskdescription={task.description} data-station={task.station} data-ischecked="false" value={task._id} onClick={handleCheckTask}> &#9633;
                                                             </button> <span className={`${task._id} mx-4 mt-3 text-dark`}>
-                                                                    {task.description}
+                                                                   <a tabindex="0" className="btn-secondary text-reset text-decoration-none" role="button" data-bs-toggle="popover" data-bs-trigger="focus" title="Task log" data-bs-placement="bottom" data-bs-content={task.completedAt}>{task.description}</a>
                                                                 </span> </>)}
 
                                                     </div>
@@ -744,10 +758,10 @@ const Home = (props) => {
 
                                                         {task.checked ? (<><button id={task._id} className={`${task._id} btn fs-2 text-success task-check`} data-taskdescription={task.description} data-station={task.station} data-ischecked="true" value={task._id} onClick={handleCheckTask}> &#x2713;
                                                         </button> <span className={`${task._id} mx-4 mt-3 text-decoration-line-through text-success`}>
-                                                                {task.description}
+                                                               <a tabindex="0" className="btn-secondary text-reset text-decoration-none" role="button" data-bs-toggle="popover" data-bs-trigger="focus" title="Task log" data-bs-placement="bottom" data-bs-content={task.completedAt}>{task.description}</a>
                                                             </span> </>) : (<> <button id={task._id} className={`${task._id} btn fs-2 task-check`} data-taskdescription={task.description} data-station={task.station} data-ischecked="false" value={task._id} onClick={handleCheckTask}> &#9633;
                                                             </button> <span className={`${task._id} mx-4 mt-3 text-dark`}>
-                                                                    {task.description}
+                                                                   <a tabindex="0" className="btn-secondary text-reset text-decoration-none" role="button" data-bs-toggle="popover" data-bs-trigger="focus" title="Task log" data-bs-placement="bottom" data-bs-content={task.completedAt}>{task.description}</a>
                                                                 </span> </>)}
 
                                                     </div>
@@ -789,10 +803,10 @@ const Home = (props) => {
 
                                                         {task.checked ? (<><button id={task._id} className={`${task._id} btn fs-2 text-success task-check`} data-taskdescription={task.description} data-station={task.station} data-ischecked="true" value={task._id} onClick={handleCheckTask}> &#x2713;
                                                         </button> <span className={`${task._id} mx-4 mt-3 text-decoration-line-through text-success`}>
-                                                                {task.description}
+                                                               <a tabindex="0" className="btn-secondary text-reset text-decoration-none" role="button" data-bs-toggle="popover" data-bs-trigger="focus" title="Task log" data-bs-placement="bottom" data-bs-content={task.completedAt}>{task.description}</a>
                                                             </span> </>) : (<> <button id={task._id} className={`${task._id} btn fs-2 task-check`} data-taskdescription={task.description} data-station={task.station} data-ischecked="false" value={task._id} onClick={handleCheckTask}> &#9633;
                                                             </button> <span className={`${task._id} mx-4 mt-3 text-dark`}>
-                                                                    {task.description}
+                                                                   <a tabindex="0" className="btn-secondary text-reset text-decoration-none" role="button" data-bs-toggle="popover" data-bs-trigger="focus" title="Task log" data-bs-placement="bottom" data-bs-content={task.completedAt}>{task.description}</a>
                                                                 </span> </>)}
 
                                                     </div>
@@ -816,10 +830,10 @@ const Home = (props) => {
 
                                                         {task.checked ? (<><button id={task._id} className={`${task._id} btn fs-2 text-success task-check`} data-taskdescription={task.description} data-station={task.station} data-ischecked="true" value={task._id} onClick={handleCheckTask}> &#x2713;
                                                         </button> <span className={`${task._id} mx-4 mt-3 text-decoration-line-through text-success`}>
-                                                                {task.description}
+                                                               <a tabindex="0" className="btn-secondary text-reset text-decoration-none" role="button" data-bs-toggle="popover" data-bs-trigger="focus" title="Task log" data-bs-placement="bottom" data-bs-content={task.completedAt}>{task.description}</a>
                                                             </span> </>) : (<> <button id={task._id} className={`${task._id} btn fs-2 task-check`} data-taskdescription={task.description} data-station={task.station} data-ischecked="false" value={task._id} onClick={handleCheckTask}> &#9633;
                                                             </button> <span className={`${task._id} mx-4 mt-3 text-dark`}>
-                                                                    {task.description}
+                                                                   <a tabindex="0" className="btn-secondary text-reset text-decoration-none" role="button" data-bs-toggle="popover" data-bs-trigger="focus" title="Task log" data-bs-placement="bottom" data-bs-content={task.completedAt}>{task.description}</a>
                                                                 </span> </>)}
 
                                                     </div>
@@ -861,10 +875,10 @@ const Home = (props) => {
 
                                                         {task.checked ? (<><button id={task._id} className={`${task._id} btn fs-2 text-success task-check`} data-taskdescription={task.description} data-station={task.station} data-ischecked="true" value={task._id} onClick={handleCheckTask}> &#x2713;
                                                         </button> <span className={`${task._id} mx-4 mt-3 text-decoration-line-through text-success`}>
-                                                                {task.description}
+                                                               <a tabindex="0" className="btn-secondary text-reset text-decoration-none" role="button" data-bs-toggle="popover" data-bs-trigger="focus" title="Task log" data-bs-placement="bottom" data-bs-content={task.completedAt}>{task.description}</a>
                                                             </span> </>) : (<> <button id={task._id} className={`${task._id} btn fs-2 task-check`} data-taskdescription={task.description} data-station={task.station} data-ischecked="false" value={task._id} onClick={handleCheckTask}> &#9633;
                                                             </button> <span className={`${task._id} mx-4 mt-3 text-dark`}>
-                                                                    {task.description}
+                                                                   <a tabindex="0" className="btn-secondary text-reset text-decoration-none" role="button" data-bs-toggle="popover" data-bs-trigger="focus" title="Task log" data-bs-placement="bottom" data-bs-content={task.completedAt}>{task.description}</a>
                                                                 </span> </>)}
 
                                                     </div>
@@ -888,10 +902,10 @@ const Home = (props) => {
 
                                                         {task.checked ? (<><button id={task._id} className={`${task._id} btn fs-2 text-success task-check`} data-taskdescription={task.description} data-station={task.station} data-ischecked="true" value={task._id} onClick={handleCheckTask}> &#x2713;
                                                         </button> <span className={`${task._id} mx-4 mt-3 text-decoration-line-through text-success`}>
-                                                                {task.description}
+                                                               <a tabindex="0" className="btn-secondary text-reset text-decoration-none" role="button" data-bs-toggle="popover" data-bs-trigger="focus" title="Task log" data-bs-placement="bottom" data-bs-content={task.completedAt}>{task.description}</a>
                                                             </span> </>) : (<> <button id={task._id} className={`${task._id} btn fs-2 task-check`} data-taskdescription={task.description} data-station={task.station} data-ischecked="false" value={task._id} onClick={handleCheckTask}> &#9633;
                                                             </button> <span className={`${task._id} mx-4 mt-3 text-dark`}>
-                                                                    {task.description}
+                                                                   <a tabindex="0" className="btn-secondary text-reset text-decoration-none" role="button" data-bs-toggle="popover" data-bs-trigger="focus" title="Task log" data-bs-placement="bottom" data-bs-content={task.completedAt}>{task.description}</a>
                                                                 </span> </>)}
 
                                                     </div>
@@ -934,10 +948,10 @@ const Home = (props) => {
 
                                                         {task.checked ? (<><button id={task._id} className={`${task._id} btn fs-2 text-success task-check`} data-taskdescription={task.description} data-station={task.station} data-ischecked="true" value={task._id} onClick={handleCheckTask}> &#x2713;
                                                         </button> <span className={`${task._id} mx-4 mt-3 text-decoration-line-through text-success`}>
-                                                                {task.description}
+                                                               <a tabindex="0" className="btn-secondary text-reset text-decoration-none" role="button" data-bs-toggle="popover" data-bs-trigger="focus" title="Task log" data-bs-placement="bottom" data-bs-content={task.completedAt}>{task.description}</a>
                                                             </span> </>) : (<> <button id={task._id} className={`${task._id} btn fs-2 task-check`} data-taskdescription={task.description} data-station={task.station} data-ischecked="false" value={task._id} onClick={handleCheckTask}> &#9633;
                                                             </button> <span className={`${task._id} mx-4 mt-3 text-dark`}>
-                                                                    {task.description}
+                                                                   <a tabindex="0" className="btn-secondary text-reset text-decoration-none" role="button" data-bs-toggle="popover" data-bs-trigger="focus" title="Task log" data-bs-placement="bottom" data-bs-content={task.completedAt}>{task.description}</a>
                                                                 </span> </>)}
 
                                                     </div>
@@ -961,10 +975,10 @@ const Home = (props) => {
 
                                                         {task.checked ? (<><button id={task._id} className={`${task._id} btn fs-2 text-success task-check`} data-taskdescription={task.description} data-station={task.station} data-ischecked="true" value={task._id} onClick={handleCheckTask}> &#x2713;
                                                         </button> <span className={`${task._id} mx-4 mt-3 text-decoration-line-through text-success`}>
-                                                                {task.description}
+                                                               <a tabindex="0" className="btn-secondary text-reset text-decoration-none" role="button" data-bs-toggle="popover" data-bs-trigger="focus" title="Task log" data-bs-placement="bottom" data-bs-content={task.completedAt}>{task.description}</a>
                                                             </span> </>) : (<> <button id={task._id} className={`${task._id} btn fs-2 task-check`} data-taskdescription={task.description} data-station={task.station} data-ischecked="false" value={task._id} onClick={handleCheckTask}> &#9633;
                                                             </button> <span className={`${task._id} mx-4 mt-3 text-dark`}>
-                                                                    {task.description}
+                                                                   <a tabindex="0" className="btn-secondary text-reset text-decoration-none" role="button" data-bs-toggle="popover" data-bs-trigger="focus" title="Task log" data-bs-placement="bottom" data-bs-content={task.completedAt}>{task.description}</a>
                                                                 </span> </>)}
 
                                                     </div>
@@ -1006,10 +1020,10 @@ const Home = (props) => {
 
                                                         {task.checked ? (<><button id={task._id} className={`${task._id} btn fs-2 text-success task-check`} data-taskdescription={task.description} data-station={task.station} data-ischecked="true" value={task._id} onClick={handleCheckTask}> &#x2713;
                                                         </button> <span className={`${task._id} mx-4 mt-3 text-decoration-line-through text-success`}>
-                                                                {task.description}
+                                                               <a tabindex="0" className="btn-secondary text-reset text-decoration-none" role="button" data-bs-toggle="popover" data-bs-trigger="focus" title="Task log" data-bs-placement="bottom" data-bs-content={task.completedAt}>{task.description}</a>
                                                             </span> </>) : (<> <button id={task._id} className={`${task._id} btn fs-2 task-check`} data-taskdescription={task.description} data-station={task.station} data-ischecked="false" value={task._id} onClick={handleCheckTask}> &#9633;
                                                             </button> <span className={`${task._id} mx-4 mt-3 text-dark`}>
-                                                                    {task.description}
+                                                                   <a tabindex="0" className="btn-secondary text-reset text-decoration-none" role="button" data-bs-toggle="popover" data-bs-trigger="focus" title="Task log" data-bs-placement="bottom" data-bs-content={task.completedAt}>{task.description}</a>
                                                                 </span> </>)}
 
                                                     </div>
@@ -1033,10 +1047,10 @@ const Home = (props) => {
 
                                                         {task.checked ? (<><button id={task._id} className={`${task._id} btn fs-2 text-success task-check`} data-taskdescription={task.description} data-station={task.station} data-ischecked="true" value={task._id} onClick={handleCheckTask}> &#x2713;
                                                         </button> <span className={`${task._id} mx-4 mt-3 text-decoration-line-through text-success`}>
-                                                                {task.description}
+                                                               <a tabindex="0" className="btn-secondary text-reset text-decoration-none" role="button" data-bs-toggle="popover" data-bs-trigger="focus" title="Task log" data-bs-placement="bottom" data-bs-content={task.completedAt}>{task.description}</a>
                                                             </span> </>) : (<> <button id={task._id} className={`${task._id} btn fs-2 task-check`} data-taskdescription={task.description} data-station={task.station} data-ischecked="false" value={task._id} onClick={handleCheckTask}> &#9633;
                                                             </button> <span className={`${task._id} mx-4 mt-3 text-dark`}>
-                                                                    {task.description}
+                                                                   <a tabindex="0" className="btn-secondary text-reset text-decoration-none" role="button" data-bs-toggle="popover" data-bs-trigger="focus" title="Task log" data-bs-placement="bottom" data-bs-content={task.completedAt}>{task.description}</a>
                                                                 </span> </>)}
 
                                                     </div>
@@ -1078,10 +1092,10 @@ const Home = (props) => {
 
                                                         {task.checked ? (<><button id={task._id} className={`${task._id} btn fs-2 text-success task-check`} data-taskdescription={task.description} data-station={task.station} data-ischecked="true" value={task._id} onClick={handleCheckTask}> &#x2713;
                                                         </button> <span className={`${task._id} mx-4 mt-3 text-decoration-line-through text-success`}>
-                                                                {task.description}
+                                                               <a tabindex="0" className="btn-secondary text-reset text-decoration-none" role="button" data-bs-toggle="popover" data-bs-trigger="focus" title="Task log" data-bs-placement="bottom" data-bs-content={task.completedAt}>{task.description}</a>
                                                             </span> </>) : (<> <button id={task._id} className={`${task._id} btn fs-2 task-check`} data-taskdescription={task.description} data-station={task.station} data-ischecked="false" value={task._id} onClick={handleCheckTask}> &#9633;
                                                             </button> <span className={`${task._id} mx-4 mt-3 text-dark`}>
-                                                                    {task.description}
+                                                                   <a tabindex="0" className="btn-secondary text-reset text-decoration-none" role="button" data-bs-toggle="popover" data-bs-trigger="focus" title="Task log" data-bs-placement="bottom" data-bs-content={task.completedAt}>{task.description}</a>
                                                                 </span> </>)}
 
                                                     </div>
@@ -1105,10 +1119,10 @@ const Home = (props) => {
 
                                                         {task.checked ? (<><button id={task._id} className={`${task._id} btn fs-2 text-success task-check`} data-taskdescription={task.description} data-station={task.station} data-ischecked="true" value={task._id} onClick={handleCheckTask}> &#x2713;
                                                         </button> <span className={`${task._id} mx-4 mt-3 text-decoration-line-through text-success`}>
-                                                                {task.description}
+                                                               <a tabindex="0" className="btn-secondary text-reset text-decoration-none" role="button" data-bs-toggle="popover" data-bs-trigger="focus" title="Task log" data-bs-placement="bottom" data-bs-content={task.completedAt}>{task.description}</a>
                                                             </span> </>) : (<> <button id={task._id} className={`${task._id} btn fs-2 task-check`} data-taskdescription={task.description} data-station={task.station} data-ischecked="false" value={task._id} onClick={handleCheckTask}> &#9633;
                                                             </button> <span className={`${task._id} mx-4 mt-3 text-dark`}>
-                                                                    {task.description}
+                                                                   <a tabindex="0" className="btn-secondary text-reset text-decoration-none" role="button" data-bs-toggle="popover" data-bs-trigger="focus" title="Task log" data-bs-placement="bottom" data-bs-content={task.completedAt}>{task.description}</a>
                                                                 </span> </>)}
 
                                                     </div>
@@ -1153,10 +1167,10 @@ const Home = (props) => {
 
                                                         {task.checked ? (<><button id={task._id} className={`${task._id} btn fs-2 text-success task-check`} data-taskdescription={task.description} data-station={task.station} data-ischecked="true" value={task._id} onClick={handleCheckTask}> &#x2713;
                                                         </button> <span className={`${task._id} mx-4 mt-3 text-decoration-line-through text-success`}>
-                                                                {task.description}
+                                                               <a tabindex="0" className="btn-secondary text-reset text-decoration-none" role="button" data-bs-toggle="popover" data-bs-trigger="focus" title="Task log" data-bs-placement="bottom" data-bs-content={task.completedAt}>{task.description}</a>
                                                             </span> </>) : (<> <button id={task._id} className={`${task._id} btn fs-2 task-check`} data-taskdescription={task.description} data-station={task.station} data-ischecked="false" value={task._id} onClick={handleCheckTask}> &#9633;
                                                             </button> <span className={`${task._id} mx-4 mt-3 text-dark`}>
-                                                                    {task.description}
+                                                                   <a tabindex="0" className="btn-secondary text-reset text-decoration-none" role="button" data-bs-toggle="popover" data-bs-trigger="focus" title="Task log" data-bs-placement="bottom" data-bs-content={task.completedAt}>{task.description}</a>
                                                                 </span> </>)}
 
                                                     </div>
@@ -1199,10 +1213,10 @@ const Home = (props) => {
 
                                                         {task.checked ? (<><button id={task._id} className={`${task._id} btn fs-2 text-success task-check`} data-taskdescription={task.description} data-station={task.station} data-ischecked="true" value={task._id} onClick={handleCheckTask}> &#x2713;
                                                         </button> <span className={`${task._id} mx-4 mt-3 text-decoration-line-through text-success`}>
-                                                                {task.description}
+                                                               <a tabindex="0" className="btn-secondary text-reset text-decoration-none" role="button" data-bs-toggle="popover" data-bs-trigger="focus" title="Task log" data-bs-placement="bottom" data-bs-content={task.completedAt}>{task.description}</a>
                                                             </span> </>) : (<> <button id={task._id} className={`${task._id} btn fs-2 task-check`} data-taskdescription={task.description} data-station={task.station} data-ischecked="false" value={task._id} onClick={handleCheckTask}> &#9633;
                                                             </button> <span className={`${task._id} mx-4 mt-3 text-dark`}>
-                                                                    {task.description}
+                                                                   <a tabindex="0" className="btn-secondary text-reset text-decoration-none" role="button" data-bs-toggle="popover" data-bs-trigger="focus" title="Task log" data-bs-placement="bottom" data-bs-content={task.completedAt}>{task.description}</a>
                                                                 </span> </>)}
 
                                                     </div>

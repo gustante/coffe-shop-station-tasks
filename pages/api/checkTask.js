@@ -10,16 +10,15 @@ export default async function handler(req, res) {
     const db = client.db("SbuxOperations")
     
     let currentDate = new Date();
-    let timeNow = currentDate.getHours()
-
+    let currentDateString = "Last completed by Gustavo on " + (currentDate.getMonth() + 1) + "/" + currentDate.getDate() + "/" + currentDate.getFullYear() + " at " + currentDate.getHours() + ":" + currentDate.getMinutes()
+    
     let updatedTask;
-
     if(req.body.checked == false){
-        console.log("changing to checked")
-        updatedTask =  await db.collection("tasks").findOneAndUpdate({ description: req.body.taskDescription }, { "$set": { checked: false, completedAt: new Date(), completedBy: "Gustavo" } });
-    } else if (req.body.checked == true) {
         console.log("changing to unchecked")
-        updatedTask = await db.collection("tasks").findOneAndUpdate({ description: req.body.taskDescription }, { "$set": { checked: true, completedAt: new Date(), completedBy: "Gustavo" } });
+        updatedTask =  await db.collection("tasks").findOneAndUpdate({ description: req.body.taskDescription }, { "$set": { checked: false, completedBy: "Gustavo" } });
+    } else if (req.body.checked == true) {
+        console.log("changing to checked")
+        updatedTask = await db.collection("tasks").findOneAndUpdate({ description: req.body.taskDescription }, { "$set": { checked: true, completedAt: currentDateString, completedBy: "Gustavo" } });
     }
 
     //find station whose id is equal to updatedTask.station
