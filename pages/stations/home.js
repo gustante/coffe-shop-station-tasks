@@ -83,16 +83,29 @@ const Home = (props) => {
 
     }
 
-    function handleChangeTime(e) {
+    async function handleChangeTime(e) {
         console.log(e.target.value);
         setTime(e.target.value)
+
+        const results = await fetch('/api/updateStations', {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+
+        })
+
+        const data = await results.json()
+        //update stations with updates from server
+        console.log("re-seting stations")
+        setStations(data.stations);
     }
 
     async function handleCheckTask(e) {
         let wasChecked = $(`.${e.target.value}`).attr('data-ischecked');
         let taskDescription = $(`.${e.target.value}`).attr('data-taskdescription');
 
-        
+
 
 
         if (wasChecked == "true") {
@@ -134,9 +147,8 @@ const Home = (props) => {
 
         const data = await results.json()
         //update stations with updates from server
-        console.log("re-seting stations")
         console.log(data.stations)
-        setStations(data.stations);
+        
     }
 
 
@@ -225,7 +237,7 @@ const Home = (props) => {
                                                         {task.checked ? (<><button id={task._id} className={`${task._id} btn fs-2 text-success task-check`} data-taskdescription={task.description} data-station={task.station} data-ischecked="true" value={task._id} onClick={handleCheckTask}> &#x2713;
                                                         </button> <span className={`${task._id} mx-4 mt-3 text-decoration-line-through text-success`}>
                                                                 {task.description}
-                                                            </span> </>) : (<> <button id={task._id} className={`${task._id} btn fs-2 task-check`} data-taskdescription={task.description} data-station={task.station}  data-ischecked="false" value={task._id} onClick={handleCheckTask}> &#9633;
+                                                            </span> </>) : (<> <button id={task._id} className={`${task._id} btn fs-2 task-check`} data-taskdescription={task.description} data-station={task.station} data-ischecked="false" value={task._id} onClick={handleCheckTask}> &#9633;
                                                             </button> <span className={`${task._id} mx-4 mt-3 text-dark`}>
                                                                     {task.description}
                                                                 </span> </>)}
@@ -417,7 +429,7 @@ const Home = (props) => {
                                                         {task.checked ? (<><button id={task._id} className={`${task._id} btn fs-2 text-success task-check`} data-taskdescription={task.description} data-station={task.station} data-ischecked="true" value={task._id} onClick={handleCheckTask}> &#x2713;
                                                         </button> <span className={`${task._id} mx-4 mt-3 text-decoration-line-through text-success`}>
                                                                 {task.description}
-                                                            </span> </>) : (<> <button id={task._id} className={`${task._id} btn fs-2 task-check`} data-taskdescription={task.description} data-station={task.station} data-ischecked="false" value={task._id} onClick={handleCheckTask}> &#9633;
+                                                            </span> </>) : (<> <button id={task._id} className={`${task._id} btn fs-2 task-check`} data-taskdescription={task.description} data-station={task.station} data-ischecked="false" n value={task._id} onClick={handleCheckTask}> &#9633;
                                                             </button> <span className={`${task._id} mx-4 mt-3 text-dark`}>
                                                                     {task.description}
                                                                 </span> </>)}
@@ -449,22 +461,22 @@ const Home = (props) => {
                                 </button>
                             </h2>
                             <div id="collapseColdBeverage" className="accordion-collapse collapse" aria-labelledby="ColdBeverage" data-bs-parent="#accordionExample">
-                            <div className="accordion-body">
+                                <div className="accordion-body">
                                     <h5 className="text-dark"><FontAwesomeIcon icon={faClockRotateLeft} style={{ fontSize: "1.5em", color: "green" }} /> Customer Support:</h5>
                                     {
                                         ColdBeverage.tasks.map((task, index) =>
                                             task.role == "Customer Support" && task.time == time ? (
                                                 <>
-                                                   
+
                                                     <div className="d-flex my-1 mx-4" >
-                                                        
+
                                                         {task.checked ? (<><button id={task._id} className={`${task._id} btn fs-2 text-success task-check`} data-taskdescription={task.description} data-station={task.station} data-ischecked="true" value={task._id} onClick={handleCheckTask}> &#x2713;
                                                         </button> <span className={`${task._id} mx-4 mt-3 text-decoration-line-through text-success`}>
-                                                            {task.description}
-                                                        </span> </>) : (<> <button id={task._id} className={`${task._id} btn fs-2 task-check`} data-taskdescription={task.description} data-station={task.station} data-ischecked="false" value={task._id} onClick={handleCheckTask}> &#9633;
-                                                        </button> <span className={`${task._id} mx-4 mt-3 text-dark`}>
-                                                            {task.description}
-                                                        </span> </>)}
+                                                                {task.description}
+                                                            </span> </>) : (<> <button id={task._id} className={`${task._id} btn fs-2 task-check`} data-taskdescription={task.description} data-station={task.station} data-ischecked="false" value={task._id} onClick={handleCheckTask}> &#9633;
+                                                            </button> <span className={`${task._id} mx-4 mt-3 text-dark`}>
+                                                                    {task.description}
+                                                                </span> </>)}
 
                                                     </div>
                                                 </>
@@ -482,16 +494,16 @@ const Home = (props) => {
                                         ColdBeverage.tasks.map((task, index) =>
                                             task.role == "Planted" && task.time == time ? (
                                                 <>
-                                                   
+
                                                     <div className="d-flex my-1 mx-4" >
-                                                        
+
                                                         {task.checked ? (<><button id={task._id} className={`${task._id} btn fs-2 text-success task-check`} data-taskdescription={task.description} data-station={task.station} data-ischecked="true" value={task._id} onClick={handleCheckTask}> &#x2713;
                                                         </button> <span className={`${task._id} mx-4 mt-3 text-decoration-line-through text-success`}>
-                                                            {task.description}
-                                                        </span> </>) : (<> <button id={task._id} className={`${task._id} btn fs-2 task-check`} data-taskdescription={task.description} data-station={task.station} data-ischecked="false" value={task._id} onClick={handleCheckTask}> &#9633;
-                                                        </button> <span className={`${task._id} mx-4 mt-3 text-dark`}>
-                                                            {task.description}
-                                                        </span> </>)}
+                                                                {task.description}
+                                                            </span> </>) : (<> <button id={task._id} className={`${task._id} btn fs-2 task-check`} data-taskdescription={task.description} data-station={task.station} data-ischecked="false" value={task._id} onClick={handleCheckTask}> &#9633;
+                                                            </button> <span className={`${task._id} mx-4 mt-3 text-dark`}>
+                                                                    {task.description}
+                                                                </span> </>)}
 
                                                     </div>
                                                 </>
@@ -520,22 +532,22 @@ const Home = (props) => {
                                 </button>
                             </h2>
                             <div id="collapseDraft" className="accordion-collapse collapse" aria-labelledby="Draft" data-bs-parent="#accordionExample">
-                            <div className="accordion-body">
+                                <div className="accordion-body">
                                     <h5 className="text-dark"><FontAwesomeIcon icon={faClockRotateLeft} style={{ fontSize: "1.5em", color: "green" }} /> Customer Support:</h5>
                                     {
                                         Draft.tasks.map((task, index) =>
                                             task.role == "Customer Support" && task.time == time ? (
                                                 <>
-                                                   
+
                                                     <div className="d-flex my-1 mx-4" >
-                                                        
+
                                                         {task.checked ? (<><button id={task._id} className={`${task._id} btn fs-2 text-success task-check`} data-taskdescription={task.description} data-station={task.station} data-ischecked="true" value={task._id} onClick={handleCheckTask}> &#x2713;
                                                         </button> <span className={`${task._id} mx-4 mt-3 text-decoration-line-through text-success`}>
-                                                            {task.description}
-                                                        </span> </>) : (<> <button id={task._id} className={`${task._id} btn fs-2 task-check`} data-taskdescription={task.description} data-station={task.station} data-ischecked="false" value={task._id} onClick={handleCheckTask}> &#9633;
-                                                        </button> <span className={`${task._id} mx-4 mt-3 text-dark`}>
-                                                            {task.description}
-                                                        </span> </>)}
+                                                                {task.description}
+                                                            </span> </>) : (<> <button id={task._id} className={`${task._id} btn fs-2 task-check`} data-taskdescription={task.description} data-station={task.station} data-ischecked="false" value={task._id} onClick={handleCheckTask}> &#9633;
+                                                            </button> <span className={`${task._id} mx-4 mt-3 text-dark`}>
+                                                                    {task.description}
+                                                                </span> </>)}
 
                                                     </div>
                                                 </>
@@ -553,16 +565,16 @@ const Home = (props) => {
                                         Draft.tasks.map((task, index) =>
                                             task.role == "Planted" && task.time == time ? (
                                                 <>
-                                                   
+
                                                     <div className="d-flex my-1 mx-4" >
-                                                        
+
                                                         {task.checked ? (<><button id={task._id} className={`${task._id} btn fs-2 text-success task-check`} data-taskdescription={task.description} data-station={task.station} data-ischecked="true" value={task._id} onClick={handleCheckTask}> &#x2713;
                                                         </button> <span className={`${task._id} mx-4 mt-3 text-decoration-line-through text-success`}>
-                                                            {task.description}
-                                                        </span> </>) : (<> <button id={task._id} className={`${task._id} btn fs-2 task-check`} data-taskdescription={task.description} data-station={task.station} data-ischecked="false" value={task._id} onClick={handleCheckTask}> &#9633;
-                                                        </button> <span className={`${task._id} mx-4 mt-3 text-dark`}>
-                                                            {task.description}
-                                                        </span> </>)}
+                                                                {task.description}
+                                                            </span> </>) : (<> <button id={task._id} className={`${task._id} btn fs-2 task-check`} data-taskdescription={task.description} data-station={task.station} data-ischecked="false" value={task._id} onClick={handleCheckTask}> &#9633;
+                                                            </button> <span className={`${task._id} mx-4 mt-3 text-dark`}>
+                                                                    {task.description}
+                                                                </span> </>)}
 
                                                     </div>
                                                 </>
@@ -591,22 +603,22 @@ const Home = (props) => {
                                 </button>
                             </h2>
                             <div id="collapseMOP" className="accordion-collapse collapse" aria-labelledby="MOP" data-bs-parent="#accordionExample">
-                            <div className="accordion-body">
+                                <div className="accordion-body">
                                     <h5 className="text-dark"><FontAwesomeIcon icon={faClockRotateLeft} style={{ fontSize: "1.5em", color: "green" }} /> Customer Support:</h5>
                                     {
                                         MOP.tasks.map((task, index) =>
                                             task.role == "Customer Support" && task.time == time ? (
                                                 <>
-                                                   
+
                                                     <div className="d-flex my-1 mx-4" >
-                                                        
+
                                                         {task.checked ? (<><button id={task._id} className={`${task._id} btn fs-2 text-success task-check`} data-taskdescription={task.description} data-station={task.station} data-ischecked="true" value={task._id} onClick={handleCheckTask}> &#x2713;
                                                         </button> <span className={`${task._id} mx-4 mt-3 text-decoration-line-through text-success`}>
-                                                            {task.description}
-                                                        </span> </>) : (<> <button id={task._id} className={`${task._id} btn fs-2 task-check`} data-taskdescription={task.description} data-station={task.station} data-ischecked="false" value={task._id} onClick={handleCheckTask}> &#9633;
-                                                        </button> <span className={`${task._id} mx-4 mt-3 text-dark`}>
-                                                            {task.description}
-                                                        </span> </>)}
+                                                                {task.description}
+                                                            </span> </>) : (<> <button id={task._id} className={`${task._id} btn fs-2 task-check`} data-taskdescription={task.description} data-station={task.station} data-ischecked="false" value={task._id} onClick={handleCheckTask}> &#9633;
+                                                            </button> <span className={`${task._id} mx-4 mt-3 text-dark`}>
+                                                                    {task.description}
+                                                                </span> </>)}
 
                                                     </div>
                                                 </>
@@ -624,16 +636,16 @@ const Home = (props) => {
                                         MOP.tasks.map((task, index) =>
                                             task.role == "Planted" && task.time == time ? (
                                                 <>
-                                                   
+
                                                     <div className="d-flex my-1 mx-4" >
-                                                        
+
                                                         {task.checked ? (<><button id={task._id} className={`${task._id} btn fs-2 text-success task-check`} data-taskdescription={task.description} data-station={task.station} data-ischecked="true" value={task._id} onClick={handleCheckTask}> &#x2713;
                                                         </button> <span className={`${task._id} mx-4 mt-3 text-decoration-line-through text-success`}>
-                                                            {task.description}
-                                                        </span> </>) : (<> <button id={task._id} className={`${task._id} btn fs-2 task-check`} data-taskdescription={task.description} data-station={task.station} data-ischecked="false" value={task._id} onClick={handleCheckTask}> &#9633;
-                                                        </button> <span className={`${task._id} mx-4 mt-3 text-dark`}>
-                                                            {task.description}
-                                                        </span> </>)}
+                                                                {task.description}
+                                                            </span> </>) : (<> <button id={task._id} className={`${task._id} btn fs-2 task-check`} data-taskdescription={task.description} data-station={task.station} data-ischecked="false" value={task._id} onClick={handleCheckTask}> &#9633;
+                                                            </button> <span className={`${task._id} mx-4 mt-3 text-dark`}>
+                                                                    {task.description}
+                                                                </span> </>)}
 
                                                     </div>
                                                 </>
@@ -733,22 +745,22 @@ const Home = (props) => {
                                 </button>
                             </h2>
                             <div id="collapseWarming" className="accordion-collapse collapse" aria-labelledby="Warming" data-bs-parent="#accordionExample">
-                            <div className="accordion-body">
+                                <div className="accordion-body">
                                     <h5 className="text-dark"><FontAwesomeIcon icon={faClockRotateLeft} style={{ fontSize: "1.5em", color: "green" }} /> Customer Support:</h5>
                                     {
                                         Warming.tasks.map((task, index) =>
                                             task.role == "Customer Support" && task.time == time ? (
                                                 <>
-                                                   
+
                                                     <div className="d-flex my-1 mx-4" >
-                                                        
+
                                                         {task.checked ? (<><button id={task._id} className={`${task._id} btn fs-2 text-success task-check`} data-taskdescription={task.description} data-station={task.station} data-ischecked="true" value={task._id} onClick={handleCheckTask}> &#x2713;
                                                         </button> <span className={`${task._id} mx-4 mt-3 text-decoration-line-through text-success`}>
-                                                            {task.description}
-                                                        </span> </>) : (<> <button id={task._id} className={`${task._id} btn fs-2 task-check`} data-taskdescription={task.description} data-station={task.station} data-ischecked="false" value={task._id} onClick={handleCheckTask}> &#9633;
-                                                        </button> <span className={`${task._id} mx-4 mt-3 text-dark`}>
-                                                            {task.description}
-                                                        </span> </>)}
+                                                                {task.description}
+                                                            </span> </>) : (<> <button id={task._id} className={`${task._id} btn fs-2 task-check`} data-taskdescription={task.description} data-station={task.station} data-ischecked="false" value={task._id} onClick={handleCheckTask}> &#9633;
+                                                            </button> <span className={`${task._id} mx-4 mt-3 text-dark`}>
+                                                                    {task.description}
+                                                                </span> </>)}
 
                                                     </div>
                                                 </>
@@ -766,16 +778,16 @@ const Home = (props) => {
                                         Warming.tasks.map((task, index) =>
                                             task.role == "Planted" && task.time == time ? (
                                                 <>
-                                                   
+
                                                     <div className="d-flex my-1 mx-4" >
-                                                        
+
                                                         {task.checked ? (<><button id={task._id} className={`${task._id} btn fs-2 text-success task-check`} data-taskdescription={task.description} data-station={task.station} data-ischecked="true" value={task._id} onClick={handleCheckTask}> &#x2713;
                                                         </button> <span className={`${task._id} mx-4 mt-3 text-decoration-line-through text-success`}>
-                                                            {task.description}
-                                                        </span> </>) : (<> <button id={task._id} className={`${task._id} btn fs-2 task-check`} data-taskdescription={task.description} data-station={task.station} data-ischecked="false" value={task._id} onClick={handleCheckTask}> &#9633;
-                                                        </button> <span className={`${task._id} mx-4 mt-3 text-dark`}>
-                                                            {task.description}
-                                                        </span> </>)}
+                                                                {task.description}
+                                                            </span> </>) : (<> <button id={task._id} className={`${task._id} btn fs-2 task-check`} data-taskdescription={task.description} data-station={task.station} data-ischecked="false" value={task._id} onClick={handleCheckTask}> &#9633;
+                                                            </button> <span className={`${task._id} mx-4 mt-3 text-dark`}>
+                                                                    {task.description}
+                                                                </span> </>)}
 
                                                     </div>
                                                 </>
@@ -804,22 +816,22 @@ const Home = (props) => {
                                 </button>
                             </h2>
                             <div id="collapseFoodCase" className="accordion-collapse collapse" aria-labelledby="FoodCase" data-bs-parent="#accordionExample">
-                            <div className="accordion-body">
+                                <div className="accordion-body">
                                     <h5 className="text-dark"><FontAwesomeIcon icon={faClockRotateLeft} style={{ fontSize: "1.5em", color: "green" }} /> Customer Support:</h5>
                                     {
                                         FoodCase.tasks.map((task, index) =>
                                             task.role == "Customer Support" && task.time == time ? (
                                                 <>
-                                                   
+
                                                     <div className="d-flex my-1 mx-4" >
-                                                        
+
                                                         {task.checked ? (<><button id={task._id} className={`${task._id} btn fs-2 text-success task-check`} data-taskdescription={task.description} data-station={task.station} data-ischecked="true" value={task._id} onClick={handleCheckTask}> &#x2713;
                                                         </button> <span className={`${task._id} mx-4 mt-3 text-decoration-line-through text-success`}>
-                                                            {task.description}
-                                                        </span> </>) : (<> <button id={task._id} className={`${task._id} btn fs-2 task-check`} data-taskdescription={task.description} data-station={task.station} data-ischecked="false" value={task._id} onClick={handleCheckTask}> &#9633;
-                                                        </button> <span className={`${task._id} mx-4 mt-3 text-dark`}>
-                                                            {task.description}
-                                                        </span> </>)}
+                                                                {task.description}
+                                                            </span> </>) : (<> <button id={task._id} className={`${task._id} btn fs-2 task-check`} data-taskdescription={task.description} data-station={task.station} data-ischecked="false" value={task._id} onClick={handleCheckTask}> &#9633;
+                                                            </button> <span className={`${task._id} mx-4 mt-3 text-dark`}>
+                                                                    {task.description}
+                                                                </span> </>)}
 
                                                     </div>
                                                 </>
@@ -837,16 +849,16 @@ const Home = (props) => {
                                         FoodCase.tasks.map((task, index) =>
                                             task.role == "Planted" && task.time == time ? (
                                                 <>
-                                                   
+
                                                     <div className="d-flex my-1 mx-4" >
-                                                        
+
                                                         {task.checked ? (<><button id={task._id} className={`${task._id} btn fs-2 text-success task-check`} data-taskdescription={task.description} data-station={task.station} data-ischecked="true" value={task._id} onClick={handleCheckTask}> &#x2713;
                                                         </button> <span className={`${task._id} mx-4 mt-3 text-decoration-line-through text-success`}>
-                                                            {task.description}
-                                                        </span> </>) : (<> <button id={task._id} className={`${task._id} btn fs-2 task-check`} data-taskdescription={task.description} data-station={task.station} data-ischecked="false" value={task._id} onClick={handleCheckTask}> &#9633;
-                                                        </button> <span className={`${task._id} mx-4 mt-3 text-dark`}>
-                                                            {task.description}
-                                                        </span> </>)}
+                                                                {task.description}
+                                                            </span> </>) : (<> <button id={task._id} className={`${task._id} btn fs-2 task-check`} data-taskdescription={task.description} data-station={task.station} data-ischecked="false" value={task._id} onClick={handleCheckTask}> &#9633;
+                                                            </button> <span className={`${task._id} mx-4 mt-3 text-dark`}>
+                                                                    {task.description}
+                                                                </span> </>)}
 
                                                     </div>
                                                 </>
@@ -876,22 +888,22 @@ const Home = (props) => {
                                 </button>
                             </h2>
                             <div id="collapseCustomerArea" className="accordion-collapse collapse" aria-labelledby="CustomerArea" data-bs-parent="#accordionExample">
-                            <div className="accordion-body">
+                                <div className="accordion-body">
                                     <h5 className="text-dark"><FontAwesomeIcon icon={faClockRotateLeft} style={{ fontSize: "1.5em", color: "green" }} /> Customer Support:</h5>
                                     {
                                         CustomerArea.tasks.map((task, index) =>
                                             task.role == "Customer Support" && task.time == time ? (
                                                 <>
-                                                   
+
                                                     <div className="d-flex my-1 mx-4" >
-                                                        
+
                                                         {task.checked ? (<><button id={task._id} className={`${task._id} btn fs-2 text-success task-check`} data-taskdescription={task.description} data-station={task.station} data-ischecked="true" value={task._id} onClick={handleCheckTask}> &#x2713;
                                                         </button> <span className={`${task._id} mx-4 mt-3 text-decoration-line-through text-success`}>
-                                                            {task.description}
-                                                        </span> </>) : (<> <button id={task._id} className={`${task._id} btn fs-2 task-check`} data-taskdescription={task.description} data-station={task.station} data-ischecked="false" value={task._id} onClick={handleCheckTask}> &#9633;
-                                                        </button> <span className={`${task._id} mx-4 mt-3 text-dark`}>
-                                                            {task.description}
-                                                        </span> </>)}
+                                                                {task.description}
+                                                            </span> </>) : (<> <button id={task._id} className={`${task._id} btn fs-2 task-check`} data-taskdescription={task.description} data-station={task.station} data-ischecked="false" value={task._id} onClick={handleCheckTask}> &#9633;
+                                                            </button> <span className={`${task._id} mx-4 mt-3 text-dark`}>
+                                                                    {task.description}
+                                                                </span> </>)}
 
                                                     </div>
                                                 </>
@@ -909,16 +921,16 @@ const Home = (props) => {
                                         CustomerArea.tasks.map((task, index) =>
                                             task.role == "Planted" && task.time == time ? (
                                                 <>
-                                                   
+
                                                     <div className="d-flex my-1 mx-4" >
-                                                        
+
                                                         {task.checked ? (<><button id={task._id} className={`${task._id} btn fs-2 text-success task-check`} data-taskdescription={task.description} data-station={task.station} data-ischecked="true" value={task._id} onClick={handleCheckTask}> &#x2713;
                                                         </button> <span className={`${task._id} mx-4 mt-3 text-decoration-line-through text-success`}>
-                                                            {task.description}
-                                                        </span> </>) : (<> <button id={task._id} className={`${task._id} btn fs-2 task-check`} data-taskdescription={task.description} data-station={task.station} data-ischecked="false" value={task._id} onClick={handleCheckTask}> &#9633;
-                                                        </button> <span className={`${task._id} mx-4 mt-3 text-dark`}>
-                                                            {task.description}
-                                                        </span> </>)}
+                                                                {task.description}
+                                                            </span> </>) : (<> <button id={task._id} className={`${task._id} btn fs-2 task-check`} data-taskdescription={task.description} data-station={task.station} data-ischecked="false" value={task._id} onClick={handleCheckTask}> &#9633;
+                                                            </button> <span className={`${task._id} mx-4 mt-3 text-dark`}>
+                                                                    {task.description}
+                                                                </span> </>)}
 
                                                     </div>
                                                 </>
@@ -947,22 +959,22 @@ const Home = (props) => {
                                 </button>
                             </h2>
                             <div id="collapseBackOfHouse" className="accordion-collapse collapse" aria-labelledby="BackOfHouse" data-bs-parent="#accordionExample">
-                            <div className="accordion-body">
+                                <div className="accordion-body">
                                     <h5 className="text-dark"><FontAwesomeIcon icon={faClockRotateLeft} style={{ fontSize: "1.5em", color: "green" }} /> Customer Support:</h5>
                                     {
                                         BackOfHouse.tasks.map((task, index) =>
                                             task.role == "Customer Support" && task.time == time ? (
                                                 <>
-                                                   
+
                                                     <div className="d-flex my-1 mx-4" >
-                                                        
+
                                                         {task.checked ? (<><button id={task._id} className={`${task._id} btn fs-2 text-success task-check`} data-taskdescription={task.description} data-station={task.station} data-ischecked="true" value={task._id} onClick={handleCheckTask}> &#x2713;
                                                         </button> <span className={`${task._id} mx-4 mt-3 text-decoration-line-through text-success`}>
-                                                            {task.description}
-                                                        </span> </>) : (<> <button id={task._id} className={`${task._id} btn fs-2 task-check`} data-taskdescription={task.description} data-station={task.station} data-ischecked="false" value={task._id} onClick={handleCheckTask}> &#9633;
-                                                        </button> <span className={`${task._id} mx-4 mt-3 text-dark`}>
-                                                            {task.description}
-                                                        </span> </>)}
+                                                                {task.description}
+                                                            </span> </>) : (<> <button id={task._id} className={`${task._id} btn fs-2 task-check`} data-taskdescription={task.description} data-station={task.station} data-ischecked="false" value={task._id} onClick={handleCheckTask}> &#9633;
+                                                            </button> <span className={`${task._id} mx-4 mt-3 text-dark`}>
+                                                                    {task.description}
+                                                                </span> </>)}
 
                                                     </div>
                                                 </>
@@ -980,16 +992,16 @@ const Home = (props) => {
                                         BackOfHouse.tasks.map((task, index) =>
                                             task.role == "Planted" && task.time == time ? (
                                                 <>
-                                                   
+
                                                     <div className="d-flex my-1 mx-4" >
-                                                        
+
                                                         {task.checked ? (<><button id={task._id} className={`${task._id} btn fs-2 text-success task-check`} data-taskdescription={task.description} data-station={task.station} data-ischecked="true" value={task._id} onClick={handleCheckTask}> &#x2713;
                                                         </button> <span className={`${task._id} mx-4 mt-3 text-decoration-line-through text-success`}>
-                                                            {task.description}
-                                                        </span> </>) : (<> <button id={task._id} className={`${task._id} btn fs-2 task-check`} data-taskdescription={task.description} data-station={task.station} data-ischecked="false" value={task._id} onClick={handleCheckTask}> &#9633;
-                                                        </button> <span className={`${task._id} mx-4 mt-3 text-dark`}>
-                                                            {task.description}
-                                                        </span> </>)}
+                                                                {task.description}
+                                                            </span> </>) : (<> <button id={task._id} className={`${task._id} btn fs-2 task-check`} data-taskdescription={task.description} data-station={task.station} data-ischecked="false" value={task._id} onClick={handleCheckTask}> &#9633;
+                                                            </button> <span className={`${task._id} mx-4 mt-3 text-dark`}>
+                                                                    {task.description}
+                                                                </span> </>)}
 
                                                     </div>
                                                 </>
@@ -1018,22 +1030,22 @@ const Home = (props) => {
                                 </button>
                             </h2>
                             <div id="collapseDishWashing" className="accordion-collapse collapse" aria-labelledby="DishWashing" data-bs-parent="#accordionExample">
-                            <div className="accordion-body">
+                                <div className="accordion-body">
                                     <h5 className="text-dark"><FontAwesomeIcon icon={faClockRotateLeft} style={{ fontSize: "1.5em", color: "green" }} /> Customer Support:</h5>
                                     {
                                         DishWashing.tasks.map((task, index) =>
                                             task.role == "Customer Support" && task.time == time ? (
                                                 <>
-                                                   
+
                                                     <div className="d-flex my-1 mx-4" >
-                                                        
+
                                                         {task.checked ? (<><button id={task._id} className={`${task._id} btn fs-2 text-success task-check`} data-taskdescription={task.description} data-station={task.station} data-ischecked="true" value={task._id} onClick={handleCheckTask}> &#x2713;
                                                         </button> <span className={`${task._id} mx-4 mt-3 text-decoration-line-through text-success`}>
-                                                            {task.description}
-                                                        </span> </>) : (<> <button id={task._id} className={`${task._id} btn fs-2 task-check`} data-taskdescription={task.description} data-station={task.station} data-ischecked="false" value={task._id} onClick={handleCheckTask}> &#9633;
-                                                        </button> <span className={`${task._id} mx-4 mt-3 text-dark`}>
-                                                            {task.description}
-                                                        </span> </>)}
+                                                                {task.description}
+                                                            </span> </>) : (<> <button id={task._id} className={`${task._id} btn fs-2 task-check`} data-taskdescription={task.description} data-station={task.station} data-ischecked="false" value={task._id} onClick={handleCheckTask}> &#9633;
+                                                            </button> <span className={`${task._id} mx-4 mt-3 text-dark`}>
+                                                                    {task.description}
+                                                                </span> </>)}
 
                                                     </div>
                                                 </>
@@ -1051,16 +1063,16 @@ const Home = (props) => {
                                         DishWashing.tasks.map((task, index) =>
                                             task.role == "Planted" && task.time == time ? (
                                                 <>
-                                                   
+
                                                     <div className="d-flex my-1 mx-4" >
-                                                        
+
                                                         {task.checked ? (<><button id={task._id} className={`${task._id} btn fs-2 text-success task-check`} data-taskdescription={task.description} data-station={task.station} data-ischecked="true" value={task._id} onClick={handleCheckTask}> &#x2713;
                                                         </button> <span className={`${task._id} mx-4 mt-3 text-decoration-line-through text-success`}>
-                                                            {task.description}
-                                                        </span> </>) : (<> <button id={task._id} className={`${task._id} btn fs-2 task-check`} data-taskdescription={task.description} data-station={task.station} data-ischecked="false" value={task._id} onClick={handleCheckTask}> &#9633;
-                                                        </button> <span className={`${task._id} mx-4 mt-3 text-dark`}>
-                                                            {task.description}
-                                                        </span> </>)}
+                                                                {task.description}
+                                                            </span> </>) : (<> <button id={task._id} className={`${task._id} btn fs-2 task-check`} data-taskdescription={task.description} data-station={task.station} data-ischecked="false" value={task._id} onClick={handleCheckTask}> &#9633;
+                                                            </button> <span className={`${task._id} mx-4 mt-3 text-dark`}>
+                                                                    {task.description}
+                                                                </span> </>)}
 
                                                     </div>
                                                 </>
@@ -1092,7 +1104,7 @@ const Home = (props) => {
                                 </button>
                             </h2>
                             <div id="collapseStoreWalk" className="accordion-collapse collapse" aria-labelledby="StoreWalk" data-bs-parent="#accordionExample">
-                            <div className="accordion-body">
+                                <div className="accordion-body">
                                     <h5 className="text-dark"><FontAwesomeIcon icon={faClipboardUser} style={{ fontSize: "1.5em", color: "green" }} /> Play Caller:</h5>
                                     {
                                         StoreWalk.tasks.map((task, index) =>
@@ -1137,7 +1149,7 @@ const Home = (props) => {
                                 </button>
                             </h2>
                             <div id="collapseQuickConnect" className="accordion-collapse collapse" aria-labelledby="QuickConnect" data-bs-parent="#accordionExample">
-                            <div className="accordion-body">
+                                <div className="accordion-body">
                                     <h5 className="text-dark"><FontAwesomeIcon icon={faClipboardUser} style={{ fontSize: "1.5em", color: "green" }} /> Play Caller:</h5>
                                     {
                                         QuickConnect.tasks.map((task, index) =>
@@ -1184,47 +1196,16 @@ const Home = (props) => {
 }
 
 export async function getStaticProps() {
-    //await connectMongo()
-
-    //const { MongoClient } = require('mongodb');
 
     const client = await clientPromise;
 
-    // const uri = processs.env.MONGODBURI; 
-    // const client = new MongoClient(uri);
-
-    // require("../../models/Station.js")
-    // require("../../models/Task.js")
-    //const stations = await Station.find().populate('tasks');
-
-    //const collection = client.collection()
-
     const db = client.db("SbuxOperations")
 
-    
-    // Create const stations and populate stations with tasks
-    // const stations = await db.collection("stations").find({}).toArray()
-    // const tasks = await db.collection("tasks").find().toArray()
-    // const stationsWithTasks = stations.map(station => {
-    //     // console.log("== station", station._id)
-
-    //     // Find all tasks that have the same station id
-    //     const tasksForStation = tasks.filter(task => {
-    //         task.station == station._id})
-    //     console.log(tasksForStation)
-       
-    // }
-    // )
-    // console.log(stationsWithTasks)
-    
     const stations = await db.collection("stations").find({}).toArray();
     //populate stations.tasks   with tasks
     for (let station of stations) {
         station.tasks = await db.collection("tasks").find({ station: station._id }).toArray();
     }
-
-    
-
 
     let data = JSON.stringify(stations);
 
@@ -1250,7 +1231,7 @@ export async function getStaticProps() {
             data: JSON.parse(data),
             timeNow: timeNow
         },
-        //revalidate: 10, // In seconds
+        revalidate: 10, // In seconds
     };
 
 }

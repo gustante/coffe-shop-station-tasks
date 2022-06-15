@@ -22,7 +22,7 @@
     font-size: 0.9em;
 }
 
-.task-check:hover, .task-check:active, .task-check:focus {
+.task-check, .task-check:hover, .task-check:active, .task-check:focus {
     border: none
 }
 
