@@ -1,35 +1,20 @@
-
-
-import connectMongo from '../../mongodb/connection.js';
-import Task from '../../models/Task.js';
-import Station from '../../models/Station.js';
-
+import clientPromise from "../../mongodb/mongodb";
 
 
 export default async function handler(req, res) {
     console.log(req.body)
 
-    await connectMongo();
-    let station = await Station.findOne({ name: req.body.stationName })
-    console.log(station)
+    const client = await clientPromise;
 
-    let task = new Task({
-        station: station._id,
-        time: req.body.taskTime,
-        description: req.body.taskDescription,
-        role: req.body.taskRole,
-    })
+    const db = client.db("SbuxOperations")
 
-    await task.save();
-    station.tasks.push(task);
-    await station.save();
+    let station = await db.collection("stations").findOne({ name: req.body.stationName })
 
-  
+    //insert new task into station
+    let newTask = await db.collection("tasks").insertOne({ description: req.body.taskDescription, station: station._id, role: req.body.taskRole, time: req.body.taskTime, checked: false, completedAt: new Date(), completedBy: "Gustavo" })
     
     res.json({message: "success"})
    
 
 
 }
-
-

@@ -1,31 +1,24 @@
-import connectMongo from "../../mongodb/connection"
-import Task from "../../models/Task"
-import Station from "../../models/Station"
-
+import { ObjectId } from "mongodb";
+import clientPromise from "../../mongodb/mongodb";
 
 
 export default async function handler(req, res) {
-    await connectMongo();
+    console.log(req.query)
+    const client = await clientPromise;
+    const db = client.db("SbuxOperations")
     if (req.method == 'GET') {
-        let station = await Station.findOne({ _id: req.query.stationId })
-        let tasks = await Task.find({ station: station._id })
-        console.log(tasks)
-        res.json(tasks)
+
+        //find station by id
+        let taskList = await db.collection("tasks").find({ station: ObjectId(req.query.stationId)}).toArray()
+        res.json({tasks: taskList})
     } else if (req.method == 'DELETE') {
         console.log(req.body)
 
-        let station = await Station.findById(req.body.stationId).populate('tasks'); //find by id
-        station.tasks = station.tasks.filter(task => task._id != req.body.taskId);//delete req.body.taskId from station.tasks
-        await station.save();//save station
-
-        //delete task
-        await Task.deleteOne({ _id: req.body.taskId });
-
-
+        // delete task that matched stationId 
+        let task = await db.collection("tasks").findOneAndDelete({ _id: ObjectId(req.body.taskId) })
+        console.log(task)
         res.json({ message: "success" });
     }
 
 
 }
-
-
