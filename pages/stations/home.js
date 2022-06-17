@@ -160,7 +160,7 @@ const Home = (props) => {
             headers: {
                 'Content-Type': 'application/json',
             },
-            body: JSON.stringify({ stationName: e.target.value }),
+            body: JSON.stringify({ stationId: e.target.value, time: time }),
         })
 
         const data = await results.json()
@@ -173,7 +173,7 @@ const Home = (props) => {
             targetButton.next().removeClass("text-success text-decoration-line-through");
         }
 
-        let targetButton = $(`button[data-station=${data.stationId}]`)
+        let targetButton = $(`button[data-station=${e.target.value}]`)
         targetButton.removeClass("text-success");
         targetButton.html("&#9633;");
         targetButton.next().removeClass("text-success text-decoration-line-through");
@@ -256,7 +256,7 @@ const Home = (props) => {
 
 
                                 <div className="accordion-body">
-                                    <div className='reset-station'  ><button className="task-check btn" type="button " value={PlayCaller.name} onClick={handleResetStation} ><FontAwesomeIcon icon={faArrowRotateRight} style={{ fontSize: "1.0em", color: "green" }} /> Reset</button></div>
+                                    <div className='reset-station'  ><button className="task-check btn" type="button " value={PlayCaller._id} onClick={handleResetStation} ><FontAwesomeIcon icon={faArrowRotateRight} style={{ fontSize: "1.0em", color: "green" }} /> Reset</button></div>
 
 
                                     <h5 className="text-dark"><FontAwesomeIcon icon={faClipboardUser} style={{ fontSize: "1.5em", color: "green" }} /> Play Caller:</h5>
@@ -337,7 +337,7 @@ const Home = (props) => {
                             </h2>
                             <div id="collapseCycleTaskList" className="accordion-collapse collapse" aria-labelledby="CycleTaskList" >
                                 <div className="accordion-body">
-                                    <div className='reset-station'  ><button className="task-check btn" type="button " value={CycleTaskList.name} onClick={handleResetStation} ><FontAwesomeIcon icon={faArrowRotateRight} style={{ fontSize: "1.0em", color: "green" }} /> Reset</button></div>
+                                    <div className='reset-station'  ><button className="task-check btn" type="button " value={CycleTaskList._id} onClick={handleResetStation} ><FontAwesomeIcon icon={faArrowRotateRight} style={{ fontSize: "1.0em", color: "green" }} /> Reset</button></div>
                                     <h5 className="text-dark"> <FontAwesomeIcon icon={faClockRotateLeft} style={{ fontSize: "1.5em", color: "green" }} /> Customer Support:</h5>
                                     {
                                         CycleTaskList.tasks.map((task, index) =>
@@ -383,7 +383,7 @@ const Home = (props) => {
                             </h2>
                             <div id="collapseReadySetGo" className="accordion-collapse collapse" aria-labelledby="ReadySetGo" >
                                 <div className="accordion-body">
-                                    <div className='reset-station'  ><button className="task-check btn" type="button " value={ReadySetGo.name} onClick={handleResetStation} ><FontAwesomeIcon icon={faArrowRotateRight} style={{ fontSize: "1.0em", color: "green" }} /> Reset</button></div>
+                                    <div className='reset-station'  ><button className="task-check btn" type="button " value={ReadySetGo._id} onClick={handleResetStation} ><FontAwesomeIcon icon={faArrowRotateRight} style={{ fontSize: "1.0em", color: "green" }} /> Reset</button></div>
                                     <p>Complete to replenish store before peak period</p>
                                     <h5 className="text-dark"><FontAwesomeIcon icon={faClockRotateLeft} style={{ fontSize: "1.5em", color: "green" }} /> Customer Support:</h5>
                                     {
@@ -435,7 +435,7 @@ const Home = (props) => {
                             </h2>
                             <div id="collapseExpresso" className="accordion-collapse collapse" aria-labelledby="Expresso" >
                                 <div className="accordion-body">
-                                    <div className='reset-station'  ><button className="task-check btn" type="button " value={Expresso.name} onClick={handleResetStation} ><FontAwesomeIcon icon={faArrowRotateRight} style={{ fontSize: "1.0em", color: "green" }} /> Reset</button></div>
+                                    <div className='reset-station'  ><button className="task-check btn" type="button " value={Expresso._id} onClick={handleResetStation} ><FontAwesomeIcon icon={faArrowRotateRight} style={{ fontSize: "1.0em", color: "green" }} /> Reset</button></div>
                                     <h5 className="text-dark"><FontAwesomeIcon icon={faClockRotateLeft} style={{ fontSize: "1.5em", color: "green" }} /> Customer Support: </h5>
                                     {
                                         Expresso.tasks.map((task, index) =>
@@ -507,7 +507,7 @@ const Home = (props) => {
                             </h2>
                             <div id="collapseColdBeverage" className="accordion-collapse collapse" aria-labelledby="ColdBeverage" >
                                 <div className="accordion-body">
-                                    <div className='reset-station'  ><button className="task-check btn" type="button " value={ColdBeverage.name} onClick={handleResetStation} ><FontAwesomeIcon icon={faArrowRotateRight} style={{ fontSize: "1.0em", color: "green" }} /> Reset</button></div>
+                                    <div className='reset-station'  ><button className="task-check btn" type="button " value={ColdBeverage._id} onClick={handleResetStation} ><FontAwesomeIcon icon={faArrowRotateRight} style={{ fontSize: "1.0em", color: "green" }} /> Reset</button></div>
                                     <h5 className="text-dark"><FontAwesomeIcon icon={faClockRotateLeft} style={{ fontSize: "1.5em", color: "green" }} /> Customer Support:</h5>
                                     {
                                         ColdBeverage.tasks.map((task, index) =>
@@ -579,7 +579,7 @@ const Home = (props) => {
                             </h2>
                             <div id="collapseDraft" className="accordion-collapse collapse" aria-labelledby="Draft" >
                                 <div className="accordion-body">
-                                    <div className='reset-station'  ><button className="task-check btn" type="button " value={Draft.name} onClick={handleResetStation} ><FontAwesomeIcon icon={faArrowRotateRight} style={{ fontSize: "1.0em", color: "green" }} /> Reset</button></div>
+                                    <div className='reset-station'  ><button className="task-check btn" type="button " value={Draft._id} onClick={handleResetStation} ><FontAwesomeIcon icon={faArrowRotateRight} style={{ fontSize: "1.0em", color: "green" }} /> Reset</button></div>
                                     <h5 className="text-dark"><FontAwesomeIcon icon={faClockRotateLeft} style={{ fontSize: "1.5em", color: "green" }} /> Customer Support:</h5>
                                     {
                                         Draft.tasks.map((task, index) =>
@@ -651,7 +651,7 @@ const Home = (props) => {
                             </h2>
                             <div id="collapseMOP" className="accordion-collapse collapse" aria-labelledby="MOP" >
                                 <div className="accordion-body">
-                                    <div className='reset-station'  ><button className="task-check btn" type="button " value={MOP.name} onClick={handleResetStation} ><FontAwesomeIcon icon={faArrowRotateRight} style={{ fontSize: "1.0em", color: "green" }} /> Reset</button></div>
+                                    <div className='reset-station'  ><button className="task-check btn" type="button " value={MOP._id} onClick={handleResetStation} ><FontAwesomeIcon icon={faArrowRotateRight} style={{ fontSize: "1.0em", color: "green" }} /> Reset</button></div>
                                     <h5 className="text-dark"><FontAwesomeIcon icon={faClockRotateLeft} style={{ fontSize: "1.5em", color: "green" }} /> Customer Support:</h5>
                                     {
                                         MOP.tasks.map((task, index) =>
@@ -723,7 +723,7 @@ const Home = (props) => {
                             </h2>
                             <div id="collapseBrewing" className="accordion-collapse collapse" aria-labelledby="Brewing" >
                                 <div className="accordion-body">
-                                    <div className='reset-station'  ><button className="task-check btn" type="button " value={Brewing.name} onClick={handleResetStation} ><FontAwesomeIcon icon={faArrowRotateRight} style={{ fontSize: "1.0em", color: "green" }} /> Reset</button></div>
+                                    <div className='reset-station'  ><button className="task-check btn" type="button " value={Brewing._id} onClick={handleResetStation} ><FontAwesomeIcon icon={faArrowRotateRight} style={{ fontSize: "1.0em", color: "green" }} /> Reset</button></div>
                                     <h5 className="text-dark"><FontAwesomeIcon icon={faClockRotateLeft} style={{ fontSize: "1.5em", color: "green" }} /> Customer Support:</h5>
                                     {
                                         Brewing.tasks.map((task, index) =>
@@ -795,7 +795,7 @@ const Home = (props) => {
                             </h2>
                             <div id="collapseWarming" className="accordion-collapse collapse" aria-labelledby="Warming" >
                                 <div className="accordion-body">
-                                    <div className='reset-station'  ><button className="task-check btn" type="button " value={Warming.name} onClick={handleResetStation} ><FontAwesomeIcon icon={faArrowRotateRight} style={{ fontSize: "1.0em", color: "green" }} /> Reset</button></div>
+                                    <div className='reset-station'  ><button className="task-check btn" type="button " value={Warming._id} onClick={handleResetStation} ><FontAwesomeIcon icon={faArrowRotateRight} style={{ fontSize: "1.0em", color: "green" }} /> Reset</button></div>
                                     <h5 className="text-dark"><FontAwesomeIcon icon={faClockRotateLeft} style={{ fontSize: "1.5em", color: "green" }} /> Customer Support:</h5>
                                     {
                                         Warming.tasks.map((task, index) =>
@@ -867,7 +867,7 @@ const Home = (props) => {
                             </h2>
                             <div id="collapseFoodCase" className="accordion-collapse collapse" aria-labelledby="FoodCase" >
                                 <div className="accordion-body">
-                                    <div className='reset-station'  ><button className="task-check btn" type="button " value={FoodCase.name} onClick={handleResetStation} ><FontAwesomeIcon icon={faArrowRotateRight} style={{ fontSize: "1.0em", color: "green" }} /> Reset</button></div>
+                                    <div className='reset-station'  ><button className="task-check btn" type="button " value={FoodCase._id} onClick={handleResetStation} ><FontAwesomeIcon icon={faArrowRotateRight} style={{ fontSize: "1.0em", color: "green" }} /> Reset</button></div>
                                     <h5 className="text-dark"><FontAwesomeIcon icon={faClockRotateLeft} style={{ fontSize: "1.5em", color: "green" }} /> Customer Support:</h5>
                                     {
                                         FoodCase.tasks.map((task, index) =>
@@ -940,7 +940,7 @@ const Home = (props) => {
                             </h2>
                             <div id="collapseCustomerArea" className="accordion-collapse collapse" aria-labelledby="CustomerArea" >
                                 <div className="accordion-body">
-                                    <div className='reset-station'  ><button className="task-check btn" type="button " value={CustomerArea.name} onClick={handleResetStation} ><FontAwesomeIcon icon={faArrowRotateRight} style={{ fontSize: "1.0em", color: "green" }} /> Reset</button></div>
+                                    <div className='reset-station'  ><button className="task-check btn" type="button " value={CustomerArea._id} onClick={handleResetStation} ><FontAwesomeIcon icon={faArrowRotateRight} style={{ fontSize: "1.0em", color: "green" }} /> Reset</button></div>
                                     <h5 className="text-dark"><FontAwesomeIcon icon={faClockRotateLeft} style={{ fontSize: "1.5em", color: "green" }} /> Customer Support:</h5>
                                     {
                                         CustomerArea.tasks.map((task, index) =>
@@ -1012,7 +1012,7 @@ const Home = (props) => {
                             </h2>
                             <div id="collapseBackOfHouse" className="accordion-collapse collapse" aria-labelledby="BackOfHouse" >
                                 <div className="accordion-body">
-                                    <div className='reset-station'  ><button className="task-check btn" type="button " value={BackOfHouse.name} onClick={handleResetStation} ><FontAwesomeIcon icon={faArrowRotateRight} style={{ fontSize: "1.0em", color: "green" }} /> Reset</button></div>
+                                    <div className='reset-station'  ><button className="task-check btn" type="button " value={BackOfHouse._id} onClick={handleResetStation} ><FontAwesomeIcon icon={faArrowRotateRight} style={{ fontSize: "1.0em", color: "green" }} /> Reset</button></div>
                                     <h5 className="text-dark"><FontAwesomeIcon icon={faClockRotateLeft} style={{ fontSize: "1.5em", color: "green" }} /> Customer Support:</h5>
                                     {
                                         BackOfHouse.tasks.map((task, index) =>
@@ -1084,7 +1084,7 @@ const Home = (props) => {
                             </h2>
                             <div id="collapseDishWashing" className="accordion-collapse collapse" aria-labelledby="DishWashing">
                                 <div className="accordion-body">
-                                    <div className='reset-station'  ><button className="task-check btn" type="button " value={DishWashing.name} onClick={handleResetStation} ><FontAwesomeIcon icon={faArrowRotateRight} style={{ fontSize: "1.0em", color: "green" }} /> Reset</button></div>
+                                    <div className='reset-station'  ><button className="task-check btn" type="button " value={DishWashing._id} onClick={handleResetStation} ><FontAwesomeIcon icon={faArrowRotateRight} style={{ fontSize: "1.0em", color: "green" }} /> Reset</button></div>
                                     <h5 className="text-dark"><FontAwesomeIcon icon={faClockRotateLeft} style={{ fontSize: "1.5em", color: "green" }} /> Customer Support:</h5>
                                     {
                                         DishWashing.tasks.map((task, index) =>
@@ -1159,7 +1159,7 @@ const Home = (props) => {
                             </h2>
                             <div id="collapseStoreWalk" className="accordion-collapse collapse" aria-labelledby="StoreWalk" >
                                 <div className="accordion-body">
-                                    <div className='reset-station'  ><button className="task-check btn" type="button " value={StoreWalk.name} onClick={handleResetStation} ><FontAwesomeIcon icon={faArrowRotateRight} style={{ fontSize: "1.0em", color: "green" }} /> Reset</button></div>
+                                    <div className='reset-station'  ><button className="task-check btn" type="button " value={StoreWalk._id} onClick={handleResetStation} ><FontAwesomeIcon icon={faArrowRotateRight} style={{ fontSize: "1.0em", color: "green" }} /> Reset</button></div>
                                     <h5 className="text-dark"><FontAwesomeIcon icon={faClipboardUser} style={{ fontSize: "1.5em", color: "green" }} /> Play Caller:</h5>
                                     {
                                         StoreWalk.tasks.map((task, index) =>
@@ -1205,7 +1205,7 @@ const Home = (props) => {
                             </h2>
                             <div id="collapseQuickConnect" className="accordion-collapse collapse" aria-labelledby="QuickConnect" >
                                 <div className="accordion-body">
-                                    <div className='reset-station'  ><button className="task-check btn" type="button " value={QuickConnect.name} onClick={handleResetStation} ><FontAwesomeIcon icon={faArrowRotateRight} style={{ fontSize: "1.0em", color: "green" }} /> Reset</button></div>
+                                    <div className='reset-station'  ><button className="task-check btn" type="button " value={QuickConnect._id} onClick={handleResetStation} ><FontAwesomeIcon icon={faArrowRotateRight} style={{ fontSize: "1.0em", color: "green" }} /> Reset</button></div>
                                     <h5 className="text-dark"><FontAwesomeIcon icon={faClipboardUser} style={{ fontSize: "1.5em", color: "green" }} /> Play Caller:</h5>
                                     {
                                         QuickConnect.tasks.map((task, index) =>
