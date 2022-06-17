@@ -15,7 +15,7 @@ export default async function handler(req, res) {
         updatedTask =  await db.collection("tasks").findOneAndUpdate({ description: req.body.taskDescription }, { "$set": { checked: false, completedBy: "Gustavo" } });
     } else if (req.body.checked == true) {
         console.log("changing to checked")
-        updatedTask = await db.collection("tasks").findOneAndUpdate({ description: req.body.taskDescription }, { "$set": { checked: true, completedAt: req.body.date, completedBy: "Gustavo" } });
+        updatedTask = await db.collection("tasks").findOneAndUpdate({ description: req.body.taskDescription }, { "$set": { checked: true, completedAt: req.body.date, completedBy: req.body.partnerName } });
     }
 
     //find station whose id is equal to updatedTask.station

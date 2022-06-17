@@ -11,6 +11,22 @@ import sbuxlogo from './sbux_logo.webp'
 
 
 export default function Navbar() {
+
+  async function handleLogOut() {
+    console.log("executes handleLogout")
+
+    const results = await fetch('/api/logout', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({}),
+    })
+
+
+
+
+  }
   return (
 
     <>
@@ -50,7 +66,10 @@ export default function Navbar() {
                 </Link>
               </li>
               <li className="nav-item btn">
-                <a className="nav-link active" aria-current="page" href="#">Logout</a>
+                <Link href="/">
+                  <a className="nav-link active" aria-current="page" href="#" onClick={handleLogOut}>Logout</a>
+                </Link>
+
               </li>
             </ul>
 

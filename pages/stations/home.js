@@ -8,6 +8,7 @@ import clientPromise from "../../mongodb/mongodb";
 // Components
 import Navbar from '../navbar.js';
 import Footer from '../footer.js';
+import Login from '../login.js';
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
@@ -52,6 +53,7 @@ import { loadGetInitialProps } from 'next/dist/shared/lib/utils';
 const Home = (props) => {
     const [stations, setStations] = useState(props.data);
     const [time, setTime] = useState(props.timeNow);
+    const [partnerName, setPartnerName] = useState(props.partnerName);
 
 
     const StoreWalk = stations.find(station => station.name == "Store Walk");
@@ -126,14 +128,14 @@ const Home = (props) => {
         }
 
         let currentDate = new Date();
-        let currentDateString = "Last completed by Gustavo on " + (currentDate.getMonth() + 1) + "/" + currentDate.getDate() + "/" + currentDate.getFullYear() + " at " + currentDate.getHours() + ":" + currentDate.getMinutes()
+        let currentDateString = "Last completed by " + partnerName + " on " + (currentDate.getMonth() + 1) + "/" + currentDate.getDate() + "/" + currentDate.getFullYear() + " at " + currentDate.getHours() + ":" + currentDate.getMinutes()
 
         const results = await fetch('/api/checkTask', {
             method: 'PUT',
             headers: {
                 'Content-Type': 'application/json',
             },
-            body: JSON.stringify({ taskId: e.target.value, taskDescription: taskDescription, checked: changeTo, date: currentDateString  }),
+            body: JSON.stringify({ taskId: e.target.value, taskDescription: taskDescription, checked: changeTo, date: currentDateString, partnerName: partnerName }),
         })
 
         //received updated station from the backend whose task got checked
@@ -181,6 +183,26 @@ const Home = (props) => {
     }
 
 
+    if(partnerName == ""){
+        return(<>
+        <Navbar />
+            <Head>
+                <title>Virtual Operations Stations</title>
+                <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossOrigin="anonymous" />
+                <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.1/css/all.css"
+                    integrity="sha384-vp86vTRFVJgpjF9jiIGPEEqYqlDwgyBgEF109VFjmqGmIY/Y4HV4d3Gp2irVfcrp" crossorigin="anonymous"></link>
+            </Head>
+            <Login/>
+            <Footer/>
+        </>
+            
+        
+        )
+
+    }
+
+
+
 
     return (
 
@@ -214,7 +236,7 @@ const Home = (props) => {
 
 
                     <h1 className="my-5">
-                        What time is it?
+                        Hello {partnerName}, what time is it?
                     </h1>
 
 
@@ -1251,7 +1273,7 @@ const Home = (props) => {
     )
 }
 
-export async function getStaticProps() {
+export async function getServerSideProps({ req, res }) {
 
     const client = await clientPromise;
 
@@ -1284,9 +1306,10 @@ export async function getStaticProps() {
     return {
         props: {
             data: JSON.parse(data),
-            timeNow: timeNow
+            timeNow: timeNow,
+            partnerName: req.cookies.partnerName? req.cookies.partnerName : "",
         },
-        revalidate: 10, // In seconds
+        //revalidate: 10, // In seconds
     };
 
 }

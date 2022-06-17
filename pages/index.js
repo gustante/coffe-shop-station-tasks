@@ -35,7 +35,9 @@ const Home = (props) => {
         <Navbar />
 
         <div className="container">
-
+        <div class="alert alert-danger d-none position-absolute top-10 start-50 translate-middle w-100 mt-4" role="alert">
+            Incorrect password. Please try again.
+          </div>
 
 
 
