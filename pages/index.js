@@ -35,12 +35,7 @@ const Home = (props) => {
         <Navbar />
 
         <div className="container">
-        <div class="alert alert-danger d-none position-fixed top-100 start-50 translate-middle w-100 mb-5 pb-5" role="alert">
-            Incorrect password. Please try again.
-          </div>
-
-
-
+      
 
           <main className="text-center">
             <h1 className="title pt-5">

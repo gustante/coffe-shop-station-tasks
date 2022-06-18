@@ -23,7 +23,8 @@ const Login = (props) => {
 
 
 
-  async function handleLogIn() {
+  async function handleLogin(e) {
+    e.preventDefault();
     console.log("executes handleLogin")
 
     const results = await fetch('/api/login', {
@@ -39,15 +40,15 @@ const Login = (props) => {
     if (data.message == "success") {
       window.location.assign('/stations/home')
     } else {
-      
 
-      $(".alert-danger").removeClass('d-none');
-      $(".alert-danger").addClass('d-block');
 
-                const myTimeout = setTimeout(function(){
-                  $(".alert-danger").removeClass('d-block');
-                  $(".alert-danger").addClass('d-none');
-                }, 5000);
+      $(".text-danger").removeClass('d-none');
+      $(".text-danger").addClass('d-block');
+
+      const myTimeout = setTimeout(function () {
+        $(".text-danger").removeClass('d-block');
+        $(".text-danger").addClass('d-none');
+      }, 5000);
     }
 
 
@@ -76,28 +77,40 @@ const Login = (props) => {
       </Head>
 
       <Script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossOrigin="anonymous" strategy="lazyOnload" />
-
+      <Script
+        src="https://code.jquery.com/jquery-3.6.0.slim.min.js"
+        integrity="sha256-u7e5khyithlIdTpu22PHhENmPcRdFiHRjhAuHcs05RI="
+        crossorigin="anonymous" />
       <div className="container">
-        <main className="text-center">  
+        <main className="text-center">
 
           <h4 className="my-4">
             Log in to proceed
           </h4>
+          <form onSubmit={handleLogin}>
+            <div className="input-group mb-4">
 
-          <div className="input-group mb-4">
-            <span className="input-group-text" id="basic-addon1"><FontAwesomeIcon icon={faUserLarge} style={{ fontSize: "1.5em" }} /></span>
-            <input type="text" name="partnerName" className="form-control p-3" placeholder="name" aria-label="name" aria-describedby="basic-addon1" onChange={handleChangePartnerName} />
-          </div>
-          <div className="input-group mb-4">
-            <span className="input-group-text" id="basic-addon1"><FontAwesomeIcon icon={faKey} style={{ fontSize: "1.5em" }} /></span>
-            <input type="password" name="password" className="form-control p-3" placeholder="password" aria-label="password" aria-describedby="basic-addon1" onChange={handleChangePassword} />
-          </div>
+              <span className="input-group-text" id="basic-addon1"><FontAwesomeIcon icon={faUserLarge} style={{ fontSize: "1.5em" }} /></span>
+              <input type="text" name="partnerName" className="form-control p-3" placeholder="name" aria-label="name" aria-describedby="basic-addon1" onChange={handleChangePartnerName} required />
+            </div>
+            <div className="input-group mb-4">
+              <span className="input-group-text" id="basic-addon1"><FontAwesomeIcon icon={faKey} style={{ fontSize: "1.5em" }} /></span>
+              <input type="password" name="password" className="form-control p-3" placeholder="password" aria-label="password" aria-describedby="basic-addon1" onChange={handleChangePassword} required />
 
-          <div className="d-grid gap-2">
+            </div>
 
-            <button className="btn btn-lg btn-login py-3" onClick={handleLogIn} >Log In</button>
-          </div>
-          
+            <div className="d-grid gap-2">
+
+              <button type="submit" className="btn btn-lg btn-login py-3" >Log In</button>
+            </div>
+            <div className="text-danger position-relative d-none " role="alert">
+              Incorrect password. Please try again.
+            </div>
+          </form>
+
+
+
+
 
 
 
