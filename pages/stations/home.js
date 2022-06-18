@@ -183,25 +183,6 @@ const Home = (props) => {
     }
 
 
-    if(partnerName == ""){
-        return(<>
-        <Navbar />
-            <Head>
-                <title>Virtual Operations Stations</title>
-                <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossOrigin="anonymous" />
-                <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.1/css/all.css"
-                    integrity="sha384-vp86vTRFVJgpjF9jiIGPEEqYqlDwgyBgEF109VFjmqGmIY/Y4HV4d3Gp2irVfcrp" crossorigin="anonymous"></link>
-            </Head>
-            <Login/>
-            <Footer/>
-        </>
-            
-        
-        )
-
-    }
-
-
 
 
     return (
@@ -1275,42 +1256,57 @@ const Home = (props) => {
 
 export async function getServerSideProps({ req, res }) {
 
-    const client = await clientPromise;
 
-    const db = client.db("SbuxOperations")
+    if (!req.cookies.partnerName) {
+        return {
+            redirect: {
+                destination: '/',
+            },
+        }
+    } else {
 
-    const stations = await db.collection("stations").find({}).toArray();
+        const client = await clientPromise;
 
-    // //populate stations.tasks   with tasks
-    for (let station of stations) {
-        station.tasks = await db.collection("tasks").find({ station: station._id }).toArray();
+        const db = client.db("SbuxOperations")
+
+        const stations = await db.collection("stations").find({}).toArray();
+
+        // //populate stations.tasks   with tasks
+        for (let station of stations) {
+            station.tasks = await db.collection("tasks").find({ station: station._id }).toArray();
+        }
+
+        let data = JSON.stringify(stations);
+
+        let currentDate = new Date();
+        let timeNow = currentDate.getHours()
+
+        console.log(timeNow);
+
+        if (timeNow > 1 && timeNow < 11) {
+            timeNow = "open-11am"
+        } else if (timeNow >= 11 && timeNow < 14) {
+            timeNow = "11am-2pm"
+        } else if (timeNow >= 14 && timeNow < 16) {
+            timeNow = "2pm-4pm"
+        } else if (timeNow >= 16 && timeNow < 23) {
+            timeNow = "4pm-close"
+        }
+
+        return {
+            props: {
+                data: JSON.parse(data),
+                timeNow: timeNow,
+                partnerName: req.cookies.partnerName
+            },
+            //revalidate: 10, // In seconds
+        };
+
     }
 
-    let data = JSON.stringify(stations);
 
-    let currentDate = new Date();
-    let timeNow = currentDate.getHours()
 
-    console.log(timeNow);
 
-    if (timeNow > 1 && timeNow < 11) {
-        timeNow = "open-11am"
-    } else if (timeNow >= 11 && timeNow < 14) {
-        timeNow = "11am-2pm"
-    } else if (timeNow >= 14 && timeNow < 16) {
-        timeNow = "2pm-4pm"
-    } else if (timeNow >= 16 && timeNow < 23) {
-        timeNow = "4pm-close"
-    }
-
-    return {
-        props: {
-            data: JSON.parse(data),
-            timeNow: timeNow,
-            partnerName: req.cookies.partnerName? req.cookies.partnerName : "",
-        },
-        //revalidate: 10, // In seconds
-    };
 
 }
 
