@@ -191,7 +191,7 @@ const Home = (props) => {
         <>
             <Navbar />
             <Head>
-                <title>Virtual Operations Stations</title>
+                <title>Virtual Operation Station Cards</title>
                 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossOrigin="anonymous" />
                 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.1/css/all.css"
                     integrity="sha384-vp86vTRFVJgpjF9jiIGPEEqYqlDwgyBgEF109VFjmqGmIY/Y4HV4d3Gp2irVfcrp" crossorigin="anonymous"></link>
@@ -217,7 +217,7 @@ const Home = (props) => {
 
 
                     <h1 className="my-5">
-                        Hello {partnerName}! 
+                        Hello {partnerName}!
                     </h1>
                     <h1 className="my-5">
                         What time is it?

@@ -5,7 +5,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 
 // Components
-import sbuxlogo from './sbux_logo.webp'
+import logo from './logo.webp'
 
 //
 
@@ -31,7 +31,7 @@ export default function Navbar() {
 
     <>
       <Head>
-        <title>Virtual Operations Stations</title>
+
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossOrigin="anonymous" />
       </Head>
 
@@ -39,7 +39,7 @@ export default function Navbar() {
       <nav className="navbar navbar-expand-lg navbar-dark">
         <div className="container-fluid">
           <Link href="/">
-            <a><Image src={sbuxlogo} alt="starbucks logo mermeid" height={50} width={50} /></a>
+            <a><Image src={logo} alt="starbucks logo mermeid" height={50} width={50} /></a>
           </Link>
 
           <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">

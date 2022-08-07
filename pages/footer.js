@@ -9,7 +9,7 @@ export default function Footer() {
 
 
       <Head>
-        <title>Virtual Operations Stations</title>
+        
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous"/>
       </Head>
 
@@ -17,11 +17,11 @@ export default function Footer() {
 
       
         
-    <footer className="d-flex py-2">
+    <footer className="d-flex flex-column py-2">
     
-        <div className="d-flex p-4 flex-column ">
-          <small className="mb-4 ">&copy; 2022 Gustavo Faria. All rights reserved. </small> 
-          <small className="">Developed for Starbucks business purposes only. This app is confidential and for internal use. Do not distribute. </small>
+        <div className=" p-4 ">
+          <small className="mb-4 d-block">&copy; 2022 Gustavo Faria. All rights reserved. </small> 
+          <small className="d-block">This app is confidential and for internal use. Do not distribute. </small>
         </div>
 
       </footer>
