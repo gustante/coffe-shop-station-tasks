@@ -88,6 +88,16 @@ const Management = (props) => {
 
         const data = await results.json()
         console.log(data)
+        if (data.message == 'success') {
+            $('.alert-create').removeClass("d-none")
+        }
+        //add back d-none after 5 seconds
+        const myTimeout = setTimeout(function () {
+            $('.alert-create').addClass("d-none")
+        }, 5000);
+
+
+
 
 
     }
@@ -131,6 +141,14 @@ const Management = (props) => {
 
         const data = await results.json()
         console.log(data.message)
+        console.log(data)
+        if (data.message == 'success') {
+            $('.alert-delete').removeClass("d-none")
+        }
+        //add back d-none after 5 seconds
+        const myTimeout = setTimeout(function () {
+            $('.alert-delete').addClass("d-none")
+        }, 5000);
 
         //delete task from dropdown
         const newTaskDropDown = taskDropDown.filter(task => task._id != selectedTask);
@@ -257,6 +275,10 @@ const Management = (props) => {
                         <div className="d-grid gap-2">
                             <button onClick={handleCreateTask} className="btn btn-lg btn-login py-3" >Create task</button>
                         </div>
+                        <div className="alert alert-create d-none alert-success my-2" role="alert">
+                            Task created!
+                        </div>
+
 
 
                         {/* <h1 className="my-5">
@@ -286,6 +308,9 @@ const Management = (props) => {
 
                         <div className="d-grid gap-2">
                             <button onClick={handleDeleteTask} className="btn btn-lg btn-login py-3" >Delete task</button>
+                        </div>
+                        <div className="alert alert-delete d-none alert-danger my-2" role="alert">
+                            Task deleted!
                         </div>
                     </div>
 

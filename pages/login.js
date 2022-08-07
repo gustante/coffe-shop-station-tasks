@@ -38,6 +38,10 @@ const Login = (props) => {
     const data = await results.json()
 
     if (data.message == "success") {
+      $("button[type='submit']").disabled = true;
+      $("button[type='submit']").html(`  <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+      Loading...`);
+
       window.location.assign('/stations/home')
     } else {
 
@@ -101,7 +105,8 @@ const Login = (props) => {
 
             <div className="d-grid gap-2">
 
-              <button type="submit" className="btn btn-lg btn-login py-3" >Log In</button>
+              <button type="submit" className="btn btn-lg btn-login py-3" >Log In
+              </button>
             </div>
             <div className="text-danger position-relative d-none " role="alert">
               Incorrect password. Please try again.
