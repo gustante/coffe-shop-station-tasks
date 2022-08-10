@@ -18,7 +18,8 @@ export default async function handler(req, res) {
     } else {
 
         //update all tasks on req.query.stationName to checked: false
-        //const updated = await db.collection("tasks").find({ station: station[0]._id }).toArray();
+        
+        
         const updated = await db.collection("tasks").updateMany({ station: ObjectId(req.body.stationId), time: req.body.time }, { "$set": { checked: false } });
 
 

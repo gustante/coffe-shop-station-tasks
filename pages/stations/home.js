@@ -93,7 +93,7 @@ const Home = (props) => {
 
         const data = await results.json()
         //update stations with updates from server
-        console.log(data.stations)
+
         setStations(data.stations);
         // initialize popovers
         const popoverTriggerList = document.querySelectorAll('[data-bs-toggle="popover"]')
@@ -157,12 +157,25 @@ const Home = (props) => {
 
     async function handleResetStation(e) {
         console.log("reseting stations : " + e.target.value)
+        //find station name whose id equals e.target.vale and figure out if it has any task with time "Unset"
+        const station = stations.find(station => station._id == e.target.value);
+        const unsetTasks = station.tasks.filter(task => task.time == "Unset");
+        console.log(unsetTasks)
+
+        let selectedTime;
+        if (unsetTasks.length > 0) {
+            selectedTime = "Unset"
+        } else {
+            selectedTime = time 
+        }
+        
+
         const results = await fetch('/api/resetStation', {
             method: 'PUT',
             headers: {
                 'Content-Type': 'application/json',
             },
-            body: JSON.stringify({ stationId: e.target.value, time: time }),
+            body: JSON.stringify({ stationId: e.target.value, time: selectedTime, stationName: station.name }),
         })
 
         const data = await results.json()
@@ -389,7 +402,7 @@ const Home = (props) => {
                             </h2>
                             <div id="collapseReadySetGo" className="accordion-collapse collapse" aria-labelledby="ReadySetGo" >
                                 <div className="accordion-body">
-                                    <div className='reset-station'  ><button className="task-check btn" type="button " value={ReadySetGo._id} onClick={handleResetStation} ><FontAwesomeIcon icon={faArrowRotateRight} style={{ fontSize: "1.0em", color: "green" }} /> Reset</button></div>
+                                    <div className='reset-station'  ><button className="task-check btn" type="button " value={ReadySetGo._id} data-stationName={ReadySetGo.name} onClick={handleResetStation} ><FontAwesomeIcon icon={faArrowRotateRight} style={{ fontSize: "1.0em", color: "green" }} /> Reset</button></div>
                                     <p>Complete to replenish store before peak period</p>
                                     <h5 className="text-dark"><FontAwesomeIcon icon={faClockRotateLeft} style={{ fontSize: "1.5em", color: "green" }} /> Customer Support:</h5>
                                     {
