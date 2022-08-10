@@ -1,5 +1,6 @@
 
 import clientPromise from "../../mongodb/mongodb";
+import { ObjectId } from "mongodb";
 
 export default async function handler(req, res) {
     console.log(req.body)
@@ -12,13 +13,14 @@ export default async function handler(req, res) {
     let updatedTask;
     if(req.body.checked == false){
         console.log("changing to unchecked")
-        updatedTask =  await db.collection("tasks").findOneAndUpdate({ description: req.body.taskDescription }, { "$set": { checked: false, completedBy: "Gustavo" } });
+        updatedTask =  await db.collection("tasks").findOneAndUpdate({ _id: ObjectId(req.body.taskId) }, { "$set": { checked: false, completedBy: "Gustavo" } });
     } else if (req.body.checked == true) {
         console.log("changing to checked")
-        updatedTask = await db.collection("tasks").findOneAndUpdate({ description: req.body.taskDescription }, { "$set": { checked: true, completedAt: req.body.date, completedBy: req.body.partnerName } });
+        updatedTask = await db.collection("tasks").findOneAndUpdate({ _id: ObjectId(req.body.taskId) }, { "$set": { checked: true, completedAt: req.body.date, completedBy: req.body.partnerName } });
     }
 
     //find station whose id is equal to updatedTask.station
+    console.log("updated task is:")
     console.log(updatedTask)
     const station = await db.collection("stations").find({ _id: updatedTask.value.station }).toArray()
     //populate station tasks with tasks
