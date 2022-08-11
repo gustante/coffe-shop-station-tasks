@@ -57,9 +57,9 @@ export default function Navbar() {
                   <a className="nav-link active" aria-current="page" href="#">Stations</a>
                 </Link>
               </li>
-              <li className="nav-item btn">
+              {/* <li className="nav-item btn">
                 <a className="nav-link active" aria-current="page" href="#">View as PlayCaller</a>
-              </li>
+              </li> */}
               <li className="nav-item btn">
                 <Link href="/management">
                   <a className="nav-link active" aria-current="page" href="#">Manage stations and tasks</a>
