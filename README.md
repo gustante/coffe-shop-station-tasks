@@ -1,10 +1,13 @@
-Coffe Shop Station Tasks
+# Coffe Shop Station Tasks
 
-Description:
+## Description:
 A simple but effective web app to manage tasks in different stations of a regular coffee shop.
 
-Usage:
 
+
+
+
+## Usage:
 Log in with your name.
 Password: 4920
 
@@ -27,14 +30,17 @@ In the navbar it leads the management of Stations and Tasks. Currently, there ar
 
 
 
-Developed by:
+
+## Developed by:
 Gustavo Franca Faria
 
 
-Built with:
+## Built with:
 React js.
 Next.js
 Bootstrap 
 Cookies
 Fontawesome
+
+
 
