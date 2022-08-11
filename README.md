@@ -42,5 +42,13 @@ Bootstrap
 Cookies
 Fontawesome
 
+## Home Page
+![Home page](./public/images/home.png)
 
+## Stations
+![Stations](./public/images/stations.png)
+![Stations](./public/images/stations_expanded.png)
+
+## Management
+![Management](./public/images/management.png)
 
